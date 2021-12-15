@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ICE_INFO ICE_VC150_3.7.5="通信框架基础依赖信息" Version="3.7.5">
+
+    <!-- ************************************************************************* --> 
+         <!-- MDS 前端界面框架 --> 
+         <!-- MPS 前端界面框架 私服--> 
+    <!-- ************************************************************************* --> 
+
+
+    <!-- 这是系统作为客户端所需要的信息 --> 
+    <SystemIsClient category="MDS/SystemIsClient">
+		<NormalPlugins DisplayName="ImagerSystemPlugin" 		 IconPath="" Path="/ImagerSystemPlugin.dll" 		 Name="ImagerSystemPlugin" 		Version="1.0.0" PluginState="1"/>
+        <to>George</to>
+
+   </SystemIsClient>
+
+    <!-- 这是系统作为服务器所需要的信息 --> 
+    <SystemIsService category="MDS/SystemIsService">
+        <to>George</to>
+        <to>George</to>
+        <to>George</to>
+        <to>George</to>
+     </SystemIsService>
+
+</ICE_INFO>
