@@ -61,25 +61,31 @@ CONFIG(release,debug|release){
 } 
 
 HEADERS += \
+    DealFaultDialog.h \
     FaultMsgPage.h \
     HeaderView.h \
     LoadFilePage.h \
     LogMsgPage.h \
     NotEditableDelegate.h \
+    QueryDialog.h \
     ReportTablePage.h \
     TableAnalyse.h \
+    ViewDetailDialog.h \
     ireporttablepluginservice.h  \ 
     reporttablepluginservice.h  \ 
     reporttablepluginactivator.h 
 
 SOURCES += \
+    DealFaultDialog.cpp \
     FaultMsgPage.cpp \
     HeaderView.cpp \
     LoadFilePage.cpp \
     LogMsgPage.cpp \
     NotEditableDelegate.cpp \
+    QueryDialog.cpp \
     ReportTablePage.cpp \
     TableAnalyse.cpp \
+    ViewDetailDialog.cpp \
     reporttablepluginservice.cpp \ 
     reporttablepluginactivator.cpp 
 
@@ -101,8 +107,11 @@ CopyDir = $$replace(CopyDir, /, \\)
 QMAKE_POST_LINK += copy  $$HeadPath $$CopyDir 
 
 FORMS += \
+    DealFaultDialog.ui \
     FaultMsgPage.ui \
     LoadFilePage.ui \
     LogMsgPage.ui \
-    ReportTablePage.ui
+    QueryDialog.ui \
+    ReportTablePage.ui \
+    ViewDetailDialog.ui
 

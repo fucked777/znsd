@@ -53,6 +53,9 @@ using namespace NSGlobal;
 class HeaderView;
 class NotEditableDelegate;
 class TableAnalyse;
+class QueryDialog;
+class DealFaultDialog;
+class ViewDetailDialog;
 class FaultMsgPage : public QDialog
 {
     Q_OBJECT
@@ -94,6 +97,8 @@ public:
     int initPage();
 private slots:
     void delItemClicked();
+    void dealFaultItemClicked();
+    void viewDetailItemClicked();
     void selectAllItems(Qt::CheckState state);
     void checkCurrRowSlot(int rowIndex, bool checked);
 
@@ -113,6 +118,9 @@ private:
     HeaderView* headerView;
     NotEditableDelegate* notEditableDelegate;
     TableAnalyse* faultMstAnalyse;
+    DealFaultDialog* m_dealFaultDialog;
+    QueryDialog* m_queryDialog;
+    ViewDetailDialog* m_viewDetailDialog;
     int rowCount;
     int comboxCurIndex;
     int pageCount;

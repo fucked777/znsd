@@ -1,9 +1,13 @@
 #include "FaultMsgPage.h"
+#include "DealFaultDialog.h"
 #include "HeaderView.h"
 #include "NotEditableDelegate.h"
+#include "QueryDialog.h"
 #include "TableAnalyse.h"
+#include "ViewDetailDialog.h"
 #include "ui_FaultMsgPage.h"
 #include <QDebug>
+#include <QFile>
 const int MAX_INSERT_NUM = 1000;
 
 FaultMsgPage::FaultMsgPage(QWidget* parent)
@@ -11,6 +15,9 @@ FaultMsgPage::FaultMsgPage(QWidget* parent)
     , ui(new Ui::FaultMsgPage)
 {
     ui->setupUi(this);
+    m_queryDialog = new QueryDialog();
+    m_dealFaultDialog = new DealFaultDialog();
+    m_viewDetailDialog = new ViewDetailDialog();
     initMember();
     initView();
 }
@@ -28,9 +35,25 @@ void FaultMsgPage::delBtnClicked()
     updateRowData(datas);
 }
 
-void FaultMsgPage::queryBtnClicked() {}
+void FaultMsgPage::queryBtnClicked() { m_queryDialog->show(); }
 
-void FaultMsgPage::reportBtnClicked() {}
+void FaultMsgPage::reportBtnClicked()
+{
+    QFile f("test.csv");
+    f.open(QIODevice::WriteOnly);
+    QStringList text;
+    for (int i = 0; i < tableModel->rowCount(); ++i)
+    {
+        for (int j = 0; j < tableModel->columnCount(); ++j)
+        {
+            QString item = tableModel->item(i, j)->data(Qt::DisplayRole).toString();
+            text << item;
+        }
+        f.write(text.join(",").toUtf8() + "\r\n");
+        text.clear();
+    }
+    f.close();
+}
 
 void FaultMsgPage::allBtnClicked() {}
 
@@ -44,15 +67,8 @@ void FaultMsgPage::lastPageBtnClicked() {}
 
 void FaultMsgPage::okBtnClicked()
 {
-    //    m_datas = freqTableView->getCheckedRowDataLSSMs();
-    //    emit settingDlgCloseSignal(1, m_datas.size());
-    //    accept();
-    //    QVariant index = freqTableView->getRowCount();
-    //    NSGlobal::RowDataFaultMsg dataSaveInfoMap;
-    //    QVector<NSGlobal::LSSMFreqTableRowData> dataSave;
-    //    dataSave = freqTableView->getDataInfo(dataSaveInfoMap);
-    //    m_datas = dataSave;
-    //    emit dataSaveSignal(dataSave);
+    QVariant gotoPage = ui->lineEdit->text();
+    accept();
 }
 
 void FaultMsgPage::clearBtnClicked() {}
@@ -223,6 +239,10 @@ int FaultMsgPage::initPage()
     qDebug() << "pageCount" << pageCount;
     return pageCount;
 }
+
+void FaultMsgPage::dealFaultItemClicked() { m_dealFaultDialog->show(); }
+
+void FaultMsgPage::viewDetailItemClicked() { m_viewDetailDialog->show(); }
 void FaultMsgPage::selectAllItems(Qt::CheckState state)
 {
     //    for (int i = 0; i < tableModel->rowCount(); i++)
@@ -293,14 +313,14 @@ void FaultMsgPage::updateRowData(QVector<RowDataFaultMsg>& values)
         QPushButton* detailsBtn = new QPushButton("查看详情", this);
         detailsBtn->setFlat(true);
         detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:12px;border-style:none;text-align: left;");
-        //        connect(handleBtn, &QPushButton::clicked, this, &FaultMsgPage::delItemClicked);
+        connect(detailsBtn, &QPushButton::clicked, this, &FaultMsgPage::viewDetailItemClicked);
         detailsBtn->setProperty("row", i);
         ui->tableView->setIndexWidget(tableModel->index(i, tableModel->columnCount() - 2), detailsBtn);
 
         QPushButton* dealBtn = new QPushButton("处理故障", this);
         dealBtn->setFlat(true);
         dealBtn->setStyleSheet("color:rgb(0,170,255);font-size:12px;border-style:none;text-align: left;");
-        //        connect(handleBtn, &QPushButton::clicked, this, &FaultMsgPage::delItemClicked);
+        connect(dealBtn, &QPushButton::clicked, this, &FaultMsgPage::dealFaultItemClicked);
         dealBtn->setProperty("row", i);
         ui->tableView->setIndexWidget(tableModel->index(i, tableModel->columnCount() - 1), dealBtn);
     }
