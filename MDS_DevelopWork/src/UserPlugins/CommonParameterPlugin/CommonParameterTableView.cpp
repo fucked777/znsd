@@ -217,8 +217,8 @@ void CommonParameterTableView::destroyMember() {}
 
 void CommonParameterTableView::initView()
 {
-    //    ui->KZQTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //    ui->KZQTable->horizontalHeader()->setDefaultAlignment(Qt::AlignVCenter);
+    //    ui->TableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    //    ui->TableView->horizontalHeader()->setDefaultAlignment(Qt::AlignVCenter);
     ui->TableView->setEditTriggers(QAbstractItemView::DoubleClicked);
 }
 
@@ -229,7 +229,9 @@ void CommonParameterTableView::resizeEvent(QResizeEvent* event)
     m_scale = ui->TableView->width() / totleColumnWidth;
 
     for (int i = 0; i < 5; i++)
+    {
         ui->TableView->setColumnWidth(i, columnWidths.at(i) * m_scale);
+    }
 }
 
 bool CommonParameterTableView::eventFilter(QObject* obj, QEvent* event)

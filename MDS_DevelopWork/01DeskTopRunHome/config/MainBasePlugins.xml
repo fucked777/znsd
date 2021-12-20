@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding ='utf-8'?>
+<CFS version ="1.0.0" DisplayName ="SystemInfo">
+	<MainFrameUIPlugin   name ="MainManager" path ="plugins/MainManager.dll"/>
+    <!--MainFrameUIPlugin   name ="DataSystemPlugin" path ="plugins/DataSystemPlugin.dll" /-->
+</CFS>

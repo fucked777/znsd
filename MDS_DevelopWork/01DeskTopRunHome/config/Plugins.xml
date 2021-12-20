@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ICE_INFO DisplayName="基础平台" Version="1.0.0">
+	<NormalPlugins>
+		<NormalPlugins Path="AGRISystemPlugin.dll" DisplayName="先进的静止轨道辐射成像仪" IconPath="AGRIS.png" Name="成像仪" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="GIIRSSystemPlugin.dll" DisplayName="静止轨道干涉式红外探测仪" IconPath="GIIRS.png" Name="探测仪" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="RSISystemPlugin.dll" DisplayName="快速成像仪" IconPath="GHIXX.png" Name="快速成像仪" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="LaserPlugin.dll" DisplayName="激光定位" IconPath="JGDW.png" Name="激光定位" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="5" DisplayName="主监控" IconPath="ZJK.png" Name="主监控" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="成像仪参数配置" IconPath="lightning6.png" Name="成像仪参数配置" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="探测仪参数配置" IconPath="lightning7.png" Name="探测仪参数配置" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="MainControlPlugin.dll" DisplayName="主控台" IconPath="ZKT.png" Name="主控台" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="报表" IconPath="lightning9.png" Name="报表" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="配置管理" IconPath="lightning10.png" Name="配置管理" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="产品管理" IconPath="lightning11.png" Name="产品管理" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="作业流程定制与管理" IconPath="lightning12.png" Name="作业流程定制与管理" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="数据库表查询" IconPath="SJKBCX.png" Name="数据库表查询" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="数据监视" IconPath="SJJS.png" Name="数据监视" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="7" DisplayName="日志管理" IconPath="lightning15.png" Name="日志管理" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="AGRIinL0comparisonL1A.dll" DisplayName="成像仪L0L1A对比" IconPath="lightning15.png" Name="成像仪L0L1A对比" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="GIIRinL0comparisonL1A.dll" DisplayName="探测仪L0L1A对比" IconPath="lightning15.png" Name="探测仪L0L1A对比" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="RSIinL0comparisonL1A.dll" DisplayName="快速成像仪L0L1A对比" IconPath="lightning15.png" Name="快速成像仪L0L1A对比" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="FirstDemo.dll" DisplayName="Demo" IconPath="lightning15.png" Name="Demo" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="CommonParameterPlugin.dll" DisplayName="公共参数" IconPath="lightning15.png" Name="公共参数" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="SecondMotionControlPlugin.dll" DisplayName="二级运控参数设置" IconPath="lightning15.png" Name="二级运控参数设置" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="ReportTablePlugin.dll" DisplayName="报表" IconPath="lightning15.png" Name="报表" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="DatabaseTableQueryPlugin.dll" DisplayName="数据库表查询" IconPath="SJKBCX.png" Name="数据库表查询" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="ProductManagementPlugin.dll" DisplayName="参数管理" IconPath="SJKBCX.png" Name="参数管理" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="FaultManagementPlugin.dll" DisplayName="故障管理" IconPath="SJKBCX.png" Name="故障管理" PluginState="1" Version="1.0.0"/>
+		<NormalPlugins Path="DataMonitorPlugin.dll" DisplayName="数据监视" IconPath="SJKBCX.png" Name="数据监视" PluginState="1" Version="1.0.0"/>
+	</NormalPlugins>
+</ICE_INFO>
