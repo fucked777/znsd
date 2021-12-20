@@ -132,7 +132,7 @@ void FaultMsgPage::initMember()
                   << "操作";
 
     tableModel->setHorizontalHeaderLabels(headNames);
-    //    tableModel->setRowCount(1);
+
     headerView = new HeaderView(Qt::Horizontal, this);
     connect(headerView, &HeaderView::selectOrDeselectAll, this, &FaultMsgPage::selectAllItems);
     ui->tableView->setHorizontalHeader(headerView);
@@ -161,6 +161,19 @@ void FaultMsgPage::initView()
 
 void FaultMsgPage::curTestChangedCombox(const QString test)
 {
+    comboxCurIndex = test.toInt();
+    //    rowCount = tableModel->rowCount();
+    //    if (rowCount < curPageRowCount)
+    //        tableModel->setRowCount(1);
+    //    else
+    //    {
+    //    tableModel->setRowCount(comboxCurIndex);
+    //    tableModel->select();
+
+    //        select();
+
+    //    }
+
     QVector<RowDataFaultMsg> datas = faultMstAnalyse->query();
     if (datas.size() >= MAX_INSERT_NUM)
         return;
@@ -180,6 +193,35 @@ void FaultMsgPage::curTestChangedCombox(const QString test)
     }
     datas = faultMstAnalyse->query();
     updateRowData(datas);
+    initPage();
+}
+
+int FaultMsgPage::initPage()
+{
+    rowCount = tableModel->rowCount();
+    //    comboxCurIndex = ui->comboBox->currentText().toInt();
+    if (rowCount <= comboxCurIndex)
+    {
+        pageCount = 1;
+    }
+    else
+    {
+        if ((rowCount % comboxCurIndex) == 0)
+        {
+            pageCount = rowCount / comboxCurIndex;
+        }
+        else
+        {
+            int index = rowCount / comboxCurIndex;
+            pageCount = index + 1;
+        }
+    }
+    //    tableModel->setRowCount(comboxCurIndex);
+    ui->allPageNumLabel->setText(QString::number(pageCount));
+    qDebug() << "rowCount" << rowCount;
+    qDebug() << "comboxCurIndex" << comboxCurIndex;
+    qDebug() << "pageCount" << pageCount;
+    return pageCount;
 }
 void FaultMsgPage::selectAllItems(Qt::CheckState state)
 {

@@ -451,7 +451,7 @@ font: bold 12pt;
            </sizepolicy>
           </property>
           <property name="text">
-           <string>55</string>
+           <string/>
           </property>
          </widget>
         </item>

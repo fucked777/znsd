@@ -91,7 +91,7 @@ public:
     void insertRowData(RowDataFaultMsg& values, int rowIndex);
     QVector<RowDataFaultMsg> getDataInfo(RowDataFaultMsg);
     QVector<RowDataFaultMsg> getCheckedRowData();
-
+    int initPage();
 private slots:
     void delItemClicked();
     void selectAllItems(Qt::CheckState state);
@@ -113,6 +113,9 @@ private:
     HeaderView* headerView;
     NotEditableDelegate* notEditableDelegate;
     TableAnalyse* faultMstAnalyse;
+    int rowCount;
+    int comboxCurIndex;
+    int pageCount;
 };
 
 #endif  // FaultMsgPage_H
