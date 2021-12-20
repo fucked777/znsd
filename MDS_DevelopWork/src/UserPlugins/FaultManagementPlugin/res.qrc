@@ -1,0 +1,2 @@
+<RCC> 
+    <qresource prefix="/FaultManagementPlugin/META-INF">        <file>MANIFEST.MF</file>    </qresource></RCC>

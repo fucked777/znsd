@@ -1,0 +1,10 @@
+Plugin-SymbolicName:ProductManagementPlugin 
+Plugin-Copyright: 
+Plugin-Description: 
+Plugin-Name:ProductManagementPlugin 
+Plugin-Vendor: 
+Plugin-Localization: 
+Plugin-Version:1.0.0 
+Plugin-ActivationPolicy:eager #lazy eager 
+Plugin-UpdateLocation: 
+

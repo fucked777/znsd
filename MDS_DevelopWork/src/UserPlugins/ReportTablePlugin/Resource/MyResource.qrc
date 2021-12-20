@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>img/DeviceManage/checked.svg</file>
+        <file>img/DeviceManage/unchecked.svg</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>
