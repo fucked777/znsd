@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<ICE_INFO DisplayName="基础平台" Version="1.0.0">
-    <MPSnetworkinfo>
-        <MPSnetworkinfo port="1" name="1" site="1"/>
-    </MPSnetworkinfo>
-    <MDSnetworkinfo>
-        <MDSnetworkinfo port="2" name="2" site="2"/>
-    </MDSnetworkinfo>
-</ICE_INFO>
