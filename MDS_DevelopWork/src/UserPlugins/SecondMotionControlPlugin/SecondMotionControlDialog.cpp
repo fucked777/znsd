@@ -101,7 +101,14 @@ void SecondMotionControlDialog::closeEvent(QCloseEvent* event)
     //    }
 }
 
-void SecondMotionControlDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidgetItem* item, int column) {}
+void SecondMotionControlDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidgetItem* item, int column)
+{
+    Q_UNUSED(column);
+    if (mTreeWidgetMap.contains(item))
+    {
+        ui->contentStackWidget->setCurrentWidget(mTreeWidgetMap.value(item));
+    }
+}
 
 void SecondMotionControlDialog::slotOkBtnClicked() {}
 
