@@ -9,7 +9,7 @@ CommonParameterPage::CommonParameterPage(QWidget* parent)
     ui->setupUi(this);
     m_commonParameterTableView = new CommonParameterTableView();
     m_commonParameterDetailTable = new CommonParameterDetailTable();
-    initMember();  //我爱西巴
+    initMember();
 }
 
 CommonParameterPage::~CommonParameterPage() { delete ui; }
