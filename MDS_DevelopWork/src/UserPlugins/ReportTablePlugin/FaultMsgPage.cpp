@@ -57,18 +57,34 @@ void FaultMsgPage::reportBtnClicked()
 
 void FaultMsgPage::allBtnClicked() {}
 
-void FaultMsgPage::firstPageBtnClicked() {}
+void FaultMsgPage::firstPageBtnClicked()
+{
+    initPage();
+    qDebug() << "";
+}
 
-void FaultMsgPage::upperPageBtnClicked() {}
+void FaultMsgPage::upperPageBtnClicked()
+{
+    initPage();
+    qDebug() << "";
+}
 
-void FaultMsgPage::nextPageBtnClicked() {}
+void FaultMsgPage::nextPageBtnClicked()
+{
+    initPage();
+    qDebug() << "";
+}
 
-void FaultMsgPage::lastPageBtnClicked() {}
+void FaultMsgPage::lastPageBtnClicked()
+{
+    initPage();
+    qDebug() << "";
+}
 
 void FaultMsgPage::okBtnClicked()
 {
     QVariant gotoPage = ui->lineEdit->text();
-    accept();
+    //    accept();
 }
 
 void FaultMsgPage::clearBtnClicked() {}

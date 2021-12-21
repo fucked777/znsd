@@ -77,13 +77,13 @@ private Q_SLOTS:
     void queryBtnClicked();
     void reportBtnClicked();
     void allBtnClicked();
-
+    void clearBtnClicked();
     void firstPageBtnClicked();
     void upperPageBtnClicked();
     void nextPageBtnClicked();
     void lastPageBtnClicked();
     void okBtnClicked();
-    void clearBtnClicked();
+
     void delItemClicked(const int rowIndex);
     void curTestChangedCombox(const QString test);
 
