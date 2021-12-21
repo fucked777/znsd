@@ -1,9 +1,11 @@
-#include "ProductManagementDialog.h"
+﻿#include "ProductManagementDialog.h"
 #include "DetectorPage.h"
 #include "FastImagerPage.h"
 #include "ImagerPage.h"
 #include "StellarPredictionPage.h"
 #include "ui_ProductManagementDialog.h"
+#include <QFile>
+#pragma execution_character_set("utf-8")
 ProductManagementDialog::ProductManagementDialog(QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::ProductManagementDialog)
@@ -14,20 +16,17 @@ ProductManagementDialog::ProductManagementDialog(QWidget* parent)
     m_detectorPage = new DetectorPage();
     m_stellarPredictionPage = new StellarPredictionPage();
     m_buttonGroup = new QButtonGroup();
-    m_buttonGroup->addButton(ui->imagerBtn, 0);
-    m_buttonGroup->addButton(ui->fastImagerBtn, 1);
-    m_buttonGroup->addButton(ui->detectorBtn, 2);
-    m_buttonGroup->addButton(ui->stellarBtn, 3);
-    ui->stackedWidget->addWidget(m_imagerPage);
-    ui->stackedWidget->addWidget(m_fastImagerPage);
-    ui->stackedWidget->addWidget(m_detectorPage);
-    ui->stackedWidget->addWidget(m_stellarPredictionPage);
-    connect(m_buttonGroup, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &ProductManagementDialog::showSwitchPage);
-    initMember();
+
+    ui->tabWidget->addTab(m_imagerPage, "成像仪产品");
+    ui->tabWidget->addTab(m_fastImagerPage, "快速成像仪产品");
+    ui->tabWidget->addTab(m_detectorPage, "探测仪产品");
+    ui->tabWidget->addTab(m_stellarPredictionPage, "恒星预报产品");
+    //    QFile file(qApp->applicationDirPath() + "/../data/style/MainManager.qss");
+    //    file.open(QIODevice::ReadOnly);
+    QString tabBarStyle = "QTabBar::tab {background:transparent;min-width:100px;color: white;border: 2px solid;border-top-left-radius: "
+                          "10px;border-top-right-radius: 10px;padding:5px;}";
+    //    ui->tabWidget->setStyleSheet(file.readAll());
+    ui->tabWidget->setStyleSheet(tabBarStyle);
 }
 
 ProductManagementDialog::~ProductManagementDialog() { delete ui; }
-
-void ProductManagementDialog::initMember() {}
-
-void ProductManagementDialog::showSwitchPage(const int& index) { ui->stackedWidget->setCurrentIndex(index); }

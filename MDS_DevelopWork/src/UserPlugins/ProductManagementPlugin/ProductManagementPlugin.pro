@@ -63,9 +63,7 @@ CONFIG(release,debug|release){
 HEADERS += \
     DetectorPage.h \
     FastImagerPage.h \
-    HeaderView.h \
     ImagerPage.h \
-    NotEditableDelegate.h \
     ProductManagementDialog.h \
     StellarPredictionPage.h \
     iproductmanagementpluginservice.h  \ 
@@ -75,9 +73,7 @@ HEADERS += \
 SOURCES += \
     DetectorPage.cpp \
     FastImagerPage.cpp \
-    HeaderView.cpp \
     ImagerPage.cpp \
-    NotEditableDelegate.cpp \
     ProductManagementDialog.cpp \
     StellarPredictionPage.cpp \
     productmanagementpluginservice.cpp \ 

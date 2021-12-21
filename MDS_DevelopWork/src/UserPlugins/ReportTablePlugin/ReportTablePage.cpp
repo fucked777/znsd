@@ -3,6 +3,7 @@
 #include "LoadFilePage.h"
 #include "LogMsgPage.h"
 #include "ui_ReportTablePage.h"
+#include <QFile>
 ReportTablePage::ReportTablePage(QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::ReportTablePage)
@@ -11,19 +12,14 @@ ReportTablePage::ReportTablePage(QWidget* parent)
     m_faultMsgPage = new FaultMsgPage();
     m_logMsgPage = new LogMsgPage();
     m_loadFilePage = new LoadFilePage();
-    m_buttonGroup = new QButtonGroup();
-    m_buttonGroup->addButton(ui->faultMsgBtn, 0);
-    m_buttonGroup->addButton(ui->logMsgBtn, 1);
-    m_buttonGroup->addButton(ui->fileBtn, 2);
-    ui->stackedWidget->addWidget(m_faultMsgPage);
-    ui->stackedWidget->addWidget(m_logMsgPage);
-    ui->stackedWidget->addWidget(m_loadFilePage);
-    connect(m_buttonGroup, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &ReportTablePage::showSwitchPage);
-    initMember();
+    ui->tabWidget->addTab(m_faultMsgPage, "故障信息");
+    ui->tabWidget->addTab(m_logMsgPage, "日志信息");
+    ui->tabWidget->addTab(m_loadFilePage, "载荷文件输入输出");
+    QFile file(qApp->applicationDirPath() + "/../data/style/MainManager.qss");
+    file.open(QIODevice::ReadOnly);
+    QString tabBarStyle = "QTabBar::tab {background:transparent;min-width:100px;color: white;border: 2px solid;border-top-left-radius: "
+                          "10px;border-top-right-radius: 10px;padding:5px;}";
+    //    ui->tabWidget->setStyleSheet(file.readAll());
+    ui->tabWidget->setStyleSheet(tabBarStyle);
 }
-
 ReportTablePage::~ReportTablePage() { delete ui; }
-
-void ReportTablePage::initMember() {}
-
-void ReportTablePage::showSwitchPage(const int& index) { ui->stackedWidget->setCurrentIndex(index); }

@@ -50,8 +50,6 @@ namespace NSGlobal
     const QString SEPARATOR = "@";
 }  // namespace NSGlobal
 using namespace NSGlobal;
-class HeaderView;
-class NotEditableDelegate;
 class TableAnalyse;
 class DetectorPage : public QDialog
 {
@@ -105,13 +103,10 @@ private:
     QVector<RowDataDetectorMsg> m_datas;
     QStandardItemModel* tableModel;
     QStringList headNames;
-    QVector<double> columnWidths;
     double m_scale = 0.0;
     QList<int> removeRowIndexs;
     double totleColumnWidth = 0.0;
     QCheckBox* m_check;
-    HeaderView* headerView;
-    NotEditableDelegate* notEditableDelegate;
     TableAnalyse* faultMstAnalyse;
 };
 

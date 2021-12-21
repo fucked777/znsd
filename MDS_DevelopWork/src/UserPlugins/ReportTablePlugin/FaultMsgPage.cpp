@@ -55,7 +55,17 @@ void FaultMsgPage::reportBtnClicked()
     f.close();
 }
 
-void FaultMsgPage::allBtnClicked() {}
+void FaultMsgPage::allBtnClicked()
+{
+    QFile file("data/style/MainManager.qss");
+    if (file.open(QFile::ReadOnly))
+    {
+        QString styleSheet = QLatin1String(file.readAll());
+
+        ui->allBtn->setStyleSheet(styleSheet);
+        file.close();
+    }
+}
 
 void FaultMsgPage::firstPageBtnClicked()
 {
@@ -101,6 +111,9 @@ void FaultMsgPage::delItemClicked(const int rowIndex)
 
 void FaultMsgPage::initMember()
 {
+    //    QFile file(qApp->applicationDirPath() + "/../data/style/MainManager.qss");
+    //    file.open(QIODevice::ReadOnly);
+    //    ->setStyleSheet(file.readAll());
     connect(ui->allBtn, &QPushButton::clicked, this, &FaultMsgPage::allBtnClicked);
     connect(ui->queryBtn, &QPushButton::clicked, this, &FaultMsgPage::queryBtnClicked);
     connect(ui->delBtn, &QPushButton::clicked, this, &FaultMsgPage::delBtnClicked);

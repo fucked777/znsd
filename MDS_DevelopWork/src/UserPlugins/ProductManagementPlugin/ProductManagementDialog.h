@@ -19,8 +19,6 @@ class ProductManagementDialog : public QWidget
 public:
     explicit ProductManagementDialog(QWidget* parent = nullptr);
     ~ProductManagementDialog();
-    void initMember();
-    void showSwitchPage(const int& index);
 
 private:
     Ui::ProductManagementDialog* ui;

@@ -1,6 +1,4 @@
 #include "StellarPredictionPage.h"
-#include "HeaderView.h"
-#include "NotEditableDelegate.h"
 //#include "TableAnalyse.h"
 #include "ui_StellarPredictionPage.h"
 #include <QDebug>
@@ -87,56 +85,29 @@ void StellarPredictionPage::initMember()
     ui->tableView->setModel(tableModel);
 
     //    checkBoxDelegate = new CheckBoxDelegate(this);
-    notEditableDelegate = new NotEditableDelegate(ui->tableView);
     ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     //    ui->tableView->setItemDelegateForColumn(0, checkBoxDelegate);
-    ui->tableView->setItemDelegate(notEditableDelegate);
-    connect(notEditableDelegate, &NotEditableDelegate::checkCurrRowSignal, this, &StellarPredictionPage::checkCurrRowSlot);
     ui->comboBox->addItem("25");
     ui->comboBox->addItem("50");
     ui->comboBox->addItem("80");
     ui->comboBox->addItem("100");
     connect(ui->comboBox, &QComboBox::currentTextChanged, this, &StellarPredictionPage::curTestChangedCombox);
     //    datas.clear();
-    columnWidths.clear();
-    columnWidths.push_back(120);
-    columnWidths.push_back(120);
-    columnWidths.push_back(120);
-    columnWidths.push_back(200);
-    columnWidths.push_back(120);
-    columnWidths.push_back(120);
-    columnWidths.push_back(200);
-    columnWidths.push_back(120);
-    columnWidths.push_back(120);
-    columnWidths.push_back(120);
-    columnWidths.push_back(120);
-    columnWidths.push_back(120);
-    columnWidths.push_back(120);
-    for (int i = 0; i < 12; i++)
-    {
-        totleColumnWidth += columnWidths.at(i);
-    }
     if (headNames.size() == 0)  // default
-        headNames << ""
-                  << "序号"
-                  << "故障等级"
-                  << "日期"
+        headNames << "序号"
                   << "任务编号"
-                  << "故障代码"
-                  << "分系统名"
-                  << "处理与否"
-                  << "故障信息"
-                  << "内部故障"
-                  << "备注"
-                  << "故障详情"
-                  << "操作";
+                  << "输出时间"
+                  << "文件名称"
+                  << "本地文件路径"
+                  << "输出文件路径"
+                  << "传输方向"
+                  << "传输方式"
+                  << "精度"
+                  << "输出类型"
+                  << "文件大小";
 
     tableModel->setHorizontalHeaderLabels(headNames);
     //    tableModel->setRowCount(1);
-    headerView = new HeaderView(Qt::Horizontal, this);
-    connect(headerView, &HeaderView::selectOrDeselectAll, this, &StellarPredictionPage::selectAllItems);
-    ui->tableView->setHorizontalHeader(headerView);
-
     ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     //    connect(freqTableView, &StellarPredictionPage::sigDelItemClicked, this, &StellarPredictionPage::delItemClicked);
 
