@@ -7,7 +7,10 @@ namespace Ui
 {
     class FaultPageFream;
 }
-
+class InputOutputData;
+class FaultLog;
+class SystemLog;
+class CallProcessParameter;
 class FaultPageFream : public QWidget
 {
     Q_OBJECT
@@ -21,6 +24,10 @@ public Q_SLOTS:
 
 private:
     Ui::FaultPageFream* ui;
+    InputOutputData* m_inputOutputData;
+    FaultLog* m_faultLog;
+    SystemLog* m_systemLog;
+    CallProcessParameter* m_callProcessParameter;
 };
 
 #endif  // FAULTPAGEFREAM_H

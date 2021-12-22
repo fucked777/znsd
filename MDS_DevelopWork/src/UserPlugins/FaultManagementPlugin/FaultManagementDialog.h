@@ -19,7 +19,6 @@ public:
 
 private:
     Ui::FaultManagementDialog* ui;
-
     //    FaultPageFream* m_faultPageFream;
 };
 

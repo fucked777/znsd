@@ -61,15 +61,23 @@ CONFIG(release,debug|release){
 } 
 
 HEADERS += \
+    CallProcessParameter.h \
+    FaultLog.h \
     FaultManagementDialog.h \
     FaultPageFream.h \
+    InputOutputData.h \
+    SystemLog.h \
     ifaultmanagementpluginservice.h  \ 
     faultmanagementpluginservice.h  \ 
     faultmanagementpluginactivator.h 
 
 SOURCES += \
+    CallProcessParameter.cpp \
+    FaultLog.cpp \
     FaultManagementDialog.cpp \
     FaultPageFream.cpp \
+    InputOutputData.cpp \
+    SystemLog.cpp \
     faultmanagementpluginservice.cpp \ 
     faultmanagementpluginactivator.cpp 
 
@@ -90,6 +98,10 @@ CopyDir = $$replace(CopyDir, /, \\)
 QMAKE_POST_LINK += copy  $$HeadPath $$CopyDir 
 
 FORMS += \
+    CallProcessParameter.ui \
+    FaultLog.ui \
     FaultManagementDialog.ui \
-    FaultPageFream.ui
+    FaultPageFream.ui \
+    InputOutputData.ui \
+    SystemLog.ui
 

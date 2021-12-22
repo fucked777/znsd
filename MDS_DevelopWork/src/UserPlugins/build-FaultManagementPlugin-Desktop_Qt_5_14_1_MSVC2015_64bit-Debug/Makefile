@@ -235,6 +235,7 @@ Makefile: ..\FaultManagementPlugin\FaultManagementPlugin.pro C:\Qt\Qt5.14.1\5.14
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\qt_config.prf \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\win32-msvc\qmake.conf \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\exclusive_builds.prf \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\common\msvc-version.conf \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\toolchain.prf \
@@ -264,7 +265,6 @@ Makefile: ..\FaultManagementPlugin\FaultManagementPlugin.pro C:\Qt\Qt5.14.1\5.14
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\lib\Qt5Widgets.prl \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\lib\Qt5Gui.prl \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\lib\Qt5Core.prl \
-		.qmake.stash \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\build_pass.prf \
 		..\FaultManagementPlugin\res.qrc \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\lib\Qt5Widgetsd.prl \
@@ -422,6 +422,7 @@ C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\qt_functions.prf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\qt_config.prf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\win32-msvc\qmake.conf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\exclusive_builds.prf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\common\msvc-version.conf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\toolchain.prf:
@@ -451,7 +452,6 @@ C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\lex.prf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\lib\Qt5Widgets.prl:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\lib\Qt5Gui.prl:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\lib\Qt5Core.prl:
-.qmake.stash:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\build_pass.prf:
 ..\FaultManagementPlugin\res.qrc:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\lib\Qt5Widgetsd.prl:
