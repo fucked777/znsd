@@ -6,8 +6,10 @@
 #include "TableAnalyse.h"
 #include "ViewDetailDialog.h"
 #include "ui_FaultMsgPage.h"
+#include <QDateTime>
 #include <QDebug>
 #include <QFile>
+#define DATETIME_DISPLAY_FORMAT2 "yyyy年MM月dd日 HH:mm:ss"
 #pragma execution_character_set("utf-8")
 const int MAX_INSERT_NUM = 1000;
 
@@ -19,6 +21,9 @@ FaultMsgPage::FaultMsgPage(QWidget* parent)
     m_queryDialog = new QueryDialog();
     m_dealFaultDialog = new DealFaultDialog();
     m_viewDetailDialog = new ViewDetailDialog();
+    m_queryDialog->setWindowModality(Qt::ApplicationModal);
+    m_dealFaultDialog->setWindowModality(Qt::ApplicationModal);
+    m_viewDetailDialog->setWindowModality(Qt::ApplicationModal);  // motai
     initMember();
     initView();
 }
@@ -112,9 +117,6 @@ void FaultMsgPage::delItemClicked(const int rowIndex)
 
 void FaultMsgPage::initMember()
 {
-    //    QFile file(qApp->applicationDirPath() + "/../data/style/MainManager.qss");
-    //    file.open(QIODevice::ReadOnly);
-    //    ->setStyleSheet(file.readAll());
     connect(ui->allBtn, &QPushButton::clicked, this, &FaultMsgPage::allBtnClicked);
     connect(ui->queryBtn, &QPushButton::clicked, this, &FaultMsgPage::queryBtnClicked);
     connect(ui->delBtn, &QPushButton::clicked, this, &FaultMsgPage::delBtnClicked);
@@ -258,8 +260,7 @@ int FaultMsgPage::initPage()
         }
         else
         {
-            int index = rowCount / comboxCurIndex;
-            pageCount = index + 1;
+            pageCount = (rowCount / comboxCurIndex) + 1;
         }
     }
     //    tableModel->setRowCount(comboxCurIndex);
@@ -339,7 +340,7 @@ void FaultMsgPage::updateRowData(QVector<RowDataFaultMsg>& values)
                  << new QStandardItem(values[i].systemName) << new QStandardItem(values[i].dealStatus) << new QStandardItem(values[i].faultInfor)
                  << new QStandardItem(values[i].internalFault) << new QStandardItem(values[i].remarks) << new QStandardItem << new QStandardItem;
         tableModel->appendRow(itemList);
-
+        //        QDateTime::fromString(values[i].dateTime, "yyyy-MM-dd hh:mm:ss").toString(DATETIME_DISPLAY_FORMAT2);
         QPushButton* detailsBtn = new QPushButton("查看详情", this);
         detailsBtn->setFlat(true);
         detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:12px;border-style:none;text-align: left;");
