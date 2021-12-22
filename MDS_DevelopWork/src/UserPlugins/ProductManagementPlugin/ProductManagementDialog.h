@@ -1,7 +1,5 @@
 #ifndef REPORTTABLEPAGE_H
 #define REPORTTABLEPAGE_H
-
-#include <QButtonGroup>
 #include <QWidget>
 namespace Ui
 {
@@ -11,7 +9,6 @@ class ImagerPage;
 class FastImagerPage;
 class DetectorPage;
 class StellarPredictionPage;
-class QButtonGroup;
 class ProductManagementDialog : public QWidget
 {
     Q_OBJECT
@@ -26,7 +23,6 @@ private:
     FastImagerPage* m_fastImagerPage;
     DetectorPage* m_detectorPage;
     StellarPredictionPage* m_stellarPredictionPage;
-    QButtonGroup* m_buttonGroup;
 };
 
 #endif  // REPORTTABLEPAGE_H

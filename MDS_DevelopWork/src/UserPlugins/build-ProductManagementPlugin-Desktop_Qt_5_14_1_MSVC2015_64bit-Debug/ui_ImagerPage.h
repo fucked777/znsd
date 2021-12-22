@@ -17,7 +17,6 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
@@ -34,35 +33,18 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QPushButton *allBtn;
     QPushButton *queryBtn;
-    QPushButton *delBtn;
-    QPushButton *clearBtn;
     QPushButton *reportBtn;
     QSpacerItem *horizontalSpacer_2;
     QWidget *tableWidget;
     QGridLayout *gridLayout;
     QTableView *tableView;
     QWidget *buttomWidget;
-    QHBoxLayout *horizontalLayout_9;
+    QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer;
     QLabel *label;
     QComboBox *comboBox;
-    QPushButton *firstPageBtn;
-    QPushButton *upperPageBtn;
-    QPushButton *nextPageBtn;
-    QPushButton *lastPageBtn;
+    QWidget *widget;
     QHBoxLayout *horizontalLayout;
-    QLabel *label_2;
-    QLabel *allPageNumLabel;
-    QLabel *label_4;
-    QLabel *label_5;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_6;
-    QLabel *curPageLabel;
-    QLabel *label_8;
-    QHBoxLayout *horizontalLayout_8;
-    QLabel *label_9;
-    QLineEdit *lineEdit;
-    QLabel *label_11;
     QPushButton *okBtn;
 
     void setupUi(QDialog *ImagerPage)
@@ -126,36 +108,6 @@ public:
 
         horizontalLayout_2->addWidget(queryBtn);
 
-        delBtn = new QPushButton(contextWidgets);
-        delBtn->setObjectName(QString::fromUtf8("delBtn"));
-        sizePolicy.setHeightForWidth(delBtn->sizePolicy().hasHeightForWidth());
-        delBtn->setSizePolicy(sizePolicy);
-        delBtn->setMinimumSize(QSize(80, 0));
-        delBtn->setMaximumSize(QSize(16777215, 16777215));
-        delBtn->setFont(font);
-        delBtn->setStyleSheet(QString::fromUtf8(""));
-        delBtn->setCheckable(true);
-        delBtn->setChecked(true);
-        delBtn->setAutoExclusive(true);
-        delBtn->setFlat(false);
-
-        horizontalLayout_2->addWidget(delBtn);
-
-        clearBtn = new QPushButton(contextWidgets);
-        clearBtn->setObjectName(QString::fromUtf8("clearBtn"));
-        sizePolicy.setHeightForWidth(clearBtn->sizePolicy().hasHeightForWidth());
-        clearBtn->setSizePolicy(sizePolicy);
-        clearBtn->setMinimumSize(QSize(80, 0));
-        clearBtn->setMaximumSize(QSize(16777215, 16777215));
-        clearBtn->setFont(font);
-        clearBtn->setStyleSheet(QString::fromUtf8(""));
-        clearBtn->setCheckable(true);
-        clearBtn->setChecked(true);
-        clearBtn->setAutoExclusive(true);
-        clearBtn->setFlat(false);
-
-        horizontalLayout_2->addWidget(clearBtn);
-
         reportBtn = new QPushButton(contextWidgets);
         reportBtn->setObjectName(QString::fromUtf8("reportBtn"));
         sizePolicy.setHeightForWidth(reportBtn->sizePolicy().hasHeightForWidth());
@@ -205,123 +157,37 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(buttomWidget->sizePolicy().hasHeightForWidth());
         buttomWidget->setSizePolicy(sizePolicy1);
-        horizontalLayout_9 = new QHBoxLayout(buttomWidget);
-        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
+        horizontalLayout_3 = new QHBoxLayout(buttomWidget);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalSpacer = new QSpacerItem(234, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_9->addItem(horizontalSpacer);
+        horizontalLayout_3->addItem(horizontalSpacer);
 
         label = new QLabel(buttomWidget);
         label->setObjectName(QString::fromUtf8("label"));
 
-        horizontalLayout_9->addWidget(label);
+        horizontalLayout_3->addWidget(label);
 
         comboBox = new QComboBox(buttomWidget);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
 
-        horizontalLayout_9->addWidget(comboBox);
+        horizontalLayout_3->addWidget(comboBox);
 
-        firstPageBtn = new QPushButton(buttomWidget);
-        firstPageBtn->setObjectName(QString::fromUtf8("firstPageBtn"));
-
-        horizontalLayout_9->addWidget(firstPageBtn);
-
-        upperPageBtn = new QPushButton(buttomWidget);
-        upperPageBtn->setObjectName(QString::fromUtf8("upperPageBtn"));
-
-        horizontalLayout_9->addWidget(upperPageBtn);
-
-        nextPageBtn = new QPushButton(buttomWidget);
-        nextPageBtn->setObjectName(QString::fromUtf8("nextPageBtn"));
-
-        horizontalLayout_9->addWidget(nextPageBtn);
-
-        lastPageBtn = new QPushButton(buttomWidget);
-        lastPageBtn->setObjectName(QString::fromUtf8("lastPageBtn"));
-
-        horizontalLayout_9->addWidget(lastPageBtn);
-
-        horizontalLayout = new QHBoxLayout();
+        widget = new QWidget(buttomWidget);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        horizontalLayout = new QHBoxLayout(widget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        label_2 = new QLabel(buttomWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        horizontalLayout->addWidget(label_2);
-
-        allPageNumLabel = new QLabel(buttomWidget);
-        allPageNumLabel->setObjectName(QString::fromUtf8("allPageNumLabel"));
-
-        horizontalLayout->addWidget(allPageNumLabel);
-
-        label_4 = new QLabel(buttomWidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-
-        horizontalLayout->addWidget(label_4);
-
-
-        horizontalLayout_9->addLayout(horizontalLayout);
-
-        label_5 = new QLabel(buttomWidget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-
-        horizontalLayout_9->addWidget(label_5);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        label_6 = new QLabel(buttomWidget);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-
-        horizontalLayout_3->addWidget(label_6);
-
-        curPageLabel = new QLabel(buttomWidget);
-        curPageLabel->setObjectName(QString::fromUtf8("curPageLabel"));
-
-        horizontalLayout_3->addWidget(curPageLabel);
-
-        label_8 = new QLabel(buttomWidget);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-
-        horizontalLayout_3->addWidget(label_8);
-
-
-        horizontalLayout_9->addLayout(horizontalLayout_3);
-
-        horizontalLayout_8 = new QHBoxLayout();
-        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
-        label_9 = new QLabel(buttomWidget);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-
-        horizontalLayout_8->addWidget(label_9);
-
-        lineEdit = new QLineEdit(buttomWidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(lineEdit->sizePolicy().hasHeightForWidth());
-        lineEdit->setSizePolicy(sizePolicy2);
-
-        horizontalLayout_8->addWidget(lineEdit);
-
-        label_11 = new QLabel(buttomWidget);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
-
-        horizontalLayout_8->addWidget(label_11);
-
-
-        horizontalLayout_9->addLayout(horizontalLayout_8);
+        horizontalLayout_3->addWidget(widget);
 
         okBtn = new QPushButton(buttomWidget);
         okBtn->setObjectName(QString::fromUtf8("okBtn"));
 
-        horizontalLayout_9->addWidget(okBtn);
+        horizontalLayout_3->addWidget(okBtn);
 
 
         verticalLayout->addWidget(buttomWidget);
 
-        verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(1, 9);
-        verticalLayout->setStretch(2, 1);
 
         retranslateUi(ImagerPage);
 
@@ -333,24 +199,8 @@ public:
         ImagerPage->setWindowTitle(QCoreApplication::translate("ImagerPage", "Dialog", nullptr));
         allBtn->setText(QCoreApplication::translate("ImagerPage", "\346\211\200\346\234\211", nullptr));
         queryBtn->setText(QCoreApplication::translate("ImagerPage", "\346\237\245\350\257\242", nullptr));
-        delBtn->setText(QCoreApplication::translate("ImagerPage", "\345\210\240\351\231\244", nullptr));
-        clearBtn->setText(QCoreApplication::translate("ImagerPage", "\346\270\205\347\220\206", nullptr));
         reportBtn->setText(QCoreApplication::translate("ImagerPage", "\347\224\237\346\210\220\346\212\245\350\241\250", nullptr));
         label->setText(QCoreApplication::translate("ImagerPage", "\345\215\225\351\241\265\346\230\276\347\244\272\346\235\241\346\225\260", nullptr));
-        firstPageBtn->setText(QCoreApplication::translate("ImagerPage", "\351\246\226\351\241\265", nullptr));
-        upperPageBtn->setText(QCoreApplication::translate("ImagerPage", "\344\270\212\351\241\265", nullptr));
-        nextPageBtn->setText(QCoreApplication::translate("ImagerPage", "\344\270\213\351\241\265", nullptr));
-        lastPageBtn->setText(QCoreApplication::translate("ImagerPage", "\346\234\253\351\241\265", nullptr));
-        label_2->setText(QCoreApplication::translate("ImagerPage", "\345\205\261", nullptr));
-        allPageNumLabel->setText(QCoreApplication::translate("ImagerPage", "57", nullptr));
-        label_4->setText(QCoreApplication::translate("ImagerPage", "\351\241\265", nullptr));
-        label_5->setText(QCoreApplication::translate("ImagerPage", "\345\275\223\345\211\215", nullptr));
-        label_6->setText(QCoreApplication::translate("ImagerPage", "\347\254\254", nullptr));
-        curPageLabel->setText(QCoreApplication::translate("ImagerPage", "1", nullptr));
-        label_8->setText(QCoreApplication::translate("ImagerPage", "\351\241\265", nullptr));
-        label_9->setText(QCoreApplication::translate("ImagerPage", "\350\267\263\350\275\254\350\207\263\347\254\254", nullptr));
-        lineEdit->setText(QCoreApplication::translate("ImagerPage", "55", nullptr));
-        label_11->setText(QCoreApplication::translate("ImagerPage", "\351\241\265", nullptr));
         okBtn->setText(QCoreApplication::translate("ImagerPage", "\347\241\256\345\256\232", nullptr));
     } // retranslateUi
 

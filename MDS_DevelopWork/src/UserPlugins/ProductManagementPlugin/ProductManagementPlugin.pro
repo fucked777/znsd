@@ -62,8 +62,10 @@ CONFIG(release,debug|release){
 
 HEADERS += \
     DetectorPage.h \
+    DeviceStatusLogTableModel.h \
     FastImagerPage.h \
     ImagerPage.h \
+    PageNavigator.h \
     ProductManagementDialog.h \
     StellarPredictionPage.h \
     iproductmanagementpluginservice.h  \ 
@@ -72,8 +74,10 @@ HEADERS += \
 
 SOURCES += \
     DetectorPage.cpp \
+    DeviceStatusLogTableModel.cpp \
     FastImagerPage.cpp \
     ImagerPage.cpp \
+    PageNavigator.cpp \
     ProductManagementDialog.cpp \
     StellarPredictionPage.cpp \
     productmanagementpluginservice.cpp \ 
@@ -99,6 +103,7 @@ FORMS += \
     DetectorPage.ui \
     FastImagerPage.ui \
     ImagerPage.ui \
+    PageNavigator.ui \
     ProductManagementDialog.ui \
     StellarPredictionPage.ui
 

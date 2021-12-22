@@ -15,7 +15,6 @@ ProductManagementDialog::ProductManagementDialog(QWidget* parent)
     m_fastImagerPage = new FastImagerPage();
     m_detectorPage = new DetectorPage();
     m_stellarPredictionPage = new StellarPredictionPage();
-    m_buttonGroup = new QButtonGroup();
 
     ui->tabWidget->addTab(m_imagerPage, "成像仪产品");
     ui->tabWidget->addTab(m_fastImagerPage, "快速成像仪产品");

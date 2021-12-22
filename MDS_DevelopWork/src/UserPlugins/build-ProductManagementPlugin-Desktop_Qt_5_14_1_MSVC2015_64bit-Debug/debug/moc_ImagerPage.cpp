@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImagerPage_t {
-    QByteArrayData data[21];
-    char stringdata0[291];
+    QByteArrayData data[12];
+    char stringdata0[169];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,36 +33,24 @@ struct qt_meta_stringdata_ImagerPage_t {
 static const qt_meta_stringdata_ImagerPage_t qt_meta_stringdata_ImagerPage = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "ImagerPage"
-QT_MOC_LITERAL(1, 11, 13), // "delBtnClicked"
-QT_MOC_LITERAL(2, 25, 0), // ""
-QT_MOC_LITERAL(3, 26, 15), // "queryBtnClicked"
-QT_MOC_LITERAL(4, 42, 16), // "reportBtnClicked"
-QT_MOC_LITERAL(5, 59, 13), // "allBtnClicked"
-QT_MOC_LITERAL(6, 73, 19), // "firstPageBtnClicked"
-QT_MOC_LITERAL(7, 93, 19), // "upperPageBtnClicked"
-QT_MOC_LITERAL(8, 113, 18), // "nextPageBtnClicked"
-QT_MOC_LITERAL(9, 132, 18), // "lastPageBtnClicked"
-QT_MOC_LITERAL(10, 151, 12), // "okBtnClicked"
-QT_MOC_LITERAL(11, 164, 15), // "clearBtnClicked"
-QT_MOC_LITERAL(12, 180, 14), // "delItemClicked"
-QT_MOC_LITERAL(13, 195, 8), // "rowIndex"
-QT_MOC_LITERAL(14, 204, 20), // "curTestChangedCombox"
-QT_MOC_LITERAL(15, 225, 4), // "test"
-QT_MOC_LITERAL(16, 230, 14), // "selectAllItems"
-QT_MOC_LITERAL(17, 245, 14), // "Qt::CheckState"
-QT_MOC_LITERAL(18, 260, 5), // "state"
-QT_MOC_LITERAL(19, 266, 16), // "checkCurrRowSlot"
-QT_MOC_LITERAL(20, 283, 7) // "checked"
+QT_MOC_LITERAL(1, 11, 15), // "queryBtnClicked"
+QT_MOC_LITERAL(2, 27, 0), // ""
+QT_MOC_LITERAL(3, 28, 16), // "reportBtnClicked"
+QT_MOC_LITERAL(4, 45, 13), // "allBtnClicked"
+QT_MOC_LITERAL(5, 59, 19), // "firstPageBtnClicked"
+QT_MOC_LITERAL(6, 79, 19), // "upperPageBtnClicked"
+QT_MOC_LITERAL(7, 99, 18), // "nextPageBtnClicked"
+QT_MOC_LITERAL(8, 118, 18), // "lastPageBtnClicked"
+QT_MOC_LITERAL(9, 137, 12), // "okBtnClicked"
+QT_MOC_LITERAL(10, 150, 13), // "slotSearchAck"
+QT_MOC_LITERAL(11, 164, 4) // "data"
 
     },
-    "ImagerPage\0delBtnClicked\0\0queryBtnClicked\0"
+    "ImagerPage\0queryBtnClicked\0\0"
     "reportBtnClicked\0allBtnClicked\0"
     "firstPageBtnClicked\0upperPageBtnClicked\0"
     "nextPageBtnClicked\0lastPageBtnClicked\0"
-    "okBtnClicked\0clearBtnClicked\0"
-    "delItemClicked\0rowIndex\0curTestChangedCombox\0"
-    "test\0selectAllItems\0Qt::CheckState\0"
-    "state\0checkCurrRowSlot\0checked"
+    "okBtnClicked\0slotSearchAck\0data"
 };
 #undef QT_MOC_LITERAL
 
@@ -72,7 +60,7 @@ static const uint qt_meta_data_ImagerPage[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -80,21 +68,15 @@ static const uint qt_meta_data_ImagerPage[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   89,    2, 0x08 /* Private */,
-       3,    0,   90,    2, 0x08 /* Private */,
-       4,    0,   91,    2, 0x08 /* Private */,
-       5,    0,   92,    2, 0x08 /* Private */,
-       6,    0,   93,    2, 0x08 /* Private */,
-       7,    0,   94,    2, 0x08 /* Private */,
-       8,    0,   95,    2, 0x08 /* Private */,
-       9,    0,   96,    2, 0x08 /* Private */,
-      10,    0,   97,    2, 0x08 /* Private */,
-      11,    0,   98,    2, 0x08 /* Private */,
-      12,    1,   99,    2, 0x08 /* Private */,
-      14,    1,  102,    2, 0x08 /* Private */,
-      12,    0,  105,    2, 0x08 /* Private */,
-      16,    1,  106,    2, 0x08 /* Private */,
-      19,    2,  109,    2, 0x08 /* Private */,
+       1,    0,   59,    2, 0x08 /* Private */,
+       3,    0,   60,    2, 0x08 /* Private */,
+       4,    0,   61,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    0,   63,    2, 0x08 /* Private */,
+       7,    0,   64,    2, 0x08 /* Private */,
+       8,    0,   65,    2, 0x08 /* Private */,
+       9,    0,   66,    2, 0x08 /* Private */,
+      10,    1,   67,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -105,13 +87,7 @@ static const uint qt_meta_data_ImagerPage[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   13,
-    QMetaType::Void, QMetaType::QString,   15,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 17,   18,
-    QMetaType::Void, QMetaType::Int, QMetaType::Bool,   13,   20,
+    QMetaType::Void, QMetaType::QByteArray,   11,
 
        0        // eod
 };
@@ -122,21 +98,15 @@ void ImagerPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<ImagerPage *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->delBtnClicked(); break;
-        case 1: _t->queryBtnClicked(); break;
-        case 2: _t->reportBtnClicked(); break;
-        case 3: _t->allBtnClicked(); break;
-        case 4: _t->firstPageBtnClicked(); break;
-        case 5: _t->upperPageBtnClicked(); break;
-        case 6: _t->nextPageBtnClicked(); break;
-        case 7: _t->lastPageBtnClicked(); break;
-        case 8: _t->okBtnClicked(); break;
-        case 9: _t->clearBtnClicked(); break;
-        case 10: _t->delItemClicked((*reinterpret_cast< const int(*)>(_a[1]))); break;
-        case 11: _t->curTestChangedCombox((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 12: _t->delItemClicked(); break;
-        case 13: _t->selectAllItems((*reinterpret_cast< Qt::CheckState(*)>(_a[1]))); break;
-        case 14: _t->checkCurrRowSlot((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 0: _t->queryBtnClicked(); break;
+        case 1: _t->reportBtnClicked(); break;
+        case 2: _t->allBtnClicked(); break;
+        case 3: _t->firstPageBtnClicked(); break;
+        case 4: _t->upperPageBtnClicked(); break;
+        case 5: _t->nextPageBtnClicked(); break;
+        case 6: _t->lastPageBtnClicked(); break;
+        case 7: _t->okBtnClicked(); break;
+        case 8: _t->slotSearchAck((*reinterpret_cast< const QByteArray(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -171,13 +141,13 @@ int ImagerPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 15;
+        _id -= 9;
     }
     return _id;
 }
