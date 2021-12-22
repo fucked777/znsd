@@ -62,12 +62,16 @@ CONFIG(release,debug|release){
 
 HEADERS += \
     DataMonitorDialog.h \
+    ReceiveNodeNetworkStatus.h \
+    SendNodeNetworkStatus.h \
     idatamonitorpluginservice.h  \ 
     datamonitorpluginservice.h  \ 
     datamonitorpluginactivator.h 
 
 SOURCES += \
     DataMonitorDialog.cpp \
+    ReceiveNodeNetworkStatus.cpp \
+    SendNodeNetworkStatus.cpp \
     datamonitorpluginservice.cpp \ 
     datamonitorpluginactivator.cpp 
 
@@ -88,5 +92,7 @@ CopyDir = $$replace(CopyDir, /, \\)
 QMAKE_POST_LINK += copy  $$HeadPath $$CopyDir 
 
 FORMS += \
-    DataMonitorDialog.ui
+    DataMonitorDialog.ui \
+    ReceiveNodeNetworkStatus.ui \
+    SendNodeNetworkStatus.ui
 

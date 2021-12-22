@@ -3,20 +3,24 @@
 
 #include <QWidget>
 
-namespace Ui {
-class DataMonitorDialog;
+namespace Ui
+{
+    class DataMonitorDialog;
 }
-
+class SendNodeNetworkStatus;
+class ReceiveNodeNetworkStatus;
 class DataMonitorDialog : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DataMonitorDialog(QWidget *parent = nullptr);
+    explicit DataMonitorDialog(QWidget* parent = nullptr);
     ~DataMonitorDialog();
 
 private:
-    Ui::DataMonitorDialog *ui;
+    Ui::DataMonitorDialog* ui;
+    SendNodeNetworkStatus* m_sendNodeNetworkStatus;
+    ReceiveNodeNetworkStatus* m_receiveNodeNetworkStatus;
 };
 
-#endif // DATAMONITORDIALOG_H
+#endif  // DATAMONITORDIALOG_H
