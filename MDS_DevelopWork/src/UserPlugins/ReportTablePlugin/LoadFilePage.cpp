@@ -1,7 +1,7 @@
-#include "LoadFilePage.h"
+﻿#include "LoadFilePage.h"
 #include "ui_LoadFilePage.h"
 #include <QDebug>
-
+#pragma execution_character_set("utf-8")
 const int MAX_INSERT_NUM = 1000;
 
 LoadFilePage::LoadFilePage(QWidget* parent)
@@ -96,16 +96,16 @@ void LoadFilePage::initMember()
     if (headNames.size() == 0)  // default
         headNames << "载荷名称"
                   << "任务编号"
-                  << "当前任务"
+                  << "任务状态"
                   << "任务实际执行时间"
-                  << "L0首行到达时间"
-                  << "L0末行到达时间"
+                  << "L0第一行到达时间"
+                  << "L0最后一行到达时间"
                   << "实际收到L0总数"
-                  << "获取L0总的时间"
-                  << "生成L1A首行时间"
-                  << "L1A最后一个文件的时间"
+                  << "获取L0总时间"
+                  << "生成L1A第一行时间"
+                  << "L1A最后一个文件时间"
                   << "生成L1A总数"
-                  << "L1A生成总的时间";
+                  << "L1A生成总时间";
 
     tableModel->setHorizontalHeaderLabels(headNames);
     //    tableModel->setRowCount(1);

@@ -1,9 +1,10 @@
-#include "LogMsgPage.h"
+﻿#include "LogMsgPage.h"
 #include "HeaderView.h"
 #include "NotEditableDelegate.h"
 #include "TableAnalyse.h"
 #include "ui_LogMsgPage.h"
 #include <QDebug>
+#pragma execution_character_set("utf-8")
 const int MAX_INSERT_NUM = 1000;
 
 LogMsgPage::LogMsgPage(QWidget* parent)
@@ -115,10 +116,10 @@ void LogMsgPage::initMember()
         headNames << ""
                   << "序号"
                   << "日期"
-                  << "分系统名"
+                  << "分系统名称"
                   << "任务编号"
                   << "日志信息"
-                  << "日志性质";
+                  << "日志属性";
 
     tableModel->setHorizontalHeaderLabels(headNames);
     //    tableModel->setRowCount(1);

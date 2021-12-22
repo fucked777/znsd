@@ -3,8 +3,9 @@
 
 #include <QWidget>
 
-namespace Ui {
-class CallProcessParameter;
+namespace Ui
+{
+    class CallProcessParameter;
 }
 
 class CallProcessParameter : public QWidget
@@ -12,11 +13,11 @@ class CallProcessParameter : public QWidget
     Q_OBJECT
 
 public:
-    explicit CallProcessParameter(QWidget *parent = nullptr);
+    explicit CallProcessParameter(QWidget* parent = nullptr);
     ~CallProcessParameter();
 
 private:
-    Ui::CallProcessParameter *ui;
+    Ui::CallProcessParameter* ui;
 };
 
-#endif // CALLPROCESSPARAMETER_H
+#endif  // CALLPROCESSPARAMETER_H

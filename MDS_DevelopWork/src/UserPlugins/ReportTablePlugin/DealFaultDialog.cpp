@@ -1,6 +1,6 @@
-#include "DealFaultDialog.h"
+﻿#include "DealFaultDialog.h"
 #include "ui_DealFaultDialog.h"
-
+#pragma execution_character_set("utf-8")
 DealFaultDialog::DealFaultDialog(QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::DealFaultDialog)
@@ -13,7 +13,7 @@ DealFaultDialog::~DealFaultDialog() { delete ui; }
 
 void DealFaultDialog::initMember()
 {
-    ui->comboBox->addItem("暂未处理");
-    ui->comboBox->addItem("已经处理");
+    ui->comboBox->addItem("未处理");
+    ui->comboBox->addItem("已处理");
     ui->comboBox->addItem("处理失败");
 }

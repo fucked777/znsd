@@ -1,4 +1,4 @@
-#include "FaultMsgPage.h"
+﻿#include "FaultMsgPage.h"
 #include "DealFaultDialog.h"
 #include "HeaderView.h"
 #include "NotEditableDelegate.h"
@@ -8,6 +8,7 @@
 #include "ui_FaultMsgPage.h"
 #include <QDebug>
 #include <QFile>
+#pragma execution_character_set("utf-8")
 const int MAX_INSERT_NUM = 1000;
 
 FaultMsgPage::FaultMsgPage(QWidget* parent)
@@ -168,8 +169,8 @@ void FaultMsgPage::initMember()
                   << "日期"
                   << "任务编号"
                   << "故障代码"
-                  << "分系统名"
-                  << "处理与否"
+                  << "分系统名称"
+                  << "处理状态"
                   << "故障信息"
                   << "内部故障"
                   << "备注"

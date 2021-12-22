@@ -30,4 +30,8 @@ FaultPageFream::FaultPageFream(QWidget* parent)
 
 FaultPageFream::~FaultPageFream() { delete ui; }
 
-void FaultPageFream::showSwitchPage(const int& index) { qDebug() << "index:" << index; }
+void FaultPageFream::showSwitchPage(const int& index)
+{
+    //    ui->tabWidget->addTab();
+    qDebug() << "index:" << index;
+}
