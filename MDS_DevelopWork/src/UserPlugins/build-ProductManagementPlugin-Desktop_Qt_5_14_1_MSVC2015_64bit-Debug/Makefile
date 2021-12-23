@@ -242,6 +242,7 @@ Makefile: ..\ProductManagementPlugin\ProductManagementPlugin.pro C:\Qt\Qt5.14.1\
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\default_pre.prf \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\win32\default_pre.prf \
 		..\..\BaseTotalPri\BaseTotal.pri \
+		..\ProductManagementPlugin\Imager.pri \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\resolve_config.prf \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\exclusive_builds_post.prf \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\default_post.prf \
@@ -431,6 +432,7 @@ C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\toolchain.prf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\default_pre.prf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\win32\default_pre.prf:
 ..\..\BaseTotalPri\BaseTotal.pri:
+..\ProductManagementPlugin\Imager.pri:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\resolve_config.prf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\exclusive_builds_post.prf:
 C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\mkspecs\features\default_post.prf:

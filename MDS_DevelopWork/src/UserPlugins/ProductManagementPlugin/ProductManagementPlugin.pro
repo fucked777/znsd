@@ -64,14 +64,10 @@ CONFIG(release,debug|release){
 } 
 
 HEADERS += \
-    DetectorPage.h \
-    DeviceStatusLogTableModel.h \
+    DetectorPage.h \   
     FastImagerPage.h \
-    ImagerPage.h \
     PageNavigator.h \
     ProductManagementDialog.h \
-    QueryDialog_CXY.h \
-    SqlDeviceStatusManager.h \
     StellarPredictionPage.h \
     iproductmanagementpluginservice.h  \ 
     productmanagementpluginservice.h  \ 
@@ -79,13 +75,9 @@ HEADERS += \
 
 SOURCES += \
     DetectorPage.cpp \
-    DeviceStatusLogTableModel.cpp \
     FastImagerPage.cpp \
-    ImagerPage.cpp \
     PageNavigator.cpp \
     ProductManagementDialog.cpp \
-    QueryDialog_CXY.cpp \
-    SqlDeviceStatusManager.cpp \
     StellarPredictionPage.cpp \
     productmanagementpluginservice.cpp \ 
     productmanagementpluginactivator.cpp 
@@ -108,10 +100,11 @@ QMAKE_POST_LINK += copy  $$HeadPath $$CopyDir
 
 FORMS += \
     DetectorPage.ui \
-    FastImagerPage.ui \
-    ImagerPage.ui \
+    FastImagerPage.ui \  
     PageNavigator.ui \
     ProductManagementDialog.ui \
-    QueryDialog_CXY.ui \
     StellarPredictionPage.ui
 
+DISTFILES += \
+    Imager.pri
+include($$PWD/Imager.pri)
