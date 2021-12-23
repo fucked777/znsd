@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DeviceStatusLogTableModel_t {
-    QByteArrayData data[22];
-    char stringdata0[221];
+    QByteArrayData data[23];
+    char stringdata0[224];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -49,18 +49,19 @@ QT_MOC_LITERAL(12, 98, 5), // "modes"
 QT_MOC_LITERAL(13, 104, 11), // "currentPage"
 QT_MOC_LITERAL(14, 116, 8), // "pageSize"
 QT_MOC_LITERAL(15, 125, 9), // "searchLog"
-QT_MOC_LITERAL(16, 135, 10), // "totalCount"
-QT_MOC_LITERAL(17, 146, 16), // "signalTotalCount"
-QT_MOC_LITERAL(18, 163, 12), // "searchLogAck"
-QT_MOC_LITERAL(19, 176, 23), // "DeviceStatusLogDataList"
-QT_MOC_LITERAL(20, 200, 6), // "status"
-QT_MOC_LITERAL(21, 207, 13) // "totalCountAck"
+QT_MOC_LITERAL(16, 135, 2), // "aa"
+QT_MOC_LITERAL(17, 138, 10), // "totalCount"
+QT_MOC_LITERAL(18, 149, 16), // "signalTotalCount"
+QT_MOC_LITERAL(19, 166, 12), // "searchLogAck"
+QT_MOC_LITERAL(20, 179, 23), // "DeviceStatusLogDataList"
+QT_MOC_LITERAL(21, 203, 6), // "status"
+QT_MOC_LITERAL(22, 210, 13) // "totalCountAck"
 
     },
     "DeviceStatusLogTableModel\0load\0\0n\0"
     "loaded\0search\0devices\0units\0sids\0"
     "start_time\0end_time\0QList<int>\0modes\0"
-    "currentPage\0pageSize\0searchLog\0"
+    "currentPage\0pageSize\0searchLog\0aa\0"
     "totalCount\0signalTotalCount\0searchLogAck\0"
     "DeviceStatusLogDataList\0status\0"
     "totalCountAck"
@@ -85,24 +86,24 @@ static const uint qt_meta_data_DeviceStatusLogTableModel[] = {
        4,    1,   57,    2, 0x06 /* Public */,
        5,    8,   60,    2, 0x06 /* Public */,
       15,    8,   77,    2, 0x06 /* Public */,
-      16,    8,   94,    2, 0x06 /* Public */,
-      17,    2,  111,    2, 0x06 /* Public */,
+      17,    8,   94,    2, 0x06 /* Public */,
+      18,    2,  111,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      18,    1,  116,    2, 0x0a /* Public */,
-      21,    2,  119,    2, 0x0a /* Public */,
+      19,    1,  116,    2, 0x0a /* Public */,
+      22,    2,  119,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QDateTime, QMetaType::QDateTime, 0x80000000 | 11, QMetaType::Int, QMetaType::Int,    6,    7,    8,    9,   10,   12,   13,   14,
-    QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QDateTime, QMetaType::QDateTime, 0x80000000 | 11, QMetaType::Int, QMetaType::Int,    6,    7,    8,    9,   10,   12,   13,   14,
-    QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QDateTime, QMetaType::QDateTime, 0x80000000 | 11, QMetaType::Int, QMetaType::Int,    6,    7,    8,    9,   10,   12,   13,   14,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   16,   13,
+    QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QDateTime, QMetaType::QDateTime, QMetaType::Int, QMetaType::Int,    6,    7,    8,   16,    9,   10,   13,   14,
+    QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QDateTime, QMetaType::QDateTime, QMetaType::Int, QMetaType::Int,    6,    7,    8,   16,    9,   10,   13,   14,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   17,   13,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 19,   20,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   16,   13,
+    QMetaType::Void, 0x80000000 | 20,   21,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   17,   13,
 
        0        // eod
 };
@@ -116,8 +117,8 @@ void DeviceStatusLogTableModel::qt_static_metacall(QObject *_o, QMetaObject::Cal
         case 0: _t->load((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 1: _t->loaded((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->search((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QDateTime(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QList<int>(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
-        case 3: _t->searchLog((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QDateTime(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QList<int>(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
-        case 4: _t->totalCount((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QDateTime(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QList<int>(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
+        case 3: _t->searchLog((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QStringList(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QDateTime(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
+        case 4: _t->totalCount((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QStringList(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QDateTime(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
         case 5: _t->signalTotalCount((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 6: _t->searchLogAck((*reinterpret_cast< const DeviceStatusLogDataList(*)>(_a[1]))); break;
         case 7: _t->totalCountAck((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
@@ -127,20 +128,6 @@ void DeviceStatusLogTableModel::qt_static_metacall(QObject *_o, QMetaObject::Cal
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 2:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 5:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<int> >(); break;
-            }
-            break;
-        case 3:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 5:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<int> >(); break;
-            }
-            break;
-        case 4:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 5:
@@ -172,14 +159,14 @@ void DeviceStatusLogTableModel::qt_static_metacall(QObject *_o, QMetaObject::Cal
             }
         }
         {
-            using _t = void (DeviceStatusLogTableModel::*)(const QStringList & , const QStringList & , const QStringList & , const QDateTime & , const QDateTime & , const QList<int> & , int , int );
+            using _t = void (DeviceStatusLogTableModel::*)(const QStringList & , const QStringList & , const QStringList & , const QStringList & , const QDateTime & , const QDateTime & , int , int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&DeviceStatusLogTableModel::searchLog)) {
                 *result = 3;
                 return;
             }
         }
         {
-            using _t = void (DeviceStatusLogTableModel::*)(const QStringList & , const QStringList & , const QStringList & , const QDateTime & , const QDateTime & , const QList<int> & , int , int );
+            using _t = void (DeviceStatusLogTableModel::*)(const QStringList & , const QStringList & , const QStringList & , const QStringList & , const QDateTime & , const QDateTime & , int , int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&DeviceStatusLogTableModel::totalCount)) {
                 *result = 4;
                 return;
@@ -257,14 +244,14 @@ void DeviceStatusLogTableModel::search(const QStringList & _t1, const QStringLis
 }
 
 // SIGNAL 3
-void DeviceStatusLogTableModel::searchLog(const QStringList & _t1, const QStringList & _t2, const QStringList & _t3, const QDateTime & _t4, const QDateTime & _t5, const QList<int> & _t6, int _t7, int _t8)
+void DeviceStatusLogTableModel::searchLog(const QStringList & _t1, const QStringList & _t2, const QStringList & _t3, const QStringList & _t4, const QDateTime & _t5, const QDateTime & _t6, int _t7, int _t8)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t7))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t8))) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
-void DeviceStatusLogTableModel::totalCount(const QStringList & _t1, const QStringList & _t2, const QStringList & _t3, const QDateTime & _t4, const QDateTime & _t5, const QList<int> & _t6, int _t7, int _t8)
+void DeviceStatusLogTableModel::totalCount(const QStringList & _t1, const QStringList & _t2, const QStringList & _t3, const QStringList & _t4, const QDateTime & _t5, const QDateTime & _t6, int _t7, int _t8)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t7))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t8))) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);

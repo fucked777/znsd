@@ -9,7 +9,10 @@
 #include
 include(../../BaseTotalPri/BaseTotal.pri) 
 TEMPLATE = lib 
-
+win32-msvc{
+    QMAKE_CXXFLAGS += /utf-8
+}
+QT       += sql
 
 #QT Model:core gui widgets xml sql webkit network
 QT  += core gui 
@@ -67,6 +70,8 @@ HEADERS += \
     ImagerPage.h \
     PageNavigator.h \
     ProductManagementDialog.h \
+    QueryDialog_CXY.h \
+    SqlDeviceStatusManager.h \
     StellarPredictionPage.h \
     iproductmanagementpluginservice.h  \ 
     productmanagementpluginservice.h  \ 
@@ -79,6 +84,8 @@ SOURCES += \
     ImagerPage.cpp \
     PageNavigator.cpp \
     ProductManagementDialog.cpp \
+    QueryDialog_CXY.cpp \
+    SqlDeviceStatusManager.cpp \
     StellarPredictionPage.cpp \
     productmanagementpluginservice.cpp \ 
     productmanagementpluginactivator.cpp 
@@ -105,5 +112,6 @@ FORMS += \
     ImagerPage.ui \
     PageNavigator.ui \
     ProductManagementDialog.ui \
+    QueryDialog_CXY.ui \
     StellarPredictionPage.ui
 

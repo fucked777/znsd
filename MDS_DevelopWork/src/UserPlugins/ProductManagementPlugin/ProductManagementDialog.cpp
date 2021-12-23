@@ -5,7 +5,6 @@
 #include "StellarPredictionPage.h"
 #include "ui_ProductManagementDialog.h"
 #include <QFile>
-#pragma execution_character_set("utf-8")
 ProductManagementDialog::ProductManagementDialog(QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::ProductManagementDialog)

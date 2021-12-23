@@ -53,8 +53,8 @@ public:
 
     void appendDeviceStatusLogData(const DeviceStatusLogData& systemLogData);
 
-    void reset(const QStringList& devices, const QStringList& units, const QStringList& sids, const QDateTime& start_time, const QDateTime& end_time,
-               const QList<int>& modes = QList<int>(), int currentPage = -1, int pageSize = -1);
+    void reset(const QStringList& devices, const QStringList& units, const QStringList& units1, const QStringList& sids, const QDateTime& start_time,
+               const QDateTime& end_time, int currentPage, int pageSize);
 
     //    void resetLog(const QString device, const QString deviceType, const QDateTime& start_time, const QDateTime& end_time);
 
@@ -63,10 +63,10 @@ signals:
     void loaded(int n);
     void search(const QStringList& devices, const QStringList& units, const QStringList& sids, const QDateTime& start_time, const QDateTime& end_time,
                 const QList<int>& modes, int currentPage, int pageSize);
-    void searchLog(const QStringList& devices, const QStringList& units, const QStringList& sids, const QDateTime& start_time,
-                   const QDateTime& end_time, const QList<int>& modes, int currentPage, int pageSize);
-    void totalCount(const QStringList& devices, const QStringList& units, const QStringList& sids, const QDateTime& start_time,
-                    const QDateTime& end_time, const QList<int>& modes, int currentPage, int pageSize);
+    void searchLog(const QStringList& devices, const QStringList& units, const QStringList& sids, const QStringList& aa, const QDateTime& start_time,
+                   const QDateTime& end_time, int currentPage, int pageSize);
+    void totalCount(const QStringList& devices, const QStringList& units, const QStringList& sids, const QStringList& aa, const QDateTime& start_time,
+                    const QDateTime& end_time, int currentPage, int pageSize);
     void signalTotalCount(const int totalCount, const int currentPage);
     //    void logsearch(const QString device, const QString deviceType, const QDateTime start_time, const QDateTime end_time);
 

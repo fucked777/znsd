@@ -57,6 +57,11 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         contextWidgets = new QWidget(ImagerPage);
         contextWidgets->setObjectName(QString::fromUtf8("contextWidgets"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(contextWidgets->sizePolicy().hasHeightForWidth());
+        contextWidgets->setSizePolicy(sizePolicy);
         contextWidgets->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "background-color: #00aaff;\n"
 "border:2px solid white;\n"
@@ -73,12 +78,9 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         allBtn = new QPushButton(contextWidgets);
         allBtn->setObjectName(QString::fromUtf8("allBtn"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(allBtn->sizePolicy().hasHeightForWidth());
         allBtn->setSizePolicy(sizePolicy);
-        allBtn->setMinimumSize(QSize(80, 0));
+        allBtn->setMinimumSize(QSize(80, 40));
         allBtn->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
         font.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));

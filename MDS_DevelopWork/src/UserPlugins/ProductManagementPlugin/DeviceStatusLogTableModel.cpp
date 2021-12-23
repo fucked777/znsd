@@ -1,7 +1,7 @@
 #include "DeviceStatusLogTableModel.h"
 //#include "GlobalData.h"
 //#include "ProtocolXmlTypeDefine.h"
-//#include "SqlDeviceStatusManager.h"
+#include "SqlDeviceStatusManager.h"
 //#include "StatusPersistenceMessageSerialize.h"
 #include <QMessageBox>
 
@@ -10,17 +10,17 @@ const int loadNumberPerMore = 100;
 DeviceStatusLogTableModel::DeviceStatusLogTableModel(QObject* parent)
     : QAbstractTableModel(parent)
 {
-    mHeaders << "序号"
-             << "任务编号"
-             << "输出时间"
-             << "文件名称"
-             << "本地文件路径"
-             << "输出文件路径"
-             << "传输方向"
-             << "传输方式"
-             << "精度"
-             << "输出类型"
-             << "文件大小";
+    mHeaders /*<< "序号"*/
+        << "任务编号"
+        << "输出时间"
+        << "文件名称"
+        << "本地文件路径"
+        << "输出文件路径"
+        << "传输方向"
+        << "传输方式"
+        << "精度"
+        << "输出类型"
+        << "文件大小";
     //    mHeaders << tr("时间") << tr("设备") << tr("模式") << tr("单元") << tr("参数") << tr("参数大小");
     //    this->setHorizontalHeaderLabels(mHeaders);
     //    status_query_ = new SqlDeviceStatusManager;
@@ -127,16 +127,16 @@ void DeviceStatusLogTableModel::appendDeviceStatusLogData(const DeviceStatusLogD
     endInsertRows();
 }
 
-void DeviceStatusLogTableModel::reset(const QStringList& devices, const QStringList& units, const QStringList& sids, const QDateTime& start_time,
-                                      const QDateTime& end_time, const QList<int>& modes, int currentPage, int pageSize)
+void DeviceStatusLogTableModel::reset(const QStringList& devices, const QStringList& units, const QStringList& units1, const QStringList& sids,
+                                      const QDateTime& start_time, const QDateTime& end_time, int currentPage, int pageSize)
 {
-    //    if (!status_query_->queryFinished())
-    //    {
-    //        QMessageBox::information(nullptr, "提示", "上次状态数据还未查询完成", "确定");
-    //        return;
-    //    }
-    emit searchLog(devices, units, sids, start_time, end_time, modes, currentPage, pageSize);
-    emit totalCount(devices, units, sids, start_time, end_time, modes, currentPage, pageSize);
+    if (!status_query_->queryFinished())
+    {
+        QMessageBox::information(nullptr, "提示", "上次状态数据还未查询完成", "确定");
+        return;
+    }
+    //    emit searchLog(devices, units, sids, sids, start_time, end_time, currentPage, pageSize);
+    //    emit totalCount(devices, units, sids, sids, start_time, end_time, currentPage, pageSize);
 
     beginResetModel();
     status_list_.clear();
