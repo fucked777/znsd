@@ -115,106 +115,50 @@ void SqlDeviceStatusManager::searchLog(const QStringList& devices, const QString
     QString sql = QString("SELECT * FROM STATUS_HISTORY WHERE (1=1) ");
 
     // deviceId条件查询
-    //    if (!devices.isEmpty())
-    //    {
-    //        QStringList device_list_str;
-    //        bool selAllDevice = false;
+    if (!devices.isEmpty())
+    {
+        QStringList device_list_str;
+        bool selAllDevice = false;
 
-    //        foreach (const auto& device, devices)
-    //        {
-    //            if (device == "-1")
-    //            {
-    //                selAllDevice = true;
-    //                break;
-    //            }
-    //            device_list_str.append(QString("'%1'").arg(device));
-    //        }
+        foreach (const auto& device, devices)
+        {
+            if (device == "-1")
+            {
+                selAllDevice = true;
+                break;
+            }
+            device_list_str.append(QString("'%1'").arg(device));
+        }
 
-    //        if (!selAllDevice)
-    //        {
-    //            sql += QString("AND (DeviceId IN (%1)) ").arg(device_list_str.join(','));
-    //        }
-    //    }
+        if (!selAllDevice)
+        {
+            sql += QString("AND (DeviceId IN (%1)) ").arg(device_list_str.join(','));
+        }
+    }
 
-    //    // Time条件查询
-    //    sql += QString("AND (Time BETWEEN '%2' AND '%3')").arg(start_time.toString("yyyy-MM-dd HH:mm:ss")).arg(end_time.toString("yyyy-MM-dd
-    //    HH:mm:ss"));
+    // Time条件查询
+    sql += QString("AND (Time BETWEEN '%2' AND '%3')").arg(start_time.toString("yyyy-MM-dd HH:mm:ss")).arg(end_time.toString("yyyy-MM-dd HH:mm:ss"));
 
-    //    //分页条件查询
-    //    //    sql += QString(" order by time asc limit %4,%5;").arg((currentPage - 1) * pageSize).arg(pageSize);
-    //    sql += QString(" limit %4,%5;").arg((currentPage - 1) * pageSize).arg(pageSize);
+    //分页条件查询
+    //    sql += QString(" order by time asc limit %4,%5;").arg((currentPage - 1) * pageSize).arg(pageSize);
+    sql += QString(" limit %4,%5;").arg((currentPage - 1) * pageSize).arg(pageSize);
 
-    //    //    DeviceStatusLogDataList records;
-    //    //    DeviceStatusLogData data;
+    DeviceStatusLogDataList records;
+    DeviceStatusLogData data;
 
-    //    bool hasRecord = query_.exec(sql) && query_.first();
-    //    while (hasRecord)
-    //    {
-    //        auto record = query_.record();
-    //        records.clear();
-    //        QString time = record.field("Time").value().toString();
-    //        QByteArray content = record.field("Content").value().toByteArray();
-    //        //        QString proId = record.field("ProId").value().toString();
-    //        //        QString deviceId = record.field("deviceId").value().toString();
-    //        time.replace("T", " ");  //去除掉时间里面带T的字符
-
-    //        DeviceStatusData deviceStatusData;
-    //        content >> deviceStatusData;
-    //        QString device_name = deviceStatusData.deviceName;
-
-    //        QString parName, value;
-    //        auto paramStatusMap = deviceStatusData.unitParamMap;
-
-    //        if (!modes.isEmpty())
-    //        {
-    //            if (!modes.contains(deviceStatusData.modeId))
-    //            {
-    //                hasRecord = query_.next();
-    //                continue;
-    //            }
-    //        }
-
-    //        foreach (const auto& unitId, paramStatusMap.keys())
-    //        {
-    //            if (units.isEmpty() || units.contains(unitId))
-    //            {
-    //                auto paramStatuss = paramStatusMap.value(unitId).paramStatusMap;
-
-    //                for (const auto& paramStatus : paramStatuss.values())
-    //                {
-    //                    parName = paramStatus.parName;
-    //                    value = paramStatus.value.toString();
-    //                    data.id = loadNumberPerMore;
-    //                    data.createTime = time;
-    //                    int deviceId;
-    //                    deviceStatusData.deviceID >> deviceId;
-    //                    data.deviceId = QString::number(deviceId);
-    //                    data.unitId = unitId;
-    //                    data.param = parName;
-    //                    if (!paramStatus.enumValueDesc.isEmpty())
-    //                    {
-    //                        data.paramValue = paramStatus.enumValueDesc;
-    //                    }
-    //                    else
-    //                    {
-    //                        data.paramValue = paramStatus.value.toString();
-    //                        if (!paramStatus.unit.isEmpty())
-    //                        {
-    //                            data.paramValue += QString(" (%1)").arg(paramStatus.unit);
-    //                        }
-    //                    }
-    //                    data.modeId = deviceStatusData.modeId;
-
-    //                    if (!data.param.contains("保留"))
-    //                    {
-    //                        records.append(data);
-    //                    }
-    //                }
-    //            }
-    //        }
-    //        hasRecord = query_.next();
-    //        emit searchLogAck(records);
-    //    }
+    bool hasRecord = query_.exec(sql) && query_.first();
+    while (hasRecord)
+    {
+        auto record = query_.record();
+        records.clear();
+        QString time = record.field("Time").value().toString();
+        QByteArray content = record.field("Content").value().toByteArray();
+        //        QString proId = record.field("ProId").value().toString();
+        //        QString deviceId = record.field("deviceId").value().toString();
+        time.replace("T", " ");  //去除掉时间里面带T的字符
+        hasRecord = query_.next();
+        emit searchLogAck(records);
+    }
     hasQueryFinished = true;
 }
 
