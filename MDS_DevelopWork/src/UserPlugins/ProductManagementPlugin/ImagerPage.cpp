@@ -68,9 +68,12 @@ void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& task
 void ImagerPage::pageSizeChange(const QString& /*strPage*/) { query(); }
 void ImagerPage::query()
 {
-    //    int pageSize = ui->comboBox->currentData().toInt();
-    //    m_deviceStatusLogTableModel->reset(device_list, unit_list, status_list, ui->startDateTimeEdit->dateTime(), ui->endDateTimeEdit->dateTime(),
-    //                                       mode_list, 1, pageSize);
+    QVector<QStringList> data;
+    data = m_queryDialog_CXY->getSerachData();
+    QVector<QDateTime> time;
+    time = m_queryDialog_CXY->getTime();
+    int pageSize = ui->comboBox->currentData().toInt();
+    m_deviceStatusLogTableModel->reset(data.at(0), data.at(1), data.at(2), data.at(3), time.at(0), time.at(1), 1, pageSize);
 }
 void ImagerPage::currentPageChanged(int page)
 {

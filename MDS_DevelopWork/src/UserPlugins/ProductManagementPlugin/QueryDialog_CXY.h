@@ -15,6 +15,8 @@ class QueryDialog_CXY : public QWidget
 public:
     explicit QueryDialog_CXY(QWidget* parent = nullptr);
     ~QueryDialog_CXY();
+    QVector<QStringList> getSerachData();
+    QVector<QDateTime> getTime();
 signals:
     void search(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                 const QDateTime& start_time, const QDateTime& end_time);

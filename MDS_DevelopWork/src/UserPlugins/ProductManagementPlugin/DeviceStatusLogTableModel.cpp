@@ -80,7 +80,6 @@ QVariant DeviceStatusLogTableModel::data(const QModelIndex& index, int role) con
     }
     break;
     }
-
     return QVariant();
 }
 
