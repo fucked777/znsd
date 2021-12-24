@@ -43,7 +43,7 @@ private:
 
 private:
     Ui::ImagerPage* ui;
-    QStandardItemModel* tableModel;
+    //    QStandardItemModel* tableModel;
     QStringList headNames;
     QueryDialog_CXY* m_queryDialog_CXY;
     PageNavigator* m_pageNavigator;

@@ -23,15 +23,15 @@ DeviceStatusLogTableModel::DeviceStatusLogTableModel(QObject* parent)
         << "文件大小";
     //    mHeaders << tr("时间") << tr("设备") << tr("模式") << tr("单元") << tr("参数") << tr("参数大小");
     //    this->setHorizontalHeaderLabels(mHeaders);
-    //    status_query_ = new SqlDeviceStatusManager;
-    //    status_query_->moveToThread(&status_thread_);
-    //    connect(&status_thread_, &QThread::finished, status_query_, &QObject::deleteLater);
+    status_query_ = new SqlDeviceStatusManager;
+    status_query_->moveToThread(&status_thread_);
+    connect(&status_thread_, &QThread::finished, status_query_, &QObject::deleteLater);
     qRegisterMetaType<DeviceStatusLogDataList>("DeviceStatusLogDataList");
 
-    //    connect(this, &DeviceStatusLogTableModel::searchLog, status_query_, &SqlDeviceStatusManager::searchLog, Qt::QueuedConnection);
-    //    connect(status_query_, &SqlDeviceStatusManager::searchLogAck, this, &DeviceStatusLogTableModel::searchLogAck, Qt::QueuedConnection);
-    //    connect(this, &DeviceStatusLogTableModel::totalCount, status_query_, &SqlDeviceStatusManager::totalCount, Qt::QueuedConnection);
-    //    connect(status_query_, &SqlDeviceStatusManager::totalCountAck, this, &DeviceStatusLogTableModel::totalCountAck, Qt::QueuedConnection);
+    connect(this, &DeviceStatusLogTableModel::searchLog, status_query_, &SqlDeviceStatusManager::searchLog, Qt::QueuedConnection);
+    connect(status_query_, &SqlDeviceStatusManager::searchLogAck, this, &DeviceStatusLogTableModel::searchLogAck, Qt::QueuedConnection);
+    connect(this, &DeviceStatusLogTableModel::totalCount, status_query_, &SqlDeviceStatusManager::totalCount, Qt::QueuedConnection);
+    connect(status_query_, &SqlDeviceStatusManager::totalCountAck, this, &DeviceStatusLogTableModel::totalCountAck, Qt::QueuedConnection);
     //    res = connect(this, &DeviceStatusLogTableModel::load, status_query_, &SqlDeviceStatusManager::load, Qt::QueuedConnection);
     //    res = connect(status_query_, &SqlDeviceStatusManager::moreStatus, this, &DeviceStatusLogTableModel::moreStatus, Qt::QueuedConnection);
     //    res = connect(this, &DeviceStatusLogTableModel::search, status_query_, &SqlDeviceStatusManager::search, Qt::QueuedConnection);
@@ -66,16 +66,16 @@ QVariant DeviceStatusLogTableModel::data(const QModelIndex& index, int role) con
         const auto& data = status_list_.at(row);
         switch (col)
         {
-        case taskNum: return data.taskNum; break;
-        case outputTime: return data.outputTime; break;
-        case fileName: return data.fileName; break;
-        case LocalFilePath: return data.LocalFilePath; break;
-        case outputFilePath: return data.outputFilePath; break;
-        case sendDirection: return data.sendDirection; break;
-        case sendType: return data.sendType; break;
-        case accuracy: return data.accuracy; break;
-        case outputType: return data.outputType; break;
-        case fileSize: return data.fileSize; break;
+        case taskNum: return data.taskNum;
+        case outputTime: return data.outputTime;
+        case fileName: return data.fileName;
+        case LocalFilePath: return data.LocalFilePath;
+        case outputFilePath: return data.outputFilePath;
+        case sendDirection: return data.sendDirection;
+        case sendType: return data.sendType;
+        case accuracy: return data.accuracy;
+        case outputType: return data.outputType;
+        case fileSize: return data.fileSize;
         }
     }
     break;
@@ -113,6 +113,7 @@ Qt::ItemFlags DeviceStatusLogTableModel::flags(const QModelIndex& index) const
 
 void DeviceStatusLogTableModel::setDeviceStatusLogData(const QList<DeviceStatusLogData>& deviceStatusLogDatas)
 {
+    status_query_->insert(deviceStatusLogDatas);
     beginResetModel();
     status_list_ = deviceStatusLogDatas;
     endResetModel();
@@ -135,8 +136,8 @@ void DeviceStatusLogTableModel::reset(const QStringList& devices, const QStringL
         QMessageBox::information(nullptr, "提示", "上次状态数据还未查询完成", "确定");
         return;
     }
-    //    emit searchLog(devices, units, sids, sids, start_time, end_time, currentPage, pageSize);
-    //    emit totalCount(devices, units, sids, sids, start_time, end_time, currentPage, pageSize);
+    emit searchLog(devices, units, sids, sids, start_time, end_time, currentPage, pageSize);
+    emit totalCount(devices, units, sids, sids, start_time, end_time, currentPage, pageSize);
 
     beginResetModel();
     status_list_.clear();

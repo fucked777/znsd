@@ -36,7 +36,7 @@ public:
         sendType,        // 传输方式
         accuracy,        // 精度
         outputType,      // 输出类型
-        fileSize,        // 文件大小
+        fileSize         // 文件大小
     };
 
     explicit DeviceStatusLogTableModel(QObject* parent = nullptr);

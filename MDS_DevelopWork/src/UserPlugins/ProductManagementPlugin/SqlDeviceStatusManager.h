@@ -1,13 +1,13 @@
 #ifndef SqlDeviceStatusManager_H
 #define SqlDeviceStatusManager_H
-
+#include "DeviceStatusLogTableModel.h"
 //#include "StatusPersistenceMessageSerialize.h"
 //#include "Utility.h"
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QThread>
-
+struct DeviceStatusLogData;
 class SqlDeviceStatusManager : public QObject
 {
     Q_OBJECT
@@ -15,22 +15,22 @@ public:
     explicit SqlDeviceStatusManager(QObject* parent = nullptr);
 
     bool queryFinished();
-
+    void insert(const QList<DeviceStatusLogData>& imager);
 signals:
-    //    void searchLogAck(const DeviceStatusLogDataList& status);
+    void searchLogAck(const DeviceStatusLogDataList& status);
     void totalCountAck(const int count, const int currentPage);
 
 public slots:
-    void searchLog(const QStringList& devices, const QStringList& units, const QStringList& sids, const QDateTime& start_time,
-                   const QDateTime& end_time, const QList<int>& modes, int currentPage, int pageSize);
-    void totalCount(const QStringList& devices, const QStringList& units, const QStringList& sids, const QDateTime& start_time,
-                    const QDateTime& end_time, const QList<int>& modes, int currentPage, int pageSize);
+    void searchLog(const QStringList& devices, const QStringList& units, const QStringList& sids, const QStringList& aa, const QDateTime& start_time,
+                   const QDateTime& end_time, int currentPage, int pageSize);
+    void totalCount(const QStringList& devices, const QStringList&, const QStringList&, const QStringList&, const QDateTime& start_time,
+                    const QDateTime& end_time, int currentPage, int pageSize);
 
 private:
     QSqlQuery query_;
-
+    QSqlDatabase db;
     QString m_dbConnectName;
-
+    QStringList tablelist;  //库里的表列表
     bool hasQueryFinished;
 };
 

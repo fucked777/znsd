@@ -40,35 +40,16 @@ void ImagerPage::initMember()
     ui->widget->layout()->addWidget(m_pageNavigator);
     connect(m_pageNavigator, &PageNavigator::currentPageChanged, this, &ImagerPage::currentPageChanged);
     m_deviceStatusLogTableModel = new DeviceStatusLogTableModel();
-    ui->tableView->viewport()->installEventFilter(this);
-    ui->tableView->viewport()->setMouseTracking(true);
-
     ui->tableView->setModel(m_deviceStatusLogTableModel);
     connect(m_deviceStatusLogTableModel, &DeviceStatusLogTableModel::signalTotalCount, this, &ImagerPage::slotGetTotalCount);
+
     ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    //    ui->tableView->viewport()->installEventFilter(this);
+    //    ui->tableView->viewport()->setMouseTracking(true);
+    ui->comboBox->addItem("10");
     ui->comboBox->addItem("25");
     ui->comboBox->addItem("50");
-    ui->comboBox->addItem("80");
     ui->comboBox->addItem("100");
-    //    connect(ui->comboBox, &QComboBox::currentTextChanged, this, &ImagerPage::curTestChangedCombox);
-    //    datas.clear();
-    //    if (headNames.size() == 0)  // default
-    //        headNames << "序号"
-    //                  << "任务编号"
-    //                  << "输出时间"
-    //                  << "文件名称"
-    //                  << "本地文件路径"
-    //                  << "输出文件路径"
-    //                  << "传输方向"
-    //                  << "传输方式"
-    //                  << "精度"
-    //                  << "输出类型"
-    //                  << "文件大小";
-
-    //    tableModel->setHorizontalHeaderLabels(headNames);
-    //    tableModel->setRowCount(1);
-
-    ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 }
 void ImagerPage::slotGetTotalCount(const int totalCount, const int currentPage)
 {
@@ -87,47 +68,12 @@ void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& task
 void ImagerPage::pageSizeChange(const QString& /*strPage*/) { query(); }
 void ImagerPage::query()
 {
-    int pageSize = ui->comboBox->currentData().toInt();
-    //    mDeviceStatusLogTableModel->reset(device_list, unit_list, status_list, ui->startDateTimeEdit->dateTime(), ui->endDateTimeEdit->dateTime(),
-    //                                      mode_list, 1, pageSize);
+    //    int pageSize = ui->comboBox->currentData().toInt();
+    //    m_deviceStatusLogTableModel->reset(device_list, unit_list, status_list, ui->startDateTimeEdit->dateTime(), ui->endDateTimeEdit->dateTime(),
+    //                                       mode_list, 1, pageSize);
 }
 void ImagerPage::currentPageChanged(int page)
 {
-    //    QDateTime startTime = ui->startDateTimeEdit->dateTime();
-    //    QDateTime endTime = ui->endDateTimeEdit->dateTime();
-    //    if (startTime > endTime)
-    //    {
-    //        QMessageBox::warning(this, "提示", "查询开始时间不能晚于结束时间", QString("确定"));
-    //        return;
-    //    }
-
-    //    QStringList device_list;
-    //    if (!ui->comboBox->currentData().toString().isEmpty())
-    //    {
-    //        device_list.append(ui->comboBox->currentData().toString());
-    //    }
-
-    //    QStringList unit_list;
-    //    QString unit_name = ui->unitComboBox->currentText();
-    //    if (!unit_name.isEmpty() && unit_name != QString("全部单元"))
-    //    {
-    //        unit_list.append(ui->unitComboBox->currentText());
-    //    }
-
-    //    QStringList status_list;
-    //    QString status_name = ui->statusComboBox->currentText();
-    //    if (!status_name.isEmpty() && status_name != QString("全部状态"))
-    //    {
-    //        status_list.append(ui->statusComboBox->currentData().toString());
-    //    }
-
-    //    QList<int> mode_list;
-    //    QString mode_name = ui->modeComboBox->currentText();
-    //    if (!mode_name.isEmpty() && mode_name != QString("全部模式"))
-    //    {
-    //        mode_list.append(ui->modeComboBox->currentData().toInt());
-    //    }
-
     int pageSize = ui->comboBox->currentData().toInt();
     //    m_deviceStatusLogTableModel->reset(device_list, unit_list, status_list, ui->startDateTimeEdit->dateTime(), ui->endDateTimeEdit->dateTime(),
     //                                       mode_list, page, pageSize);
@@ -148,20 +94,19 @@ void ImagerPage::slotSearchAck(/*const QByteArray& data*/)
     //    QByteArray bak = data;
     DeviceStatusLogData data;
     DeviceStatusLogDataList DATA;
-    for (int i = 0; i < 100; i++)
+    for (int i = 1; i < 101; i++)
     {
         data.taskNum = QString::number(i);
-        data.outputTime = "二级";
-        data.fileName = "2021-10-12 00:13:14";
-        data.LocalFilePath = "xxx";
-        data.outputFilePath = "NRSS15621";
-        data.sendDirection = "成像仪图像定位与配准";
+        data.outputTime = "2021-10-12";
+        data.fileName = "00:13:14";
+        data.LocalFilePath = "c:xiaoxiao";
+        data.outputFilePath = "c:xiaoxiao";
+        data.sendDirection = "成像仪";
         data.sendType = "暂未处理";
         data.accuracy = "XXXXX";
         data.outputType = "NRST100001";
         data.fileSize = "XXX";
         DATA.append(data);
-        //    bak >> dataList;
     }
     m_deviceStatusLogTableModel->setDeviceStatusLogData(DATA);
 }
