@@ -1,4 +1,4 @@
-#include "pageWidget.h"
+﻿#include "pageWidget.h"
 #include "ui_pageWidget.h"
 #include <QKeyEvent>
 #include <QMessageBox>
@@ -13,7 +13,7 @@ pageWidget::pageWidget(QWidget* parent)
     for (int i = 1; i < 101; i++)
     {
         data.taskNum = QString::number(i);
-        data.outputTime = "2021-10-12 00:13:14";
+        data.outputTime = "00:13:14";
         data.fileName = "css";
         data.LocalFilePath = "c:xiaoxiao";
         data.outputFilePath = "c:xiaoxiao";
@@ -24,8 +24,8 @@ pageWidget::pageWidget(QWidget* parent)
         data.fileSize = "XXX";
         DATA.append(data);
     }
-    m_pDataModel->setImagerData(DATA);
-
+    //    m_pDataModel->setImagerData(DATA);
+    m_pDataModel->SetArrayData(DATA);
     ui->comboBox->addItem("20", 20);
     ui->comboBox->addItem("25", 25);
     ui->comboBox->addItem("30", 30);
@@ -164,16 +164,16 @@ void pageWidget::UpdateStatus()
 
     emit updataTableView();
     //总页数
-    QString szPageCountText = QString(QStringLiteral("总共%1页")).arg(QString::number(m_pDataModel->GetPageCount()));
+    QString szPageCountText = QString::number(m_pDataModel->GetPageCount());
     ui->AllPageLabel->setText(szPageCountText);
 
     //设置当前页文本
     int iCurPage = m_pDataModel->GetCurPage() + 1;
-    QString szCurrentText = QString(QStringLiteral("当前第%1页")).arg(QString::number(iCurPage));
+    QString szCurrentText = QString::number(iCurPage);
     ui->CurPageLabel->setText(szCurrentText);
 
     //每页显示行数
-    QString strPerPageCount = QString(QStringLiteral("%1")).arg(QString::number(m_pDataModel->GetPageSize()));
+    //    QString strPerPageCount = QString(QStringLiteral("%1")).arg(QString::number(m_pDataModel->GetPageSize()));
     //    ui->comboBox->(strPerPageCount);
 
     //当前第一页，且总共只有一页

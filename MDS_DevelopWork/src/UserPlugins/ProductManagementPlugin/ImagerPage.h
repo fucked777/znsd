@@ -44,11 +44,9 @@ private:
 
 private:
     Ui::ImagerPage* ui;
-    //    QStandardItemModel* tableModel;
     QStringList headNames;
     QueryDialog_CXY* m_queryDialog_CXY;
     pageWidget* m_pageNavigator;
-    //    CArrayModel* m_imagerTableModel;
 };
 
 #endif  // ImagerPage_H

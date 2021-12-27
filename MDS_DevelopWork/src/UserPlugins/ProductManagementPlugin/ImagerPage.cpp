@@ -47,18 +47,12 @@ void ImagerPage::initMember()
     ui->tableView->viewport()->installEventFilter(this);
     ui->tableView->viewport()->setMouseTracking(true);
 
-    //    QByteArray bak = data;
-
-    //设置每页数据条数
-    //    m_imagerTableModel->SetPageSize(PageRecordCount);
-
-    //设置模型
-    //    tableView->setModel(m_pDataModel);
-
     //设置委托
     //    ui->tableView->setItemDelegateForColumn(0, new ReadOnlyDelegate(this));
-    //    ui->tableView->setItemDelegateForColumn(1, new ValueDelegate(this));
-
+    for (int i = 0; i < 10; i++)
+    {
+        ui->tableView->setItemDelegateForColumn(i, new ValueDelegate(this));
+    }
     //刷新状态
     //    m_pageNavigator->UpdateStatus();
 }
@@ -77,7 +71,11 @@ void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& task
     //    m_deviceStatusLogTableModel->reset(taskName, taskNum, fileName, outputType, start_time, end_time, 1, pageSize);
 }
 
-void ImagerPage::slotUpdataTable() { ui->tableView->reset(); }
+void ImagerPage::slotUpdataTable()
+{
+    qDebug() << "1111";
+    ui->tableView->reset();
+}
 void ImagerPage::pageSizeChange(const QString& /*strPage*/) { query(); }
 void ImagerPage::query()
 {

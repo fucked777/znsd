@@ -63,7 +63,8 @@ void CArrayModel::SetCurPage(int iPage)
         for (int i = iStart; i <= iend; ++i)
         {
             auto it = m_mpData.at(i);
-            //            if (it == m_mpData.last())
+            //            auto end = m_mpData.at(m_mpData.size() - 1);
+            //            if (it == end)
             //            {
             //                return;
             //            }
@@ -113,7 +114,7 @@ void CArrayModel::refrushModel()
 void CArrayModel::setImagerData(const QList<ImagerData>& imagerDatas)
 {
     beginResetModel();
-    m_mpData = imagerDatas;
+    //    m_mpData = imagerDatas;
     endResetModel();
 }
 QVariant CArrayModel::data(const QModelIndex& index, int role) const
@@ -134,9 +135,10 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
         {
         case taskNum: return data.taskNum;
         case outputTime:
-        {
-            return QDateTime::fromString(data.outputTime, "yyyy-MM-dd hh:mm:ss").toString(DATETIME_DISPLAY_FORMAT2);
-        }
+            return data.outputTime;
+            //        {
+            //            return QDateTime::fromString(data.outputTime, "yyyy-MM-dd hh:mm:ss").toString(DATETIME_DISPLAY_FORMAT2);
+            //        }
         case fileName: return data.fileName;
         case LocalFilePath: return data.LocalFilePath;
         case outputFilePath: return data.outputFilePath;
@@ -195,6 +197,7 @@ Qt::ItemFlags CArrayModel::flags(const QModelIndex& index) const
 
 bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
+    //    auto col = index.column();
     //    if (index.isValid() && role == Qt::EditRole)
     //    {
     //        QVariant oldData = data(index, Qt::EditRole);
@@ -210,19 +213,44 @@ bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int r
     //        int dataindex = index.row() + m_iCurPage * m_iPageSize;
 
     //        //改变总数据集
-    //        auto it = m_mpData.at(dataindex);
-    //        if (it != m_mpData.end())
+    //        //        auto it = m_mpData.at(dataindex);
+    //        const auto& data = m_mpData.at(dataindex);
+    //        for (dataindex; dataindex <= m_mpData.size() - 1; dataindex++)
     //        {
-    //            it->second = strnew;
+    //            switch (role)
+    //            {
+    //            case Qt::DisplayRole:
+    //            {
+    //                const auto& data = m_mpData.at(dataindex);
+    //                switch (col)
+    //                {
+    //                case taskNum: return data.taskNum;
+    //                case outputTime:
+    //                    return data.outputTime;
+    //                    //        {
+    //                    //            return QDateTime::fromString(data.outputTime, "yyyy-MM-dd hh:mm:ss").toString(DATETIME_DISPLAY_FORMAT2);
+    //                    //        }
+    //                case fileName: return data.fileName;
+    //                case LocalFilePath: return data.LocalFilePath;
+    //                case outputFilePath: return data.outputFilePath;
+    //                case sendDirection: return data.sendDirection;
+    //                case sendType: return data.sendType;
+    //                case accuracy: return data.accuracy;
+    //                case outputType: return data.outputType;
+    //                case fileSize: return data.fileSize;
+    //                }
+    //            }
+    //            break;
+    //            }
     //        }
 
     //        //改变当页数据集
-    //        auto itcur = m_mpPageData.at(dataindex);
-    //        auto end = m_mpPageData.at(m_mpPageData.size() - 1);
-    //        if (itcur != end)
-    //        {
-    //            itcur->second = strnew;
-    //        }
+    //        //        auto itcur = m_mpPageData.find(dataindex);
+    //        //        if (itcur != m_mpPageData.end())
+    //        //        {
+    //        //            itcur->second = strnew;
+    //        //        }
+
     //        return true;
     //    }
     return false;
@@ -244,21 +272,6 @@ QVariant CArrayModel::headerData(int section, Qt::Orientation orientation, int r
     }
 
     return QVariant();
-    //    if (role != Qt::DisplayRole)
-    //    {
-    //        return QVariant();
-    //    }
-
-    //    if (0 == section)
-    //    {
-    //        return QStringLiteral("索引");
-    //    }
-    //    else if (1 == section)
-    //    {
-    //        return QStringLiteral("值");
-    //    }
-
-    //    return QVariant();
 }
 
 QString CArrayModel::currencyAt(int offset) const
