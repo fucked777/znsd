@@ -75,7 +75,7 @@ SqlDeviceStatusManager::SqlDeviceStatusManager(QObject* parent)
 }
 bool SqlDeviceStatusManager::queryFinished() { return hasQueryFinished; }
 
-void SqlDeviceStatusManager::insert(const QList<DeviceStatusLogData>& imager)
+void SqlDeviceStatusManager::insert(const QList<ImagerData>& imager)
 {
     QString sql = "INSERT INTO imager ("
                   "taskNum        ,"
@@ -91,21 +91,21 @@ void SqlDeviceStatusManager::insert(const QList<DeviceStatusLogData>& imager)
                   "VALUES (?,?,?,?,?,?,?,?,?,?);";
     query_ = db.exec(sql);
     query_.prepare(sql);
-    for (auto& item : imager)
-    {
-        query_.bindValue(0, item.taskNum);
-        query_.bindValue(1, item.outputTime);
-        query_.bindValue(2, item.fileName);
-        query_.bindValue(3, item.LocalFilePath);
-        query_.bindValue(4, item.outputFilePath);
-        query_.bindValue(5, item.sendDirection);
-        query_.bindValue(6, item.sendType);
-        query_.bindValue(7, item.accuracy);
-        query_.bindValue(8, item.outputType);
-        query_.bindValue(9, item.fileSize);
-        query_.exec();
-    }
-    //    db.commit();
+    //    for (auto& item : imager)
+    //    {
+    //        query_.bindValue(0, item.taskNum);
+    //        query_.bindValue(1, item.outputTime);
+    //        query_.bindValue(2, item.fileName);
+    //        query_.bindValue(3, item.LocalFilePath);
+    //        query_.bindValue(4, item.outputFilePath);
+    //        query_.bindValue(5, item.sendDirection);
+    //        query_.bindValue(6, item.sendType);
+    //        query_.bindValue(7, item.accuracy);
+    //        query_.bindValue(8, item.outputType);
+    //        query_.bindValue(9, item.fileSize);
+    //        query_.exec();
+    //    }
+    db.commit();
 }
 
 void SqlDeviceStatusManager::searchLog(const QStringList& devices, const QStringList& units, const QStringList& sids, const QStringList& aa,
@@ -143,8 +143,8 @@ void SqlDeviceStatusManager::searchLog(const QStringList& devices, const QString
     //    sql += QString(" order by time asc limit %4,%5;").arg((currentPage - 1) * pageSize).arg(pageSize);
     sql += QString(" limit %4,%5;").arg((currentPage - 1) * pageSize).arg(pageSize);
 
-    DeviceStatusLogDataList records;
-    DeviceStatusLogData data;
+    ImagerDataList records;
+    ImagerData data;
 
     bool hasRecord = query_.exec(sql) && query_.first();
     while (hasRecord)

@@ -64,9 +64,8 @@ CONFIG(release,debug|release){
 } 
 
 HEADERS += \
-    DetectorPage.h \   
+    DetectorPage.h \
     FastImagerPage.h \
-    PageNavigator.h \
     ProductManagementDialog.h \
     StellarPredictionPage.h \
     iproductmanagementpluginservice.h  \ 
@@ -76,7 +75,6 @@ HEADERS += \
 SOURCES += \
     DetectorPage.cpp \
     FastImagerPage.cpp \
-    PageNavigator.cpp \
     ProductManagementDialog.cpp \
     StellarPredictionPage.cpp \
     productmanagementpluginservice.cpp \ 
@@ -100,8 +98,7 @@ QMAKE_POST_LINK += copy  $$HeadPath $$CopyDir
 
 FORMS += \
     DetectorPage.ui \
-    FastImagerPage.ui \  
-    PageNavigator.ui \
+    FastImagerPage.ui \
     ProductManagementDialog.ui \
     StellarPredictionPage.ui
 

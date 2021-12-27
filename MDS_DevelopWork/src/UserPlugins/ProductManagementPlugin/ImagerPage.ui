@@ -210,16 +210,7 @@ font: normal normal 16px &quot;宋体&quot;
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QTableView" name="tableView">
-        <property name="styleSheet">
-         <string notr="true">QTableView {
-border-style:none;
-color:white;
-font: bold 12pt;
-}
-</string>
-        </property>
-       </widget>
+       <widget class="QTableView" name="tableView"/>
       </item>
      </layout>
     </widget>
@@ -247,25 +238,8 @@ font: bold 12pt;
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>单页显示条数</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox"/>
-      </item>
-      <item>
        <widget class="QWidget" name="widget" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout"/>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="okBtn">
-        <property name="text">
-         <string>确定</string>
-        </property>
        </widget>
       </item>
      </layout>

@@ -11,12 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
@@ -41,11 +39,8 @@ public:
     QWidget *buttomWidget;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer;
-    QLabel *label;
-    QComboBox *comboBox;
     QWidget *widget;
     QHBoxLayout *horizontalLayout;
-    QPushButton *okBtn;
 
     void setupUi(QDialog *ImagerPage)
     {
@@ -140,12 +135,6 @@ public:
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         tableView = new QTableView(tableWidget);
         tableView->setObjectName(QString::fromUtf8("tableView"));
-        tableView->setStyleSheet(QString::fromUtf8("QTableView {\n"
-"border-style:none;\n"
-"color:white;\n"
-"font: bold 12pt;\n"
-"}\n"
-""));
 
         gridLayout->addWidget(tableView, 0, 0, 1, 1);
 
@@ -165,27 +154,12 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer);
 
-        label = new QLabel(buttomWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        horizontalLayout_3->addWidget(label);
-
-        comboBox = new QComboBox(buttomWidget);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-
-        horizontalLayout_3->addWidget(comboBox);
-
         widget = new QWidget(buttomWidget);
         widget->setObjectName(QString::fromUtf8("widget"));
         horizontalLayout = new QHBoxLayout(widget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
 
         horizontalLayout_3->addWidget(widget);
-
-        okBtn = new QPushButton(buttomWidget);
-        okBtn->setObjectName(QString::fromUtf8("okBtn"));
-
-        horizontalLayout_3->addWidget(okBtn);
 
 
         verticalLayout->addWidget(buttomWidget);
@@ -202,8 +176,6 @@ public:
         allBtn->setText(QCoreApplication::translate("ImagerPage", "\346\211\200\346\234\211", nullptr));
         queryBtn->setText(QCoreApplication::translate("ImagerPage", "\346\237\245\350\257\242", nullptr));
         reportBtn->setText(QCoreApplication::translate("ImagerPage", "\347\224\237\346\210\220\346\212\245\350\241\250", nullptr));
-        label->setText(QCoreApplication::translate("ImagerPage", "\345\215\225\351\241\265\346\230\276\347\244\272\346\235\241\346\225\260", nullptr));
-        okBtn->setText(QCoreApplication::translate("ImagerPage", "\347\241\256\345\256\232", nullptr));
     } // retranslateUi
 
 };

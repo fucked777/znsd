@@ -1,13 +1,13 @@
 #ifndef SqlDeviceStatusManager_H
 #define SqlDeviceStatusManager_H
-#include "DeviceStatusLogTableModel.h"
+#include "CArrayModel.h"
 //#include "StatusPersistenceMessageSerialize.h"
 //#include "Utility.h"
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QThread>
-struct DeviceStatusLogData;
+struct ImagerData;
 class SqlDeviceStatusManager : public QObject
 {
     Q_OBJECT
@@ -15,9 +15,9 @@ public:
     explicit SqlDeviceStatusManager(QObject* parent = nullptr);
 
     bool queryFinished();
-    void insert(const QList<DeviceStatusLogData>& imager);
+    void insert(const QList<ImagerData>& imager);
 signals:
-    void searchLogAck(const DeviceStatusLogDataList& status);
+    void searchLogAck(const ImagerDataList& status);
     void totalCountAck(const int count, const int currentPage);
 
 public slots:

@@ -4,12 +4,14 @@
 #include <QCheckBox>
 #include <QDialog>
 #include <QStandardItemModel>
+#include <QTableView>
 namespace Ui
 {
     class ImagerPage;
 }
-class PageNavigator;
-class DeviceStatusLogTableModel;
+
+class pageWidget;
+// class CArrayModel;
 class QueryDialog_CXY;
 class ImagerPage : public QDialog
 {
@@ -25,7 +27,6 @@ private Q_SLOTS:
     void queryBtnClicked();
     void reportBtnClicked();
     void allBtnClicked();
-    void okBtnClicked();
     void currentPageChanged(int page);
     void query();
     void pageSizeChange(const QString& arg1);
@@ -34,7 +35,7 @@ private Q_SLOTS:
                     const QDateTime& start_time, const QDateTime& end_time);
 
 public:
-    void slotSearchAck(/*const QByteArray& data*/);
+    void slotUpdataTable(/*const QByteArray& data*/);
     // public:
     //    void updateRowData(QVector<RowDataImagerMsg>& values);
 
@@ -46,8 +47,8 @@ private:
     //    QStandardItemModel* tableModel;
     QStringList headNames;
     QueryDialog_CXY* m_queryDialog_CXY;
-    PageNavigator* m_pageNavigator;
-    DeviceStatusLogTableModel* m_deviceStatusLogTableModel;
+    pageWidget* m_pageNavigator;
+    //    CArrayModel* m_imagerTableModel;
 };
 
 #endif  // ImagerPage_H

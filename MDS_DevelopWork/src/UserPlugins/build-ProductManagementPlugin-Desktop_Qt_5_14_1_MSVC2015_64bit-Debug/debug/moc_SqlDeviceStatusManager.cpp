@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_SqlDeviceStatusManager_t {
     QByteArrayData data[17];
-    char stringdata0[172];
+    char stringdata0[163];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,27 +35,27 @@ static const qt_meta_stringdata_SqlDeviceStatusManager_t qt_meta_stringdata_SqlD
 QT_MOC_LITERAL(0, 0, 22), // "SqlDeviceStatusManager"
 QT_MOC_LITERAL(1, 23, 12), // "searchLogAck"
 QT_MOC_LITERAL(2, 36, 0), // ""
-QT_MOC_LITERAL(3, 37, 23), // "DeviceStatusLogDataList"
-QT_MOC_LITERAL(4, 61, 6), // "status"
-QT_MOC_LITERAL(5, 68, 13), // "totalCountAck"
-QT_MOC_LITERAL(6, 82, 5), // "count"
-QT_MOC_LITERAL(7, 88, 11), // "currentPage"
-QT_MOC_LITERAL(8, 100, 9), // "searchLog"
-QT_MOC_LITERAL(9, 110, 7), // "devices"
-QT_MOC_LITERAL(10, 118, 5), // "units"
-QT_MOC_LITERAL(11, 124, 4), // "sids"
-QT_MOC_LITERAL(12, 129, 2), // "aa"
-QT_MOC_LITERAL(13, 132, 10), // "start_time"
-QT_MOC_LITERAL(14, 143, 8), // "end_time"
-QT_MOC_LITERAL(15, 152, 8), // "pageSize"
-QT_MOC_LITERAL(16, 161, 10) // "totalCount"
+QT_MOC_LITERAL(3, 37, 14), // "ImagerDataList"
+QT_MOC_LITERAL(4, 52, 6), // "status"
+QT_MOC_LITERAL(5, 59, 13), // "totalCountAck"
+QT_MOC_LITERAL(6, 73, 5), // "count"
+QT_MOC_LITERAL(7, 79, 11), // "currentPage"
+QT_MOC_LITERAL(8, 91, 9), // "searchLog"
+QT_MOC_LITERAL(9, 101, 7), // "devices"
+QT_MOC_LITERAL(10, 109, 5), // "units"
+QT_MOC_LITERAL(11, 115, 4), // "sids"
+QT_MOC_LITERAL(12, 120, 2), // "aa"
+QT_MOC_LITERAL(13, 123, 10), // "start_time"
+QT_MOC_LITERAL(14, 134, 8), // "end_time"
+QT_MOC_LITERAL(15, 143, 8), // "pageSize"
+QT_MOC_LITERAL(16, 152, 10) // "totalCount"
 
     },
     "SqlDeviceStatusManager\0searchLogAck\0"
-    "\0DeviceStatusLogDataList\0status\0"
-    "totalCountAck\0count\0currentPage\0"
-    "searchLog\0devices\0units\0sids\0aa\0"
-    "start_time\0end_time\0pageSize\0totalCount"
+    "\0ImagerDataList\0status\0totalCountAck\0"
+    "count\0currentPage\0searchLog\0devices\0"
+    "units\0sids\0aa\0start_time\0end_time\0"
+    "pageSize\0totalCount"
 };
 #undef QT_MOC_LITERAL
 
@@ -97,7 +97,7 @@ void SqlDeviceStatusManager::qt_static_metacall(QObject *_o, QMetaObject::Call _
         auto *_t = static_cast<SqlDeviceStatusManager *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->searchLogAck((*reinterpret_cast< const DeviceStatusLogDataList(*)>(_a[1]))); break;
+        case 0: _t->searchLogAck((*reinterpret_cast< const ImagerDataList(*)>(_a[1]))); break;
         case 1: _t->totalCountAck((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 2: _t->searchLog((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QStringList(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QDateTime(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
         case 3: _t->totalCount((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QStringList(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QDateTime(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
@@ -106,7 +106,7 @@ void SqlDeviceStatusManager::qt_static_metacall(QObject *_o, QMetaObject::Call _
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (SqlDeviceStatusManager::*)(const DeviceStatusLogDataList & );
+            using _t = void (SqlDeviceStatusManager::*)(const ImagerDataList & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&SqlDeviceStatusManager::searchLogAck)) {
                 *result = 0;
                 return;
@@ -163,7 +163,7 @@ int SqlDeviceStatusManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a
 }
 
 // SIGNAL 0
-void SqlDeviceStatusManager::searchLogAck(const DeviceStatusLogDataList & _t1)
+void SqlDeviceStatusManager::searchLogAck(const ImagerDataList & _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
