@@ -71,12 +71,12 @@ public:
 
 private:
     QString currencyAt(int offset) const;
-    QList<ImagerData> m_mpData;      //总数据
-                                     //    std::map<int, QString> m_mpData;
-    QList<ImagerData> m_mpPageData;  //每页数据
-    int m_iPageSize;                 //每页数据条数
-    int m_iCurPage;                  //当前页
-                                     //    ImagerDataList status_list_;
+    QList<ImagerData> m_mpData;  //总数据
+                                 //    std::map<int, QString> m_mpData;
+                                 //    QList<ImagerData> m_mpPageData;  //每页数据
+    int m_iPageSize;             //每页数据条数
+    int m_iCurPage;              //当前页
+                                 //    ImagerDataList status_list_;
     QStringList mHeaders;
     QThread status_thread_;
 };

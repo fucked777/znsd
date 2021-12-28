@@ -34,35 +34,32 @@ void CArrayModel::SetCurPage(int iPage)
     {
         m_iCurPage = iPage;
 
-        //查询起始索引
-        int iStart = m_iPageSize * m_iCurPage;
-        //查询结束索引
-        int iend = 0;
-        //如果本页可以填满
-        if (iStart + m_iPageSize < RowCount())
-        {
-            iend = iStart + m_iPageSize - 1;
-        }
-        //如果本页不可以填满
-        else
-        {
-            iend = RowCount() - 1;
-        }
+        //        //查询起始索引
+        //        int iStart = m_iPageSize * m_iCurPage;
+        //        //查询结束索引
+        //        int iend = 0;
+        //        //如果本页可以填满
+        //        if (iStart + m_iPageSize < RowCount())
+        //        {
+        //            iend = iStart + m_iPageSize - 1;
+        //        }
+        //        //如果本页不可以填满
+        //        else
+        //        {
+        //            iend = RowCount() - 1;
+        //        }
 
         //填充当前页数据
-        m_mpPageData.clear();
-        for (int i = iStart; i <= iend; i++)
-        {
-            auto it = m_mpData.at(i);
+        //        m_mpPageData.clear();
+        //        for (int i = iStart; i <= iend; i++)
+        //        {
+        //            auto it = m_mpData.at(i);
 
-            m_mpPageData.insert(i, it);
+        //            m_mpPageData.insert(i, it);
 
-            //            m_mpPageData.insert(std::pair<int, QString>(i, it->second));
-        }
+        //            //            m_mpPageData.insert(std::pair<int, QString>(i, it->second));
+        //        }
     }
-
-    int cd = 1000;
-
     return;
 }
 
@@ -104,7 +101,6 @@ void CArrayModel::refrushModel()
 void CArrayModel::setImagerData(const QList<ImagerData>& imagerDatas)
 {
     beginResetModel();
-    //    m_mpData = imagerDatas;
     endResetModel();
 }
 QVariant CArrayModel::data(const QModelIndex& index, int role) const
@@ -115,9 +111,9 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
     }
     int row = index.row();
     int col = index.column();
-    qDebug() << "row" << row;
-    qDebug() << "column" << col;
-    if (row < 0 || row > m_mpPageData.size() || col < 0 || col > mHeaders.size())
+    //    qDebug() << "row" << row;
+    //    qDebug() << "column" << col;
+    if (row < 0 || row > m_mpData.size() || col < 0 || col > mHeaders.size())
     {
         return QVariant();
     }
@@ -126,24 +122,31 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
     {
     case Qt::DisplayRole:
     {
-        const auto& data = m_mpPageData.at(row);
-        switch (col)
+        //如果处于最后一页，索引没必要全部列出，只列出范围内的
+        if (row + m_iCurPage * m_iPageSize > this->RowCount())
         {
-        case taskNum: return data.taskNum;
-        case outputTime: return data.outputTime;
-        case fileName: return data.fileName;
-        case LocalFilePath: return data.LocalFilePath;
-        case outputFilePath: return data.outputFilePath;
-        case sendDirection: return data.sendDirection;
-        case sendType: return data.sendType;
-        case accuracy: return data.accuracy;
-        case outputType: return data.outputType;
-        case fileSize: return data.fileSize;
+            return QVariant();
+        }
+        else
+        {
+            ImagerData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
+            switch (col)
+            {
+            case taskNum: return data.taskNum;
+            case outputTime: return data.outputTime;
+            case fileName: return data.fileName;
+            case LocalFilePath: return data.LocalFilePath;
+            case outputFilePath: return data.outputFilePath;
+            case sendDirection: return data.sendDirection;
+            case sendType: return data.sendType;
+            case accuracy: return data.accuracy;
+            case outputType: return data.outputType;
+            case fileSize: return data.fileSize;
+            }
         }
     }
     break;
     }
-    int cd = 1000;
     return QVariant();
 }
 
