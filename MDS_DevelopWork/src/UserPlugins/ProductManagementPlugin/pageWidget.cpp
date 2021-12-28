@@ -1,4 +1,4 @@
-﻿#include "pageWidget.h"
+#include "pageWidget.h"
 #include "ui_pageWidget.h"
 #include <QKeyEvent>
 #include <QMessageBox>
@@ -24,7 +24,6 @@ pageWidget::pageWidget(QWidget* parent)
         data.fileSize = QString::number(i) + "MB";
         DATA.append(data);
     }
-    //    m_pDataModel->setImagerData(DATA);
     m_pDataModel->SetArrayData(DATA);
     ui->comboBox->addItem("20", 20);
     ui->comboBox->addItem("25", 25);
@@ -35,14 +34,10 @@ pageWidget::pageWidget(QWidget* parent)
     connect(ui->lastPageBtn, SIGNAL(clicked()), this, SLOT(OnLastButtonClick()));
     connect(ui->upperPageBtn, SIGNAL(clicked()), this, SLOT(OnPrevButtonClick()));
     connect(ui->nextPageBtn, SIGNAL(clicked()), this, SLOT(OnNextButtonClick()));
-    //    connect((const QObject*)m_pGoIndexBtn, SIGNAL(clicked()), this, SLOT(OnIndexButtonClick()));
-    //    connect(ui->inputLineEdit, SIGNAL(returnPressed()), this, SLOT(OnIndexButtonClick()));
     //跳转按钮和跳转到页回车相应
     connect(ui->okBtn, SIGNAL(clicked()), this, SLOT(OnOkBtnPageButtonClick()));
     //    connect(switchPageLineEdit, SIGNAL(returnPressed()), this, SLOT(OnSwitchPageButtonClick()));
     //设置每页显示行数按钮
-    //    connect(m_pPerPageCountEdit, SIGNAL(returnPressed()), this, SLOT(OnSetPageSizeButtonClick()));
-    //    connect((const QObject*)m_pSetPerPageCountBtn, SIGNAL(clicked()), this, SLOT(OnSetPageSizeButtonClick()));
     connect(ui->comboBox, &QComboBox::currentTextChanged, this, &pageWidget::comboxCurtextChange);
 }
 
@@ -91,14 +86,14 @@ void pageWidget::OnOkBtnPageButtonClick()
     //判断是否为数字
     if (!regExp.exactMatch(szText))
     {
-        QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("请输入数字"));
+        QMessageBox::information(this, QString("提示"), QString("请输入数字"));
 
         return;
     }
     //是否为空
     if (szText.isEmpty())
     {
-        QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("请输入跳转页面"));
+        QMessageBox::information(this, QString("提示"), QString("请输入跳转页面"));
 
         return;
     }
@@ -107,7 +102,7 @@ void pageWidget::OnOkBtnPageButtonClick()
     //判断是否有指定页
     if (pageIndex > m_pDataModel->GetPageCount() || pageIndex < 1)
     {
-        QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("页面超出范围，请重新输入"));
+        QMessageBox::information(this, QString("提示"), QString("页面超出范围，请重新输入"));
 
         return;
     }
@@ -128,14 +123,14 @@ void pageWidget::comboxCurtextChange(const QString& text)
     //判断是否为数字
     if (!regExp.exactMatch(szText))
     {
-        QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("请输入数字"));
+        QMessageBox::information(this, QString("提示"), QString("请输入数字"));
 
         return;
     }
     //是否为空
     if (szText.isEmpty())
     {
-        QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("请输入设置的行数"));
+        QMessageBox::information(this, QString("提示"), QString("请输入设置的行数"));
 
         return;
     }
@@ -144,7 +139,7 @@ void pageWidget::comboxCurtextChange(const QString& text)
     //判断范围是否合理
     if (Index > m_pDataModel->RowCount() || Index <= 0)
     {
-        QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("设置值超出范围，请重新输入"));
+        QMessageBox::information(this, QString("提示"), QString("设置值超出范围，请重新输入"));
 
         return;
     }
@@ -173,7 +168,7 @@ void pageWidget::UpdateStatus()
     ui->CurPageLabel->setText(szCurrentText);
 
     //每页显示行数
-    //    QString strPerPageCount = QString(QStringLiteral("%1")).arg(QString::number(m_pDataModel->GetPageSize()));
+    //    QString strPerPageCount = QString(QString("%1")).arg(QString::number(m_pDataModel->GetPageSize()));
     //    ui->comboBox->(strPerPageCount);
 
     //当前第一页，且总共只有一页
