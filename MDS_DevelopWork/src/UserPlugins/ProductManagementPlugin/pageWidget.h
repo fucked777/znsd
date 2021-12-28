@@ -19,15 +19,16 @@ public:
 
     void keyPressEvent(QKeyEvent* event);
     void UpdateStatus();  //刷新状态
+    void initMember();
 signals:
     void updataTableView();
 private slots:
-    void OnFirstButtonClick();                      //首页按钮按下
-    void OnLastButtonClick();                       //末页按钮按下
-    void OnPrevButtonClick();                       //前一页按钮按下
-    void OnNextButtonClick();                       //后一页按钮按下
-    void OnOkBtnPageButtonClick();                  //转到页按钮按下
-                                                    //    void OnIndexButtonClick();        //转到索引按钮按下
+    void OnFirstButtonClick();      //首页按钮按下
+    void OnLastButtonClick();       //末页按钮按下
+    void OnPrevButtonClick();       //前一页按钮按下
+    void OnNextButtonClick();       //后一页按钮按下
+    void OnOkBtnPageButtonClick();  //转到页按钮按下
+
     void comboxCurtextChange(const QString& text);  //设置每页显示行数按钮按下
 public:
     CArrayModel* m_pDataModel;  //数据模型

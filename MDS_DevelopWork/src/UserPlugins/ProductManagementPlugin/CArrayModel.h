@@ -61,9 +61,9 @@ public:
     int RowCount() const;
 
 public:
-    int rowCount(const QModelIndex& parent) const;
+    virtual int rowCount(const QModelIndex& parent) const;
     int columnCount(const QModelIndex& parent) const;
-    QVariant data(const QModelIndex& index, int role) const;
+    virtual QVariant data(const QModelIndex& index, int role) const;
     Qt::ItemFlags flags(const QModelIndex& index) const;
     //    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
@@ -79,31 +79,5 @@ private:
                                      //    ImagerDataList status_list_;
     QStringList mHeaders;
     QThread status_thread_;
-};
-//值列
-class ValueDelegate : public QItemDelegate
-{
-    Q_OBJECT
-public:
-    ValueDelegate(QObject* parent = 0)
-        : QItemDelegate(parent)
-    {
-    }
-    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-    void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-    void setEditorData(QWidget* editor, const QModelIndex& index) const;
-    void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
-    void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-};
-//只读委托(给索引列使用)
-class ReadOnlyDelegate : public QItemDelegate
-{
-    Q_OBJECT
-public:
-    ReadOnlyDelegate(QObject* parent = 0)
-        : QItemDelegate(parent)
-    {
-    }
-    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const { return NULL; }
 };
 #endif  // CARRAYMODEL_H

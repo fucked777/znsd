@@ -49,10 +49,10 @@ void ImagerPage::initMember()
 
     //设置委托
     //    ui->tableView->setItemDelegateForColumn(0, new ReadOnlyDelegate(this));
-    for (int i = 0; i < 10; i++)
-    {
-        ui->tableView->setItemDelegateForColumn(i, new ValueDelegate(this));
-    }
+    //    for (int i = 0; i < 10; i++)
+    //    {
+    //        ui->tableView->setItemDelegateForColumn(i, new ValueDelegate(this));
+    //    }
     //刷新状态
     //    m_pageNavigator->UpdateStatus();
 }
@@ -73,7 +73,7 @@ void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& task
 
 void ImagerPage::slotUpdataTable()
 {
-    qDebug() << "1111";
+    //    qDebug() << "1111";
     ui->tableView->reset();
 }
 void ImagerPage::pageSizeChange(const QString& /*strPage*/) { query(); }
