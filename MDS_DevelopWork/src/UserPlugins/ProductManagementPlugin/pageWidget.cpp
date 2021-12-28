@@ -17,11 +17,11 @@ pageWidget::pageWidget(QWidget* parent)
         data.fileName = "css";
         data.LocalFilePath = "c:xiaoxiao";
         data.outputFilePath = "c:xiaoxiao";
-        data.sendDirection = "成像仪";
-        data.sendType = "暂未处理";
+        data.sendDirection = "NRS->CVS";
+        data.sendType = "FTP";
         data.accuracy = "XXXXX";
         data.outputType = "NRST100001";
-        data.fileSize = "XXX";
+        data.fileSize = QString::number(i) + "MB";
         DATA.append(data);
     }
     //    m_pDataModel->setImagerData(DATA);

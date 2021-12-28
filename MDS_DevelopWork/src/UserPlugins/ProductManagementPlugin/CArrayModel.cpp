@@ -130,7 +130,7 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
     {
     case Qt::DisplayRole:
     {
-        const auto& data = m_mpData.at(row);
+        const auto& data = m_mpPageData.at(row);
         switch (col)
         {
         case taskNum: return data.taskNum;
@@ -193,67 +193,6 @@ Qt::ItemFlags CArrayModel::flags(const QModelIndex& index) const
         return Qt::ItemIsEnabled;
 
     return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
-}
-
-bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int role)
-{
-    //    auto col = index.column();
-    //    if (index.isValid() && role == Qt::EditRole)
-    //    {
-    //        QVariant oldData = data(index, Qt::EditRole);
-    //        QString strold = oldData.toString();
-    //        QString strnew = value.toString();
-    //        //相同则不编辑
-    //        if (strnew.compare(strold) == 0)
-    //        {
-    //            return true;
-    //        }
-
-    //        //计算实际数据的下标
-    //        int dataindex = index.row() + m_iCurPage * m_iPageSize;
-
-    //        //改变总数据集
-    //        //        auto it = m_mpData.at(dataindex);
-    //        const auto& data = m_mpData.at(dataindex);
-    //        for (dataindex; dataindex <= m_mpData.size() - 1; dataindex++)
-    //        {
-    //            switch (role)
-    //            {
-    //            case Qt::DisplayRole:
-    //            {
-    //                const auto& data = m_mpData.at(dataindex);
-    //                switch (col)
-    //                {
-    //                case taskNum: return data.taskNum;
-    //                case outputTime:
-    //                    return data.outputTime;
-    //                    //        {
-    //                    //            return QDateTime::fromString(data.outputTime, "yyyy-MM-dd hh:mm:ss").toString(DATETIME_DISPLAY_FORMAT2);
-    //                    //        }
-    //                case fileName: return data.fileName;
-    //                case LocalFilePath: return data.LocalFilePath;
-    //                case outputFilePath: return data.outputFilePath;
-    //                case sendDirection: return data.sendDirection;
-    //                case sendType: return data.sendType;
-    //                case accuracy: return data.accuracy;
-    //                case outputType: return data.outputType;
-    //                case fileSize: return data.fileSize;
-    //                }
-    //            }
-    //            break;
-    //            }
-    //        }
-
-    //        //改变当页数据集
-    //        //        auto itcur = m_mpPageData.find(dataindex);
-    //        //        if (itcur != m_mpPageData.end())
-    //        //        {
-    //        //            itcur->second = strnew;
-    //        //        }
-
-    //        return true;
-    //    }
-    return false;
 }
 
 QVariant CArrayModel::headerData(int section, Qt::Orientation orientation, int role) const

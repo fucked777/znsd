@@ -51,9 +51,10 @@ public:
     {
         if (pageWidget->objectName().isEmpty())
             pageWidget->setObjectName(QString::fromUtf8("pageWidget"));
-        pageWidget->resize(1020, 41);
+        pageWidget->resize(1019, 23);
         horizontalLayout_7 = new QHBoxLayout(pageWidget);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        horizontalLayout_7->setContentsMargins(-1, 0, -1, 0);
         horizontalSpacer = new QSpacerItem(92, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_7->addItem(horizontalSpacer);
@@ -185,7 +186,7 @@ public:
         AllPageLabel->setText(QCoreApplication::translate("pageWidget", "57", nullptr));
         label_20->setText(QCoreApplication::translate("pageWidget", "\351\241\265", nullptr));
         label_15->setText(QCoreApplication::translate("pageWidget", "\350\267\263\350\275\254\350\207\263\347\254\254", nullptr));
-        inputLineEdit->setText(QCoreApplication::translate("pageWidget", "55", nullptr));
+        inputLineEdit->setText(QString());
         label_16->setText(QCoreApplication::translate("pageWidget", "\351\241\265", nullptr));
         okBtn->setText(QCoreApplication::translate("pageWidget", "\347\241\256\345\256\232", nullptr));
     } // retranslateUi
