@@ -6,6 +6,8 @@
 #include "ui_ImagerPage.h"
 #include <QDebug>
 #include <QFile>
+#include <QFileDialog>
+#include <QMessageBox>
 const int MAX_INSERT_NUM = 1000;
 
 ImagerPage::ImagerPage(QWidget* parent)
@@ -25,23 +27,49 @@ ImagerPage::~ImagerPage() { delete ui; }
 
 void ImagerPage::queryBtnClicked() { m_queryDialog_CXY->show(); }
 
-void ImagerPage::reportBtnClicked()
+void ImagerPage::exportStatus()
 {
-    QFile f("test.csv");
-    f.open(QIODevice::WriteOnly);
-    QStringList text;
-    for (int i = 0; i < m_pageNavigator->m_pDataModel->RowCount(); ++i)
+    QString filename = QFileDialog::getSaveFileName(this, tr("导出状态历史数据"));
+    if (filename.isEmpty())
     {
-        for (int j = 0; j < m_pageNavigator->m_pDataModel->ColumnCount(); ++j)
-        {
-            //            QString item = ui->tableView.it
-            //            QVariant item=  m_pageNavigator->m_pDataModel->data(Qt::DisplayRole).toString();
-            //            text << item;
-        }
-        f.write(text.join(",").toUtf8() + "\r\n");
-        text.clear();
+        QMessageBox::critical(this, "提示", "文件打开失败", "确定");
+        return;
     }
-    f.close();
+
+    QMessageBox mb(QMessageBox::Information, tr("保存状态历史数据"), filename, QMessageBox::Ok | QMessageBox::Close);
+    if (mb.exec() == QMessageBox::Ok)
+    {
+        processExport(filename);
+    }
+}
+
+void ImagerPage::processExport(const QString& fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QFile::WriteOnly | QFile::Text))
+    {
+        QMessageBox::critical(this, "提示", "文件创建失败", "确定");
+        return;
+    }
+    uchar bom[] = { 0xef, 0xbb, 0xbf };
+    file.write(reinterpret_cast<char*>(bom), sizeof(bom));
+
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+    auto status_lists = m_pageNavigator->m_pDataModel->GetArrayData();
+
+    for (auto status : status_lists)
+    {
+        stream << QString("任务编号：").toUtf8() << status.taskNum << QString("     ").toUtf8() << QString("输出时间：").toUtf8()
+               << status.outputTime.toUtf8() << QString("     ").toUtf8() << QString("文件名称：").toUtf8() << status.fileName.toUtf8()
+               << QString("     ").toUtf8() << QString("本地文件路径：").toUtf8() << status.LocalFilePath.toUtf8() << QString("     ").toUtf8()
+               << QString("输出文件路径").toUtf8() << status.outputFilePath.toUtf8() << QString("     ").toUtf8() << QString("传输方向：").toUtf8()
+               << status.sendDirection.toUtf8() << QString("     ").toUtf8() << QString("传输方式：").toUtf8() << status.sendType.toUtf8()
+               << QString("     ").toUtf8() << QString("精度：").toUtf8() << status.accuracy.toUtf8() << QString("     ").toUtf8()
+               << QString("输出类型：").toUtf8() << status.outputType.toUtf8() << QString("     ").toUtf8() << QString("文件大小：").toUtf8()
+               << status.fileSize.toUtf8() << QString("     ").toUtf8() << '\n';
+    }
+    file.close();
 }
 
 void ImagerPage::allBtnClicked() {}
@@ -87,7 +115,7 @@ void ImagerPage::initMember()
 
     connect(ui->allBtn, &QPushButton::clicked, this, &ImagerPage::allBtnClicked);
     connect(ui->queryBtn, &QPushButton::clicked, this, &ImagerPage::queryBtnClicked);
-    connect(ui->reportBtn, &QPushButton::clicked, this, &ImagerPage::reportBtnClicked);
+    connect(ui->reportBtn, &QPushButton::clicked, this, &ImagerPage::exportStatus);
 }
 
 void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,

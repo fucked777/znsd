@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImagerPage_t {
     QByteArrayData data[14];
-    char stringdata0[151];
+    char stringdata0[147];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,24 +35,23 @@ static const qt_meta_stringdata_ImagerPage_t qt_meta_stringdata_ImagerPage = {
 QT_MOC_LITERAL(0, 0, 10), // "ImagerPage"
 QT_MOC_LITERAL(1, 11, 15), // "queryBtnClicked"
 QT_MOC_LITERAL(2, 27, 0), // ""
-QT_MOC_LITERAL(3, 28, 16), // "reportBtnClicked"
-QT_MOC_LITERAL(4, 45, 13), // "allBtnClicked"
-QT_MOC_LITERAL(5, 59, 18), // "currentPageChanged"
-QT_MOC_LITERAL(6, 78, 4), // "page"
-QT_MOC_LITERAL(7, 83, 10), // "searchSlot"
-QT_MOC_LITERAL(8, 94, 8), // "taskName"
-QT_MOC_LITERAL(9, 103, 7), // "taskNum"
-QT_MOC_LITERAL(10, 111, 8), // "fileName"
-QT_MOC_LITERAL(11, 120, 10), // "outputType"
-QT_MOC_LITERAL(12, 131, 10), // "start_time"
-QT_MOC_LITERAL(13, 142, 8) // "end_time"
+QT_MOC_LITERAL(3, 28, 13), // "allBtnClicked"
+QT_MOC_LITERAL(4, 42, 12), // "exportStatus"
+QT_MOC_LITERAL(5, 55, 18), // "currentPageChanged"
+QT_MOC_LITERAL(6, 74, 4), // "page"
+QT_MOC_LITERAL(7, 79, 10), // "searchSlot"
+QT_MOC_LITERAL(8, 90, 8), // "taskName"
+QT_MOC_LITERAL(9, 99, 7), // "taskNum"
+QT_MOC_LITERAL(10, 107, 8), // "fileName"
+QT_MOC_LITERAL(11, 116, 10), // "outputType"
+QT_MOC_LITERAL(12, 127, 10), // "start_time"
+QT_MOC_LITERAL(13, 138, 8) // "end_time"
 
     },
-    "ImagerPage\0queryBtnClicked\0\0"
-    "reportBtnClicked\0allBtnClicked\0"
-    "currentPageChanged\0page\0searchSlot\0"
-    "taskName\0taskNum\0fileName\0outputType\0"
-    "start_time\0end_time"
+    "ImagerPage\0queryBtnClicked\0\0allBtnClicked\0"
+    "exportStatus\0currentPageChanged\0page\0"
+    "searchSlot\0taskName\0taskNum\0fileName\0"
+    "outputType\0start_time\0end_time"
 };
 #undef QT_MOC_LITERAL
 
@@ -93,8 +92,8 @@ void ImagerPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->queryBtnClicked(); break;
-        case 1: _t->reportBtnClicked(); break;
-        case 2: _t->allBtnClicked(); break;
+        case 1: _t->allBtnClicked(); break;
+        case 2: _t->exportStatus(); break;
         case 3: _t->currentPageChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 4: _t->searchSlot((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QStringList(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QDateTime(*)>(_a[6]))); break;
         default: ;

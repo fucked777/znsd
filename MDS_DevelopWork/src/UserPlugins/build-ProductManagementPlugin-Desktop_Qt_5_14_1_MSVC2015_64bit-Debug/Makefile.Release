@@ -2464,7 +2464,9 @@ release\ImagerPage.obj: ..\ProductManagementPlugin\ImagerPage.cpp ..\ProductMana
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		ui_ImagerPage.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QDebug \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QFile
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QFile \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QMessageBox \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qmessagebox.h
 
 release\QueryDialog_CXY.obj: ..\ProductManagementPlugin\QueryDialog_CXY.cpp ..\ProductManagementPlugin\QueryDialog_CXY.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QWidget \
