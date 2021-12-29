@@ -33,32 +33,6 @@ void CArrayModel::SetCurPage(int iPage)
     if (iPage < GetPageCount())
     {
         m_iCurPage = iPage;
-
-        //        //查询起始索引
-        //        int iStart = m_iPageSize * m_iCurPage;
-        //        //查询结束索引
-        //        int iend = 0;
-        //        //如果本页可以填满
-        //        if (iStart + m_iPageSize < RowCount())
-        //        {
-        //            iend = iStart + m_iPageSize - 1;
-        //        }
-        //        //如果本页不可以填满
-        //        else
-        //        {
-        //            iend = RowCount() - 1;
-        //        }
-
-        //填充当前页数据
-        //        m_mpPageData.clear();
-        //        for (int i = iStart; i <= iend; i++)
-        //        {
-        //            auto it = m_mpData.at(i);
-
-        //            m_mpPageData.insert(i, it);
-
-        //            //            m_mpPageData.insert(std::pair<int, QString>(i, it->second));
-        //        }
     }
     return;
 }
@@ -67,7 +41,12 @@ void CArrayModel::SetCurPage(int iPage)
 int CArrayModel::GetCurPage() { return m_iCurPage; }
 
 //获得总页数
-int CArrayModel::GetPageCount() { return (RowCount() % m_iPageSize == 0) ? (RowCount() / m_iPageSize) : (RowCount() / m_iPageSize + 1); }
+int CArrayModel::GetPageCount()
+{
+    int pageNum;
+    pageNum = (RowCount() % m_iPageSize == 0) ? (RowCount() / m_iPageSize) : (RowCount() / m_iPageSize + 1);
+    return pageNum;
+}
 
 //设置每页数据条数
 void CArrayModel::SetPageSize(int iPageSize)
@@ -111,8 +90,6 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
     }
     int row = index.row();
     int col = index.column();
-    //    qDebug() << "row" << row;
-    //    qDebug() << "column" << col;
     if (row < 0 || row > m_mpData.size() || col < 0 || col > mHeaders.size())
     {
         return QVariant();
@@ -129,19 +106,22 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
         }
         else
         {
-            ImagerData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
-            switch (col)
+            if ((row + m_iCurPage * m_iPageSize) < m_mpData.size())  //确保不越界
             {
-            case taskNum: return data.taskNum;
-            case outputTime: return data.outputTime;
-            case fileName: return data.fileName;
-            case LocalFilePath: return data.LocalFilePath;
-            case outputFilePath: return data.outputFilePath;
-            case sendDirection: return data.sendDirection;
-            case sendType: return data.sendType;
-            case accuracy: return data.accuracy;
-            case outputType: return data.outputType;
-            case fileSize: return data.fileSize;
+                ImagerData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
+                switch (col)
+                {
+                case taskNum: return data.taskNum;
+                case outputTime: return data.outputTime;
+                case fileName: return data.fileName;
+                case LocalFilePath: return data.LocalFilePath;
+                case outputFilePath: return data.outputFilePath;
+                case sendDirection: return data.sendDirection;
+                case sendType: return data.sendType;
+                case accuracy: return data.accuracy;
+                case outputType: return data.outputType;
+                case fileSize: return data.fileSize;
+                }
             }
         }
     }
@@ -152,61 +132,12 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
 
 Qt::ItemFlags CArrayModel::flags(const QModelIndex& index) const
 {
-    //    if (!index.isValid())
-    //        return QAbstractTableModel::flags(index);
-    //    Qt::ItemFlags flag = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
-
-    //    return flag;
-    //    if (!index.isValid())
-    //        return Qt::ItemIsEnabled;
-
-    return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
+    if (!index.isValid())
+        return QAbstractTableModel::flags(index);
+    Qt::ItemFlags flag = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    return flag;
 }
-// bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int role)
-//{
-//    if (index.isValid() && role == Qt::EditRole)
-//    {
-//        QVariant oldData = data(index, Qt::EditRole);
-//        qDebug() << "oldData" << oldData;
-//        QString strold = oldData.toString();
-//        QString strnew = value.toString();
-//        //相同则不编辑
-//        //        if (strnew.compare(strold) == 0)
-//        //        {
-//        //            return true;
-//        //        }
 
-//        //计算实际数据的下标
-//        int dataindex = index.row() + m_iCurPage * m_iPageSize;
-
-//        //改变总数据集
-
-//        //        auto it = m_mpData.at(dataindex);
-//        //        if (!m_mpData.contains(it))
-//        //        {
-//        //            m_mpData.insert(m_mpData.size(), it);
-//        //        }
-
-//        //        if (it != m_mpData.end())
-//        //        {
-//        //            it->second = strnew;
-//        //        }
-
-//        //改变当页数据集
-//        //        auto itcur = m_mpPageData.at(dataindex);
-//        //        if (!m_mpPageData.contains(it))
-//        //        {
-//        //            m_mpPageData.insert(m_mpPageData.size(), it);
-//        //        }
-//        //        if (itcur != m_mpPageData.end())
-//        //        {
-//        //            itcur->second = strnew;
-//        //        }
-
-//        return true;
-//    }
-//    return false;
-//}
 QVariant CArrayModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     switch (role)
@@ -223,15 +154,4 @@ QVariant CArrayModel::headerData(int section, Qt::Orientation orientation, int r
     }
 
     return QVariant();
-}
-
-QString CArrayModel::currencyAt(int offset) const
-{
-    //    auto it = m_mpData.at(offset);
-    //    if (it != m_mpData.end())
-    //    {
-    //        return it->second;
-    //    }
-
-    return QString();
 }

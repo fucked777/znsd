@@ -11,7 +11,6 @@ namespace Ui
 }
 
 class pageWidget;
-// class CArrayModel;
 class QueryDialog_CXY;
 class ImagerPage : public QDialog
 {
@@ -36,8 +35,6 @@ private Q_SLOTS:
 
 public:
     void slotUpdataTable(/*const QByteArray& data*/);
-    // public:
-    //    void updateRowData(QVector<RowDataImagerMsg>& values);
 
 private:
     QString pasraDoubleToStr(double value, int prsc = 1, char f = 'f');

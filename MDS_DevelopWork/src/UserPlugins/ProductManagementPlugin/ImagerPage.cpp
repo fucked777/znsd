@@ -31,30 +31,15 @@ void ImagerPage::initMember()
     connect(ui->allBtn, &QPushButton::clicked, this, &ImagerPage::allBtnClicked);
     connect(ui->queryBtn, &QPushButton::clicked, this, &ImagerPage::queryBtnClicked);
     connect(ui->reportBtn, &QPushButton::clicked, this, &ImagerPage::reportBtnClicked);
-    //    connect(ui->okBtn, &QPushButton::clicked, this, &ImagerPage::okBtnClicked);
-    //    connect(ui->comboBox, &QComboBox::currentTextChanged, this, &ImagerPage::pageSizeChange);
     m_pageNavigator = new pageWidget();
     ui->widget->layout()->addWidget(m_pageNavigator);
     //更新表格
     connect(m_pageNavigator, &pageWidget::updataTableView, this, &ImagerPage::slotUpdataTable);
-    //    m_imagerTableModel = new CArrayModel();
 
     ui->tableView->setModel(m_pageNavigator->m_pDataModel);
-
-    //    connect(m_deviceStatusLogTableModel, &DeviceStatusLogTableModel::signalTotalCount, this, &ImagerPage::slotGetTotalCount);
-
     ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     ui->tableView->viewport()->installEventFilter(this);
     ui->tableView->viewport()->setMouseTracking(true);
-
-    //设置委托
-    //    ui->tableView->setItemDelegateForColumn(0, new ReadOnlyDelegate(this));
-    //    for (int i = 0; i < 10; i++)
-    //    {
-    //        ui->tableView->setItemDelegateForColumn(i, new ValueDelegate(this));
-    //    }
-    //刷新状态
-    //    m_pageNavigator->UpdateStatus();
 }
 void ImagerPage::slotGetTotalCount(const int totalCount, const int currentPage)
 {

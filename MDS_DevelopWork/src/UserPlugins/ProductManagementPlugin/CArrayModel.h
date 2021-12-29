@@ -61,23 +61,19 @@ public:
     int RowCount() const;
 
 public:
-    virtual int rowCount(const QModelIndex& parent) const;
+    int rowCount(const QModelIndex& parent) const;
     int columnCount(const QModelIndex& parent) const;
-    virtual QVariant data(const QModelIndex& index, int role) const;
+    QVariant data(const QModelIndex& index, int role) const;
     Qt::ItemFlags flags(const QModelIndex& index) const;
     //    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     void refrushModel();
 
 private:
-    QString currencyAt(int offset) const;
     QList<ImagerData> m_mpData;  //总数据
-                                 //    std::map<int, QString> m_mpData;
-                                 //    QList<ImagerData> m_mpPageData;  //每页数据
     int m_iPageSize;             //每页数据条数
     int m_iCurPage;              //当前页
-                                 //    ImagerDataList status_list_;
-    QStringList mHeaders;
-    QThread status_thread_;
+    QStringList mHeaders;        //表头
+    QThread status_thread_;      //线程，后续可能使用
 };
 #endif  // CARRAYMODEL_H
