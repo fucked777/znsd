@@ -62,8 +62,8 @@ SqlImagerManager::SqlImagerManager(QObject* parent)
                 qDebug() << "creat table success!";
             }
         }
-        db.close();
     }
+    //        db.close();
 }
 bool SqlImagerManager::queryFinished() { return hasQueryFinished; }
 
@@ -83,20 +83,20 @@ void SqlImagerManager::insert(const QList<ImagerData>& imager)
                   "VALUES (?,?,?,?,?,?,?,?,?,?);";
     query_ = db.exec(sql);
     query_.prepare(sql);
-    //    for (auto& item : imager)
-    //    {
-    //        query_.bindValue(0, item.taskNum);
-    //        query_.bindValue(1, item.outputTime);
-    //        query_.bindValue(2, item.fileName);
-    //        query_.bindValue(3, item.LocalFilePath);
-    //        query_.bindValue(4, item.outputFilePath);
-    //        query_.bindValue(5, item.sendDirection);
-    //        query_.bindValue(6, item.sendType);
-    //        query_.bindValue(7, item.accuracy);
-    //        query_.bindValue(8, item.outputType);
-    //        query_.bindValue(9, item.fileSize);
-    //        query_.exec();
-    //    }
+    for (auto& item : imager)
+    {
+        query_.bindValue(0, item.taskNum);
+        query_.bindValue(1, item.outputTime);
+        query_.bindValue(2, item.fileName);
+        query_.bindValue(3, item.LocalFilePath);
+        query_.bindValue(4, item.outputFilePath);
+        query_.bindValue(5, item.sendDirection);
+        query_.bindValue(6, item.sendType);
+        query_.bindValue(7, item.accuracy);
+        query_.bindValue(8, item.outputType);
+        query_.bindValue(9, item.fileSize);
+        query_.exec();
+    }
     db.commit();
 }
 
