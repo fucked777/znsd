@@ -64,19 +64,13 @@ CONFIG(release,debug|release){
 } 
 
 HEADERS += \
-    DetectorPage.h \
-    FastImagerPage.h \
     ProductManagementDialog.h \
-    StellarPredictionPage.h \
     iproductmanagementpluginservice.h  \ 
     productmanagementpluginservice.h  \ 
     productmanagementpluginactivator.h 
 
 SOURCES += \
-    DetectorPage.cpp \
-    FastImagerPage.cpp \
     ProductManagementDialog.cpp \
-    StellarPredictionPage.cpp \
     productmanagementpluginservice.cpp \ 
     productmanagementpluginactivator.cpp 
 
@@ -97,11 +91,15 @@ CopyDir = $$replace(CopyDir, /, \\)
 QMAKE_POST_LINK += copy  $$HeadPath $$CopyDir 
 
 FORMS += \
-    DetectorPage.ui \
-    FastImagerPage.ui \
-    ProductManagementDialog.ui \
-    StellarPredictionPage.ui
+    ProductManagementDialog.ui
 
 DISTFILES += \
-    Imager.pri
+    Detector.pri \
+    FastImager.pri \
+    Imager.pri \
+    StellarPrediction.pri
+
 include($$PWD/Imager.pri)
+include($$PWD/FastImager.pri)
+include($$PWD/Detector.pri)
+include($$PWD/StellarPrediction.pri)

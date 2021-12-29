@@ -28,10 +28,8 @@ private:
     void processExport(const QString& fileName);
 private Q_SLOTS:
     void queryBtnClicked();
-    //    void reportBtnClicked();
     void allBtnClicked();
     void exportStatus();
-    void currentPageChanged(int page);
     void searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                     const QDateTime& start_time, const QDateTime& end_time);
 

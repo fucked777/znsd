@@ -122,20 +122,13 @@ void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& task
                             const QDateTime& start_time, const QDateTime& end_time)
 {
     //    int pageSize = ui->comboBox->currentData().toInt();
-    //    m_deviceStatusLogTableModel->reset(taskName, taskNum, fileName, outputType, start_time, end_time, 1, pageSize);
+    //    m_pageNavigator->m_pDataModel->reset(taskName, taskNum, fileName, outputType, start_time, end_time, 1, pageSize);
 }
 
 void ImagerPage::slotUpdataTable() { ui->tableView->reset(); }
-void ImagerPage::currentPageChanged(int page)
-{
-    //    int pageSize = ui->comboBox->currentData().toInt();
-    //    m_deviceStatusLogTableModel->reset(device_list, unit_list, status_list, ui->startDateTimeEdit->dateTime(), ui->endDateTimeEdit->dateTime(),
-    //                                       mode_list, page, pageSize);
-}
 void ImagerPage::initView()
 {
     ui->tableView->setShowGrid(false);
-    // 设置表头不可见，需要添加QHeadView头文件
     //    ui->tableView->horizontalHeader()->setVisible(false);  // 水平不可见
     ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     ui->tableView->viewport()->installEventFilter(this);
