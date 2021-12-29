@@ -20,7 +20,6 @@ pageWidget::pageWidget(QWidget* parent)
     connect(ui->nextPageBtn, SIGNAL(clicked()), this, SLOT(OnNextButtonClick()));
     //跳转按钮和跳转到页回车相应
     connect(ui->okBtn, SIGNAL(clicked()), this, SLOT(OnOkBtnPageButtonClick()));
-    //    connect(switchPageLineEdit, SIGNAL(returnPressed()), this, SLOT(OnSwitchPageButtonClick()));
     //设置每页显示行数按钮
     connect(ui->comboBox, &QComboBox::currentTextChanged, this, &pageWidget::comboxCurtextChange);
 }
@@ -191,25 +190,3 @@ void pageWidget::UpdateStatus()
     return;
 }
 //测试功能
-void pageWidget::initMember()
-{
-    ImagerData data;
-    ImagerDataList DATA;
-    for (int i = 1; i < 101; i++)
-    {
-        data.taskNum = QString::number(i);
-        data.outputTime = "00:13:14";
-        data.fileName = "css";
-        data.LocalFilePath = "c:xiaoxiao";
-        data.outputFilePath = "c:xiaoxiao";
-        data.sendDirection = "NRS->CVS";
-        data.sendType = "FTP";
-        data.accuracy = "XXXXX";
-        data.outputType = "NRST100001";
-        data.fileSize = QString::number(i) + "MB";
-        DATA.append(data);
-    }
-    m_pDataModel->SetArrayData(DATA);
-    m_pDataModel->SetPageSize(20);
-    UpdateStatus();
-}

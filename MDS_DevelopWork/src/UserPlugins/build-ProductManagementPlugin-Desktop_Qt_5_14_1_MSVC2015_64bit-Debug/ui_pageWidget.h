@@ -183,7 +183,7 @@ public:
         CurPageLabel->setText(QCoreApplication::translate("pageWidget", "1", nullptr));
         label_18->setText(QCoreApplication::translate("pageWidget", "\351\241\265", nullptr));
         label_19->setText(QCoreApplication::translate("pageWidget", "\345\205\261", nullptr));
-        AllPageLabel->setText(QCoreApplication::translate("pageWidget", "57", nullptr));
+        AllPageLabel->setText(QString());
         label_20->setText(QCoreApplication::translate("pageWidget", "\351\241\265", nullptr));
         label_15->setText(QCoreApplication::translate("pageWidget", "\350\267\263\350\275\254\350\207\263\347\254\254", nullptr));
         inputLineEdit->setText(QString());

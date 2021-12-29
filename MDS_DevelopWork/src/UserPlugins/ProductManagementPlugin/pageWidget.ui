@@ -115,7 +115,7 @@
      <item>
       <widget class="QLabel" name="AllPageLabel">
        <property name="text">
-        <string>57</string>
+        <string/>
        </property>
       </widget>
      </item>
