@@ -12,6 +12,7 @@ namespace Ui
 
 class pageWidget;
 class QueryDialog_CXY;
+class SqlImagerManager;
 class ImagerPage : public QDialog
 {
     Q_OBJECT
@@ -27,14 +28,11 @@ private Q_SLOTS:
     void reportBtnClicked();
     void allBtnClicked();
     void currentPageChanged(int page);
-    void query();
-    void pageSizeChange(const QString& arg1);
-    void slotGetTotalCount(const int totalCount, const int currentPage);
     void searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                     const QDateTime& start_time, const QDateTime& end_time);
 
 public:
-    void slotUpdataTable(/*const QByteArray& data*/);
+    void slotUpdataTable();
 
 private:
     QString pasraDoubleToStr(double value, int prsc = 1, char f = 'f');
@@ -44,6 +42,7 @@ private:
     QStringList headNames;
     QueryDialog_CXY* m_queryDialog_CXY;
     pageWidget* m_pageNavigator;
+    SqlImagerManager* m_sqlImagerManager;
 };
 
 #endif  // ImagerPage_H

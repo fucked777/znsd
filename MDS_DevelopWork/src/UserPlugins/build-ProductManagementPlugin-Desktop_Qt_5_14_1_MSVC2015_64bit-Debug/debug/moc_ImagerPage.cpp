@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImagerPage_t {
-    QByteArrayData data[20];
-    char stringdata0[218];
+    QByteArrayData data[14];
+    char stringdata0[151];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,26 +39,18 @@ QT_MOC_LITERAL(3, 28, 16), // "reportBtnClicked"
 QT_MOC_LITERAL(4, 45, 13), // "allBtnClicked"
 QT_MOC_LITERAL(5, 59, 18), // "currentPageChanged"
 QT_MOC_LITERAL(6, 78, 4), // "page"
-QT_MOC_LITERAL(7, 83, 5), // "query"
-QT_MOC_LITERAL(8, 89, 14), // "pageSizeChange"
-QT_MOC_LITERAL(9, 104, 4), // "arg1"
-QT_MOC_LITERAL(10, 109, 17), // "slotGetTotalCount"
-QT_MOC_LITERAL(11, 127, 10), // "totalCount"
-QT_MOC_LITERAL(12, 138, 11), // "currentPage"
-QT_MOC_LITERAL(13, 150, 10), // "searchSlot"
-QT_MOC_LITERAL(14, 161, 8), // "taskName"
-QT_MOC_LITERAL(15, 170, 7), // "taskNum"
-QT_MOC_LITERAL(16, 178, 8), // "fileName"
-QT_MOC_LITERAL(17, 187, 10), // "outputType"
-QT_MOC_LITERAL(18, 198, 10), // "start_time"
-QT_MOC_LITERAL(19, 209, 8) // "end_time"
+QT_MOC_LITERAL(7, 83, 10), // "searchSlot"
+QT_MOC_LITERAL(8, 94, 8), // "taskName"
+QT_MOC_LITERAL(9, 103, 7), // "taskNum"
+QT_MOC_LITERAL(10, 111, 8), // "fileName"
+QT_MOC_LITERAL(11, 120, 10), // "outputType"
+QT_MOC_LITERAL(12, 131, 10), // "start_time"
+QT_MOC_LITERAL(13, 142, 8) // "end_time"
 
     },
     "ImagerPage\0queryBtnClicked\0\0"
     "reportBtnClicked\0allBtnClicked\0"
-    "currentPageChanged\0page\0query\0"
-    "pageSizeChange\0arg1\0slotGetTotalCount\0"
-    "totalCount\0currentPage\0searchSlot\0"
+    "currentPageChanged\0page\0searchSlot\0"
     "taskName\0taskNum\0fileName\0outputType\0"
     "start_time\0end_time"
 };
@@ -70,7 +62,7 @@ static const uint qt_meta_data_ImagerPage[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -78,24 +70,18 @@ static const uint qt_meta_data_ImagerPage[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x08 /* Private */,
-       3,    0,   55,    2, 0x08 /* Private */,
-       4,    0,   56,    2, 0x08 /* Private */,
-       5,    1,   57,    2, 0x08 /* Private */,
-       7,    0,   60,    2, 0x08 /* Private */,
-       8,    1,   61,    2, 0x08 /* Private */,
-      10,    2,   64,    2, 0x08 /* Private */,
-      13,    6,   69,    2, 0x08 /* Private */,
+       1,    0,   39,    2, 0x08 /* Private */,
+       3,    0,   40,    2, 0x08 /* Private */,
+       4,    0,   41,    2, 0x08 /* Private */,
+       5,    1,   42,    2, 0x08 /* Private */,
+       7,    6,   45,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    6,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   11,   12,
-    QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QDateTime, QMetaType::QDateTime,   14,   15,   16,   17,   18,   19,
+    QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QStringList, QMetaType::QDateTime, QMetaType::QDateTime,    8,    9,   10,   11,   12,   13,
 
        0        // eod
 };
@@ -110,10 +96,7 @@ void ImagerPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->reportBtnClicked(); break;
         case 2: _t->allBtnClicked(); break;
         case 3: _t->currentPageChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: _t->query(); break;
-        case 5: _t->pageSizeChange((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 6: _t->slotGetTotalCount((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
-        case 7: _t->searchSlot((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QStringList(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QDateTime(*)>(_a[6]))); break;
+        case 4: _t->searchSlot((*reinterpret_cast< const QStringList(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3])),(*reinterpret_cast< const QStringList(*)>(_a[4])),(*reinterpret_cast< const QDateTime(*)>(_a[5])),(*reinterpret_cast< const QDateTime(*)>(_a[6]))); break;
         default: ;
         }
     }
@@ -148,13 +131,13 @@ int ImagerPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 5;
     }
     return _id;
 }

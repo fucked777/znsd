@@ -8,7 +8,7 @@ pageWidget::pageWidget(QWidget* parent)
 {
     ui->setupUi(this);
     m_pDataModel = new CArrayModel(this);
-    initMember();
+    //    initMember();
     ui->comboBox->addItem("20", 20);
     ui->comboBox->addItem("25", 25);
     ui->comboBox->addItem("30", 30);

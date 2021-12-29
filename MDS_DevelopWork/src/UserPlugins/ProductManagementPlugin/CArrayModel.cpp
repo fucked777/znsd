@@ -25,6 +25,8 @@ QList<ImagerData> CArrayModel::GetArrayData() const { return m_mpData; }
 
 //总行数
 int CArrayModel::RowCount() const { return m_mpData.size(); }
+//总行数
+int CArrayModel::ColumnCount() const { return mHeaders.size() - 1; }
 
 //设置页数据
 void CArrayModel::SetCurPage(int iPage)

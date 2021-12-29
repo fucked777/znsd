@@ -59,6 +59,7 @@ public:
 
     //总行数
     int RowCount() const;
+    int ColumnCount() const;
 
 public:
     int rowCount(const QModelIndex& parent) const;

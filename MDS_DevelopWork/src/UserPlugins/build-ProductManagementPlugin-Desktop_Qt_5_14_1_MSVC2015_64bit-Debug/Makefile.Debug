@@ -2450,13 +2450,21 @@ debug\ImagerPage.obj: ..\ProductManagementPlugin\ImagerPage.cpp ..\ProductManage
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\qthread.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QWidget \
 		..\ProductManagementPlugin\QueryDialog_CXY.h \
+		..\ProductManagementPlugin\SqlImagerManager.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtSql\QSqlDatabase \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtSql\qsqldatabase.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtSql\qtsql-config.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtSql\QSqlQuery \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtSql\qsqlquery.h \
 		..\ProductManagementPlugin\pageWidget.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QLabel \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qlabel.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QPushButton \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		ui_ImagerPage.h \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QDebug
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QDebug \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QFile
 
 debug\QueryDialog_CXY.obj: ..\ProductManagementPlugin\QueryDialog_CXY.cpp ..\ProductManagementPlugin\QueryDialog_CXY.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QWidget \
