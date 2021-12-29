@@ -38,39 +38,31 @@ SqlImagerManager::SqlImagerManager(QObject* parent)
     }
     else
     {
-        bool isOk = db.open();
-        if (!isOk)
+        if (tablelist.count() == 0)
         {
-            qDebug() << "error info :" << db.lastError();
-        }
-        else
-        {
-            if (tablelist.count() == 0)
-            {
-                QString creatTableStr = "CREATE TABLE IF NOT EXISTS imager("
-                                        "taskNum VARCHAR(100) , "
-                                        "outputTime VARCHAR(50), "
-                                        "fileName VARCHAR(100), "
-                                        "LocalFilePath VARCHAR(50), "
-                                        "outputFilePath VARCHAR(100), "
-                                        "sendDirection VARCHAR(100), "
-                                        "sendType VARCHAR(50), "
-                                        "accuracy VARCHAR(50), "
-                                        "outputType VARCHAR(50), "
-                                        "fileSize VARCHAR(100));";
+            QString creatTableStr = "CREATE TABLE IF NOT EXISTS imager("
+                                    "taskNum VARCHAR(100) , "
+                                    "outputTime VARCHAR(50), "
+                                    "fileName VARCHAR(100), "
+                                    "LocalFilePath VARCHAR(50), "
+                                    "outputFilePath VARCHAR(100), "
+                                    "sendDirection VARCHAR(100), "
+                                    "sendType VARCHAR(50), "
+                                    "accuracy VARCHAR(50), "
+                                    "outputType VARCHAR(50), "
+                                    "fileSize VARCHAR(100));";
 
-                query_.prepare(creatTableStr);
-                if (!query_.exec())
-                {
-                    qDebug() << "query error :" << query_.lastError();
-                }
-                else
-                {
-                    qDebug() << "creat table success!";
-                }
+            query_.prepare(creatTableStr);
+            if (!query_.exec())
+            {
+                qDebug() << "query error :" << query_.lastError();
+            }
+            else
+            {
+                qDebug() << "creat table success!";
             }
         }
-        //        db.close();
+        db.close();
     }
 }
 bool SqlImagerManager::queryFinished() { return hasQueryFinished; }
