@@ -27,8 +27,10 @@ public:
 
     // signals:
     //    void init();
-public slots:
+private slots:
     void slotUpdataTable();
+    void viewDetailBtnClicked();
+    void dealFaultBtnClicked();
 
 private:
     void processExport(const QString& fileName);

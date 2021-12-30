@@ -55,6 +55,11 @@ void FaultMsgPage::searchSlot(const QStringList& taskName, const QStringList& ta
 }
 
 void FaultMsgPage::slotUpdataTable() { ui->tableView->reset(); }
+
+void FaultMsgPage::viewDetailBtnClicked() { m_viewDetailDialog->show(); }
+
+void FaultMsgPage::dealFaultBtnClicked() { m_dealFaultDialog->show(); }
+
 void FaultMsgPage::processExport(const QString& fileName)
 {
     QFile file(fileName);
@@ -122,16 +127,25 @@ void FaultMsgPage::initMember()
     m_pageNavigator->m_pDataModel->SetPageSize(20);
     m_pageNavigator->UpdateStatus();
 
-    //    int index = m_pageNavigator->m_pDataModel->GetPageSize();
-    //    for (int i = 0; i < index; i++)
-    //    {
-    //        QPushButton* detailsBtn = new QPushButton("查看详情", this);
-    //        detailsBtn->setFlat(true);
-    //        detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:12px;border-style:none;text-align: left;");
-    //        //    connect(detailsBtn, &QPushButton::clicked, this, &FaultMsgPage::viewDetailItemClicked);
-    //        //    detailsBtn->setProperty("row", i);
-    //        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 9), detailsBtn);
-    //    }
+    int index = m_pageNavigator->m_pDataModel->GetPageSize();
+    for (int i = 0; i < index; i++)
+    {
+        QPushButton* detailsBtn = new QPushButton("查看详情", this);
+        detailsBtn->setFlat(true);
+        detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
+        connect(detailsBtn, &QPushButton::clicked, this, &FaultMsgPage::viewDetailBtnClicked);
+        //    detailsBtn->setProperty("row", i);
+        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 9), detailsBtn);
+    }
+    for (int i = 0; i < index; i++)
+    {
+        QPushButton* dealFaultBtn = new QPushButton("处理故障", this);
+        dealFaultBtn->setFlat(true);
+        dealFaultBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
+        connect(dealFaultBtn, &QPushButton::clicked, this, &FaultMsgPage::dealFaultBtnClicked);
+        //    dealFaultBtn->setProperty("row", i);
+        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 10), dealFaultBtn);
+    }
 
     connect(ui->allBtn, &QPushButton::clicked, this, &FaultMsgPage::allBtnClicked);
     connect(ui->queryBtn, &QPushButton::clicked, this, &FaultMsgPage::queryBtnClicked);
