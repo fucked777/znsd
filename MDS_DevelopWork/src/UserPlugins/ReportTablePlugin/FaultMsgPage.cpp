@@ -70,18 +70,16 @@ void FaultMsgPage::processExport(const QString& fileName)
     stream.setCodec("UTF-8");
     auto status_lists = m_pageNavigator->m_pDataModel->GetArrayData();
 
-    //    for (auto status : status_lists)
-    //    {
-    //        stream << QString("任务编号：").toUtf8() << status.taskNum << QString("     ").toUtf8() << QString("输出时间：").toUtf8()
-    //               << status.outputTime.toUtf8() << QString("     ").toUtf8() << QString("文件名称：").toUtf8() << status.fileName.toUtf8()
-    //               << QString("     ").toUtf8() << QString("本地文件路径：").toUtf8() << status.LocalFilePath.toUtf8() << QString("     ").toUtf8()
-    //               << QString("输出文件路径").toUtf8() << status.outputFilePath.toUtf8() << QString("     ").toUtf8() <<
-    //               QString("传输方向：").toUtf8()
-    //               << status.sendDirection.toUtf8() << QString("     ").toUtf8() << QString("传输方式：").toUtf8() << status.sendType.toUtf8()
-    //               << QString("     ").toUtf8() << QString("精度：").toUtf8() << status.accuracy.toUtf8() << QString("     ").toUtf8()
-    //               << QString("输出类型：").toUtf8() << status.outputType.toUtf8() << QString("     ").toUtf8() << QString("文件大小：").toUtf8()
-    //               << status.fileSize.toUtf8() << QString("     ").toUtf8() << '\n';
-    //    }
+    for (auto status : status_lists)
+    {
+        stream << QString("故障等级:").toUtf8() << status.faultLevel << QString("     ").toUtf8() << QString("日期:").toUtf8()
+               << status.dateTime.toUtf8() << QString("     ").toUtf8() << QString("任务编号:").toUtf8() << status.taskNum.toUtf8()
+               << QString("     ").toUtf8() << QString("故障代码:").toUtf8() << status.faultCode.toUtf8() << QString("     ").toUtf8()
+               << QString("分系统名称:").toUtf8() << status.systemName.toUtf8() << QString("     ").toUtf8() << QString("处理状态:").toUtf8()
+               << status.dealStatus.toUtf8() << QString("     ").toUtf8() << QString("故障信息:").toUtf8() << status.faultInfor.toUtf8()
+               << QString("     ").toUtf8() << QString("内部故障:").toUtf8() << status.internalFault.toUtf8() << QString("     ").toUtf8()
+               << QString("备注:").toUtf8() << status.remarks.toUtf8() << QString("     ").toUtf8() << '\n';
+    }
     file.close();
 }
 

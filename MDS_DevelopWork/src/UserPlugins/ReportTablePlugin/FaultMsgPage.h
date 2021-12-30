@@ -25,6 +25,11 @@ public:
     void initView();
     void initMember();
 
+    // signals:
+    //    void init();
+public slots:
+    void slotUpdataTable();
+
 private:
     void processExport(const QString& fileName);
     void queryBtnClicked();
@@ -32,9 +37,6 @@ private:
     void exportStatus();
     void searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                     const QDateTime& start_time, const QDateTime& end_time);
-
-public:
-    void slotUpdataTable();
 
 private:
     QString pasraDoubleToStr(double value, int prsc = 1, char f = 'f');

@@ -3,8 +3,9 @@
 
 #include <QWidget>
 
-namespace Ui {
-class LoadFilePage;
+namespace Ui
+{
+    class LoadFilePage;
 }
 
 class LoadFilePage : public QWidget
@@ -12,11 +13,12 @@ class LoadFilePage : public QWidget
     Q_OBJECT
 
 public:
-    explicit LoadFilePage(QWidget *parent = nullptr);
+    explicit LoadFilePage(QWidget* parent = nullptr);
     ~LoadFilePage();
+    void initMember();
 
 private:
-    Ui::LoadFilePage *ui;
+    Ui::LoadFilePage* ui;
 };
 
-#endif // LOADFILEPAGE_H
+#endif  // LOADFILEPAGE_H
