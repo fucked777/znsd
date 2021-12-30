@@ -9,24 +9,9 @@ namespace Ui
 {
     class LogMsgPage;
 }
-
-struct LogMsg
-{
-    QString faultLevel;
-    QString dateTime;
-    QString taskNum;
-    QString faultCode;
-    QString systemName;
-    QString dealStatus;
-    QString faultInfor;
-    QString internalFault;
-    QString remarks;
-};
-class QueryDialog;
-class DealFaultDialog;
-class ViewDetailDialog;
-class pageWidget;
-class SqlFaultMsgManager;
+class LogQueryDialog;
+class LogPageWidget;
+class SqlLogMsgManager;
 class LogMsgPage : public QDialog
 {
     Q_OBJECT
@@ -54,11 +39,9 @@ private:
 
 private:
     Ui::LogMsgPage* ui;
-    DealFaultDialog* m_dealFaultDialog;
-    QueryDialog* m_queryDialog;
-    pageWidget* m_pageNavigator;
-    ViewDetailDialog* m_viewDetailDialog;
-    SqlFaultMsgManager* m_sqlFaultMsgManager;
+    LogQueryDialog* m_queryDialog;
+    LogPageWidget* m_pageNavigator;
+    SqlLogMsgManager* m_sqlLogMsgManager;
 };
 
 #endif  // LogMsgPage_H

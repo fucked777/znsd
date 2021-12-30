@@ -1,9 +1,7 @@
 ﻿#include "LogMsgPage.h"
-#include "DealFaultDialog.h"
-#include "QueryDialog.h"
-#include "SqlFaultMsgManager.h"
-#include "ViewDetailDialog.h"
-#include "pageWidget.h"
+#include "LogPageWidget.h"
+#include "LogQueryDialog.h"
+#include "SqlLogMsgManager.h"
 #include "ui_LogMsgPage.h"
 #include <QDateTime>
 #include <QDebug>
@@ -17,14 +15,12 @@ LogMsgPage::LogMsgPage(QWidget* parent)
     , ui(new Ui::LogMsgPage)
 {
     ui->setupUi(this);
-    m_queryDialog = new QueryDialog();
-    m_dealFaultDialog = new DealFaultDialog();
-    m_viewDetailDialog = new ViewDetailDialog();
-    m_sqlFaultMsgManager = new SqlFaultMsgManager();
-    connect(m_queryDialog, &QueryDialog::search, this, &LogMsgPage::searchSlot);
-    m_queryDialog->setWindowModality(Qt::ApplicationModal);
-    m_dealFaultDialog->setWindowModality(Qt::ApplicationModal);
-    m_viewDetailDialog->setWindowModality(Qt::ApplicationModal);  // motai
+    m_queryDialog = new LogQueryDialog();
+
+    m_sqlLogMsgManager = new SqlLogMsgManager();
+    //    connect(m_queryDialog, &QueryDialog::search, this, &LogMsgPage::searchSlot);
+    m_queryDialog->setWindowModality(Qt::ApplicationModal);  // motai
+
     initMember();
     initView();
 }
@@ -70,18 +66,13 @@ void LogMsgPage::processExport(const QString& fileName)
     stream.setCodec("UTF-8");
     auto status_lists = m_pageNavigator->m_pDataModel->GetArrayData();
 
-    //    for (auto status : status_lists)
-    //    {
-    //        stream << QString("任务编号：").toUtf8() << status.taskNum << QString("     ").toUtf8() << QString("输出时间：").toUtf8()
-    //               << status.outputTime.toUtf8() << QString("     ").toUtf8() << QString("文件名称：").toUtf8() << status.fileName.toUtf8()
-    //               << QString("     ").toUtf8() << QString("本地文件路径：").toUtf8() << status.LocalFilePath.toUtf8() << QString("     ").toUtf8()
-    //               << QString("输出文件路径").toUtf8() << status.outputFilePath.toUtf8() << QString("     ").toUtf8() <<
-    //               QString("传输方向：").toUtf8()
-    //               << status.sendDirection.toUtf8() << QString("     ").toUtf8() << QString("传输方式：").toUtf8() << status.sendType.toUtf8()
-    //               << QString("     ").toUtf8() << QString("精度：").toUtf8() << status.accuracy.toUtf8() << QString("     ").toUtf8()
-    //               << QString("输出类型：").toUtf8() << status.outputType.toUtf8() << QString("     ").toUtf8() << QString("文件大小：").toUtf8()
-    //               << status.fileSize.toUtf8() << QString("     ").toUtf8() << '\n';
-    //    }
+    for (auto status : status_lists)
+    {
+        stream << QString("日期:").toUtf8() << status.dateTime << QString("     ").toUtf8() << QString("分系统名称:").toUtf8()
+               << status.systemName.toUtf8() << QString("     ").toUtf8() << QString("任务编号").toUtf8() << status.taskNum.toUtf8()
+               << QString("     ").toUtf8() << QString("故障信息").toUtf8() << status.logMsg.toUtf8() << QString("     ").toUtf8()
+               << QString("日志属性").toUtf8() << status.logProperty.toUtf8() << QString("     ").toUtf8() << '\n';
+    }
     file.close();
 }
 
@@ -99,42 +90,26 @@ void LogMsgPage::allBtnClicked()
 
 void LogMsgPage::initMember()
 {
-    m_pageNavigator = new pageWidget();
+    m_pageNavigator = new LogPageWidget();
     ui->widget->layout()->addWidget(m_pageNavigator);
     ui->tableView->setModel(m_pageNavigator->m_pDataModel);
     //更新表格
-    connect(m_pageNavigator, &pageWidget::updataTableView, this, &LogMsgPage::slotUpdataTable);
-    FaultMsgData data;
-    FaultMsgDataList DATA;
+    connect(m_pageNavigator, &LogPageWidget::updataTableView, this, &LogMsgPage::slotUpdataTable);
+    LogMsgData data;
+    LogMsgDataList DATA;
     for (int i = 1; i < 101; i++)
     {
-        data.faultLevel = QString::number(i);
         data.dateTime = "00:13:14";
-        data.taskNum = "css";
-        data.faultCode = "c:xiaoxiao";
-        data.systemName = "c:xiaoxiao";
-        data.dealStatus = "NRS->CVS";
-        data.faultInfor = "FTP";
-        data.internalFault = "XXXXX";
-        data.remarks = "NRST100001";
+        data.systemName = "探测仪图像定位";
+        data.taskNum = "GTNXXXXXXXXX";
+        data.logMsg = "GTNXXXXX";
+        data.logProperty = "信息";
         DATA.append(data);
     }
-    m_sqlFaultMsgManager->insert(DATA);
+    m_sqlLogMsgManager->insert(DATA);
     m_pageNavigator->m_pDataModel->SetArrayData(DATA);
     m_pageNavigator->m_pDataModel->SetPageSize(20);
     m_pageNavigator->UpdateStatus();
-
-    //    int index = m_pageNavigator->m_pDataModel->GetPageSize();
-    //    for (int i = 0; i < index; i++)
-    //    {
-    //        QPushButton* detailsBtn = new QPushButton("查看详情", this);
-    //        detailsBtn->setFlat(true);
-    //        detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:12px;border-style:none;text-align: left;");
-    //        //    connect(detailsBtn, &QPushButton::clicked, this, &LogMsgPage::viewDetailItemClicked);
-    //        //    detailsBtn->setProperty("row", i);
-    //        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 9), detailsBtn);
-    //    }
-
     connect(ui->allBtn, &QPushButton::clicked, this, &LogMsgPage::allBtnClicked);
     connect(ui->queryBtn, &QPushButton::clicked, this, &LogMsgPage::queryBtnClicked);
     connect(ui->reportBtn, &QPushButton::clicked, this, &LogMsgPage::exportStatus);
@@ -151,48 +126,5 @@ void LogMsgPage::initView()
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignVCenter);
     ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);  //设置选中模式为选中行
-
-    //    QList<RowDataFaultMsg> datas;
-    //    if (datas.size() >= MAX_INSERT_NUM)
-    //        return;
-    //    for (int i = 0; i < 10; i++)
-    //    {
-    //        RowDataFaultMsg data;
-    //        data.faultLevel = "二级";
-    //        data.dateTime = "2021-10-12 00:13:14";
-    //        data.taskNum = "xxx";
-    //        data.faultCode = "NRSS15621";
-    //        data.systemName = "成像仪图像定位与配准";
-    //        data.dealStatus = "暂未处理";
-    //        data.faultInfor = "XXXXX";
-    //        data.internalFault = "NRST100001";
-    //        data.remarks = "XXX";
-    //    }
 }
-
-// void LogMsgPage::appendRowData(RowDataFaultMsg value)
-//{
-//    QList<QStandardItem*> itemList;
-//    itemList << new QStandardItem(QString::number(tableModel->rowCount() + 1)) << new QStandardItem(value.faultLevel)
-//             << new QStandardItem(value.dateTime) << new QStandardItem(value.taskNum) << new QStandardItem(value.faultCode)
-//             << new QStandardItem(value.systemName) << new QStandardItem(value.dealStatus) << new QStandardItem(value.faultInfor)
-//             << new QStandardItem(value.internalFault) << new QStandardItem(value.remarks) << new QStandardItem << new QStandardItem;
-
-//    QPushButton* detailsBtn = new QPushButton("查看详情", this);
-//    detailsBtn->setFlat(true);
-//    detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:18px;background-color:transparent;border-style:none;text-align: left;");
-//    //    connect(handleBtn, &QPushButton::clicked, this, &LogMsgPage::delItemClicked);
-//    detailsBtn->setProperty("row", tableModel->rowCount() - 1);
-//    ui->tableView->setIndexWidget(tableModel->index(tableModel->rowCount() - 2, tableModel->columnCount() - 2), detailsBtn);
-
-//    QPushButton* dealBtn = new QPushButton("处理故障", this);
-//    dealBtn->setFlat(true);
-//    dealBtn->setStyleSheet("color:rgb(0,170,255);font-size:18px;background-color:transparent;border-style:none;text-align: left;");
-//    //    connect(handleBtn, &QPushButton::clicked, this, &LogMsgPage::delItemClicked);
-//    dealBtn->setProperty("row", tableModel->rowCount() - 1);
-//    ui->tableView->setIndexWidget(tableModel->index(tableModel->rowCount() - 1, tableModel->columnCount() - 1), dealBtn);
-
-//    tableModel->appendRow(itemList);
-//    ui->tableView->clearSelection();
-//}
 QString LogMsgPage::pasraDoubleToStr(double value, int prsc, char f) { return QString::number(value, f, prsc); }

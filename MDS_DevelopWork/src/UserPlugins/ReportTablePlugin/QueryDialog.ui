@@ -36,7 +36,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dateEdit"/>
+      <widget class="QDateTimeEdit" name="dateTimeEdit"/>
      </item>
      <item>
       <widget class="QLabel" name="label_2">
@@ -58,7 +58,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dateEdit_2"/>
+      <widget class="QDateTimeEdit" name="dateTimeEdit_2"/>
      </item>
      <item>
       <spacer name="horizontalSpacer_4">
