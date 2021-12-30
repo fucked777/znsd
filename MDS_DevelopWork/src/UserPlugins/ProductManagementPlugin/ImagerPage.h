@@ -41,7 +41,6 @@ private:
 
 private:
     Ui::ImagerPage* ui;
-    QStringList headNames;
     QueryDialog_CXY* m_queryDialog_CXY;
     pageWidget* m_pageNavigator;
     SqlImagerManager* m_sqlImagerManager;

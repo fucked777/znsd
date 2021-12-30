@@ -9,7 +9,7 @@
 #include
 include(../../BaseTotalPri/BaseTotal.pri) 
 TEMPLATE = lib 
-
+QT       += sql
 
 #QT Model:core gui widgets xml sql webkit network
 QT  += core gui 
@@ -28,7 +28,9 @@ LIB_DIR         = $${DEV_HOME}/libs
 INCLUDEPATH += $${INCLUDE_DIR}/HMPCoreFrame 
 INCLUDEPATH += $${INCLUDE_DIR}/HMPPluginFrame 
 INCLUDEPATH += $${INCLUDE_DIR}/ 
-
+win32-msvc{
+    QMAKE_CXXFLAGS += /utf-8
+}
 win32{ 
 CONFIG(debug,debug|release){ 
     DESTDIR = $${DEST_DIR_D}/plugins 
@@ -61,31 +63,13 @@ CONFIG(release,debug|release){
 } 
 
 HEADERS += \
-    DealFaultDialog.h \
-    FaultMsgPage.h \
-    HeaderView.h \
-    LoadFilePage.h \
-    LogMsgPage.h \
-    NotEditableDelegate.h \
-    QueryDialog.h \
     ReportTablePage.h \
-    TableAnalyse.h \
-    ViewDetailDialog.h \
-    ireporttablepluginservice.h  \ 
+    ireporttablepluginservice.h  \
     reporttablepluginservice.h  \ 
     reporttablepluginactivator.h 
 
 SOURCES += \
-    DealFaultDialog.cpp \
-    FaultMsgPage.cpp \
-    HeaderView.cpp \
-    LoadFilePage.cpp \
-    LogMsgPage.cpp \
-    NotEditableDelegate.cpp \
-    QueryDialog.cpp \
-    ReportTablePage.cpp \
-    TableAnalyse.cpp \
-    ViewDetailDialog.cpp \
+    ReportTablePage.cpp \   
     reporttablepluginservice.cpp \ 
     reporttablepluginactivator.cpp 
 
@@ -107,11 +91,13 @@ CopyDir = $$replace(CopyDir, /, \\)
 QMAKE_POST_LINK += copy  $$HeadPath $$CopyDir 
 
 FORMS += \
-    DealFaultDialog.ui \
-    FaultMsgPage.ui \
-    LoadFilePage.ui \
-    LogMsgPage.ui \
-    QueryDialog.ui \
     ReportTablePage.ui \
-    ViewDetailDialog.ui
 
+DISTFILES += \
+    FaultMsg.pri \
+    LoadFile.pri \
+    LogMsg.pri
+
+include($$PWD/FaultMsg.pri)
+include($$PWD/LoadFile.pri)
+include($$PWD/LogMsg.pri)

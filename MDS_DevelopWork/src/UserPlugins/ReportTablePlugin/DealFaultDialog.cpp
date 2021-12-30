@@ -1,6 +1,5 @@
 ﻿#include "DealFaultDialog.h"
 #include "ui_DealFaultDialog.h"
-#pragma execution_character_set("utf-8")
 DealFaultDialog::DealFaultDialog(QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::DealFaultDialog)

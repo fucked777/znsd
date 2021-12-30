@@ -4,58 +4,16 @@
 #include <QCheckBox>
 #include <QDialog>
 #include <QStandardItemModel>
+#include <QTableView>
 namespace Ui
 {
     class FaultMsgPage;
 }
-namespace NSGlobal
-{
-    struct RowDataFaultMsg
-    {
-        QString faultLevel;
-        QString dateTime;
-        QString taskNum;
-        QString faultCode;
-        QString systemName;
-        QString dealStatus;
-        QString faultInfor;
-        QString internalFault;
-        QString remarks;
-        bool operator>(const RowDataFaultMsg& toCompare)
-        {
-            if (taskNum > toCompare.taskNum)
-                return true;
-            if (taskNum == toCompare.taskNum)
-            {
-                if (faultCode > toCompare.faultCode)
-                    return true;
-            }
-            return false;
-        }
-
-        bool operator==(const RowDataFaultMsg& toCompare) { return ((taskNum == toCompare.taskNum) && (faultCode == toCompare.faultCode)); }
-
-        bool operator<(const RowDataFaultMsg& toCompare)
-        {
-            if (taskNum < toCompare.taskNum)
-                return true;
-            if (taskNum == toCompare.taskNum)
-            {
-                if (faultCode < toCompare.faultCode)
-                    return true;
-            }
-            return false;
-        }
-    };
-    const QString SEPARATOR = "@";
-}  // namespace NSGlobal
-using namespace NSGlobal;
-class HeaderView;
-class NotEditableDelegate;
-class TableAnalyse;
 class QueryDialog;
 class DealFaultDialog;
 class ViewDetailDialog;
+class pageWidget;
+class SqlFaultMsgManager;
 class FaultMsgPage : public QDialog
 {
     Q_OBJECT
@@ -64,66 +22,30 @@ public:
     explicit FaultMsgPage(QWidget* parent = nullptr);
     ~FaultMsgPage();
 
-    QVector<RowDataFaultMsg> getDatas() const;
-
     void initView();
     void initMember();
-    // Q_SIGNALS:
-    //    void settingDlgCloseSignal(int funcType, int count);
-    //    void updateFreTableNumber(const int& xmlIndex, const int& index, const QString& value, const QString& unit);
-    //    void dataSaveSignal(QVector<RowDataFaultMsg> data);
-private Q_SLOTS:
-    void delBtnClicked();
-    void queryBtnClicked();
-    void reportBtnClicked();
-    void allBtnClicked();
-    void clearBtnClicked();
-    void firstPageBtnClicked();
-    void upperPageBtnClicked();
-    void nextPageBtnClicked();
-    void lastPageBtnClicked();
-    void okBtnClicked();
 
-    void delItemClicked(const int rowIndex);
-    void curTestChangedCombox(const QString test);
+private:
+    void processExport(const QString& fileName);
+    void queryBtnClicked();
+    void allBtnClicked();
+    void exportStatus();
+    void searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
+                    const QDateTime& start_time, const QDateTime& end_time);
 
 public:
-    void appendRowData(RowDataFaultMsg value);
-    RowDataFaultMsg getRowData(const int rowNum);
-    void updateRowData(QVector<RowDataFaultMsg>& values);
-    void insertRowData(RowDataFaultMsg& values, int rowIndex);
-    QVector<RowDataFaultMsg> getDataInfo(RowDataFaultMsg);
-    QVector<RowDataFaultMsg> getCheckedRowData();
-    int initPage();
-private slots:
-    void delItemClicked();
-    void dealFaultItemClicked();
-    void viewDetailItemClicked();
-    void selectAllItems(Qt::CheckState state);
-    void checkCurrRowSlot(int rowIndex, bool checked);
+    void slotUpdataTable();
 
 private:
     QString pasraDoubleToStr(double value, int prsc = 1, char f = 'f');
 
 private:
     Ui::FaultMsgPage* ui;
-    QVector<RowDataFaultMsg> m_datas;
-    QStandardItemModel* tableModel;
-    QStringList headNames;
-    QVector<double> columnWidths;
-    double m_scale = 0.0;
-    QList<int> removeRowIndexs;
-    double totleColumnWidth = 0.0;
-    QCheckBox* m_check;
-    HeaderView* headerView;
-    NotEditableDelegate* notEditableDelegate;
-    TableAnalyse* faultMstAnalyse;
     DealFaultDialog* m_dealFaultDialog;
     QueryDialog* m_queryDialog;
+    pageWidget* m_pageNavigator;
     ViewDetailDialog* m_viewDetailDialog;
-    int rowCount;
-    int comboxCurIndex;
-    int pageCount;
+    SqlFaultMsgManager* m_sqlFaultMsgManager;
 };
 
 #endif  // FaultMsgPage_H
