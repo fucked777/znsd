@@ -93,7 +93,7 @@ void CArrayModel::SetPageSize(int iPageSize)
 //获得每页数据条数
 int CArrayModel::GetPageSize() { return m_iPageSize; }
 //行数
-int CArrayModel::rowCount(const QModelIndex& parent) const { return m_iPageSize; }
+int CArrayModel::rowCount(const QModelIndex& parent) const { return m_mpPageData.size(); }
 
 //列数
 int CArrayModel::columnCount(const QModelIndex& parent) const { return parent.isValid() ? 0 : mHeaders.size(); }

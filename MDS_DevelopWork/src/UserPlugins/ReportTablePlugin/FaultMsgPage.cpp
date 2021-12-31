@@ -56,8 +56,9 @@ void FaultMsgPage::searchSlot(const QStringList& taskName, const QStringList& ta
 
 void FaultMsgPage::slotUpdataTable()
 {
+    //    ui->tableView->reset();
     QList<FaultMsgData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
-    xhcs = m_pageNavigator->m_pDataModel->GetCurPage() * m_pageNavigator->m_pDataModel->GetPageSize();
+    int xhcs = m_pageNavigator->m_pDataModel->GetCurPage() * m_pageNavigator->m_pDataModel->GetPageSize();
     for (int i = 0; i < data.size(); i++)
     {
         QPushButton* detailsBtn = new QPushButton("查看详情", this);
@@ -76,7 +77,6 @@ void FaultMsgPage::slotUpdataTable()
         //    dealFaultBtn->setProperty("row", i);
         ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(xhcs + i, 10), dealFaultBtn);
     }
-    //    ui->tableView->reset();
 }
 
 void FaultMsgPage::viewDetailBtnClicked() { m_viewDetailDialog->show(); }
