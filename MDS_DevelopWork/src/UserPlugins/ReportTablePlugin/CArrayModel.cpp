@@ -103,27 +103,24 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
     case Qt::DisplayRole:
     {
         //如果处于最后一页，索引没必要全部列出，只列出范围内的
-        if (row + m_iCurPage * m_iPageSize > this->RowCount())
+        if (index.row() + m_iCurPage * m_iPageSize > this->RowCount())
         {
             return QVariant();
         }
-        else
+        if ((row + m_iCurPage * m_iPageSize) < m_mpData.size())  //确保不越界
         {
-            if ((row + m_iCurPage * m_iPageSize) < m_mpData.size())  //确保不越界
+            FaultMsgData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
+            switch (col)
             {
-                FaultMsgData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
-                switch (col)
-                {
-                case faultLevel: return data.faultLevel;
-                case dateTime: return data.dateTime;
-                case taskNum: return data.taskNum;
-                case faultCode: return data.faultCode;
-                case systemName: return data.systemName;
-                case dealStatus: return data.dealStatus;
-                case faultInfor: return data.faultInfor;
-                case internalFault: return data.internalFault;
-                case remarks: return data.remarks;
-                }
+            case faultLevel: return data.faultLevel;
+            case dateTime: return data.dateTime;
+            case taskNum: return data.taskNum;
+            case faultCode: return data.faultCode;
+            case systemName: return data.systemName;
+            case dealStatus: return data.dealStatus;
+            case faultInfor: return data.faultInfor;
+            case internalFault: return data.internalFault;
+            case remarks: return data.remarks;
             }
         }
     }
