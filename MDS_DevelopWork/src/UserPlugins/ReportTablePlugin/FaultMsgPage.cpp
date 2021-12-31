@@ -56,17 +56,15 @@ void FaultMsgPage::searchSlot(const QStringList& taskName, const QStringList& ta
 
 void FaultMsgPage::slotUpdataTable()
 {
-    //    ui->tableView->reset();
+    ui->tableView->reset();
     QList<FaultMsgData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
-    int xhcs = m_pageNavigator->m_pDataModel->GetCurPage() * m_pageNavigator->m_pDataModel->GetPageSize();
     for (int i = 0; i < data.size(); i++)
     {
         QPushButton* detailsBtn = new QPushButton("查看详情", this);
         detailsBtn->setFlat(true);
         detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
         connect(detailsBtn, &QPushButton::clicked, this, &FaultMsgPage::viewDetailBtnClicked);
-        //    detailsBtn->setProperty("row", i);
-        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(xhcs + i, 9), detailsBtn);
+        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 9), detailsBtn);
     }
     for (int i = 0; i < data.size(); i++)
     {
@@ -75,8 +73,9 @@ void FaultMsgPage::slotUpdataTable()
         dealFaultBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
         connect(dealFaultBtn, &QPushButton::clicked, this, &FaultMsgPage::dealFaultBtnClicked);
         //    dealFaultBtn->setProperty("row", i);
-        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(xhcs + i, 10), dealFaultBtn);
+        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 10), dealFaultBtn);
     }
+    int cd = 1000;
 }
 
 void FaultMsgPage::viewDetailBtnClicked() { m_viewDetailDialog->show(); }
@@ -165,6 +164,6 @@ void FaultMsgPage::initView()
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignVCenter);
     ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);  //设置选中模式为选中行
+    //    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);  //设置选中模式为选中行
 }
 QString FaultMsgPage::pasraDoubleToStr(double value, int prsc, char f) { return QString::number(value, f, prsc); }

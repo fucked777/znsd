@@ -50,7 +50,6 @@ private:
     pageWidget* m_pageNavigator;
     ViewDetailDialog* m_viewDetailDialog;
     SqlFaultMsgManager* m_sqlFaultMsgManager;
-    //    int xhcs;
 };
 
 #endif  // FaultMsgPage_H
