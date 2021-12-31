@@ -164,30 +164,4 @@ void FaultMsgPage::initView()
     ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);  //设置选中模式为选中行
 }
-
-// void FaultMsgPage::appendRowData(RowDataFaultMsg value)
-//{
-//    QList<QStandardItem*> itemList;
-//    itemList << new QStandardItem(QString::number(tableModel->rowCount() + 1)) << new QStandardItem(value.faultLevel)
-//             << new QStandardItem(value.dateTime) << new QStandardItem(value.taskNum) << new QStandardItem(value.faultCode)
-//             << new QStandardItem(value.systemName) << new QStandardItem(value.dealStatus) << new QStandardItem(value.faultInfor)
-//             << new QStandardItem(value.internalFault) << new QStandardItem(value.remarks) << new QStandardItem << new QStandardItem;
-
-//    QPushButton* detailsBtn = new QPushButton("查看详情", this);
-//    detailsBtn->setFlat(true);
-//    detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:18px;background-color:transparent;border-style:none;text-align: left;");
-//    //    connect(handleBtn, &QPushButton::clicked, this, &FaultMsgPage::delItemClicked);
-//    detailsBtn->setProperty("row", tableModel->rowCount() - 1);
-//    ui->tableView->setIndexWidget(tableModel->index(tableModel->rowCount() - 2, tableModel->columnCount() - 2), detailsBtn);
-
-//    QPushButton* dealBtn = new QPushButton("处理故障", this);
-//    dealBtn->setFlat(true);
-//    dealBtn->setStyleSheet("color:rgb(0,170,255);font-size:18px;background-color:transparent;border-style:none;text-align: left;");
-//    //    connect(handleBtn, &QPushButton::clicked, this, &FaultMsgPage::delItemClicked);
-//    dealBtn->setProperty("row", tableModel->rowCount() - 1);
-//    ui->tableView->setIndexWidget(tableModel->index(tableModel->rowCount() - 1, tableModel->columnCount() - 1), dealBtn);
-
-//    tableModel->appendRow(itemList);
-//    ui->tableView->clearSelection();
-//}
 QString FaultMsgPage::pasraDoubleToStr(double value, int prsc, char f) { return QString::number(value, f, prsc); }
