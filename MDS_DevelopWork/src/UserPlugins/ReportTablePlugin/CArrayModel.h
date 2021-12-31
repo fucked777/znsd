@@ -43,6 +43,9 @@ public:
 
     //获得总数据
     QList<FaultMsgData> GetArrayData() const;
+    //获得每页数据
+    QList<FaultMsgData> GetPageArrayData() const;
+
     void setImagerData(const QList<FaultMsgData>& Datas);
     //设置页数据
     void SetCurPage(int iPage);
@@ -54,7 +57,6 @@ public:
     void SetPageSize(int iPageSize);
     //获得每页数据条数
     int GetPageSize();
-
     //总行数
     int RowCount() const;
     int ColumnCount() const;
@@ -69,10 +71,11 @@ public:
     void refrushModel();
 
 private:
-    QList<FaultMsgData> m_mpData;  //总数据
-    int m_iPageSize;               //每页数据条数
-    int m_iCurPage;                //当前页
-    QStringList mHeaders;          //表头
-    QThread status_thread_;        //线程，后续可能使用
+    QList<FaultMsgData> m_mpData;      //总数据
+    QList<FaultMsgData> m_mpPageData;  //每页数据
+    int m_iPageSize;                   //每页数据条数
+    int m_iCurPage;                    //当前页
+    QStringList mHeaders;              //表头
+    QThread status_thread_;            //线程，后续可能使用
 };
 #endif  // CARRAYMODEL_H

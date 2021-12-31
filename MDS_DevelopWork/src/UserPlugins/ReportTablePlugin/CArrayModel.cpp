@@ -24,6 +24,8 @@ void CArrayModel::SetArrayData(const QList<FaultMsgData>& Datas) { m_mpData = Da
 
 QList<FaultMsgData> CArrayModel::GetArrayData() const { return m_mpData; }
 
+QList<FaultMsgData> CArrayModel::GetPageArrayData() const { return m_mpPageData; }
+
 //总行数
 int CArrayModel::RowCount() const { return m_mpData.size(); }
 //总行数
@@ -36,6 +38,28 @@ void CArrayModel::SetCurPage(int iPage)
     if (iPage < GetPageCount())
     {
         m_iCurPage = iPage;
+        //查询起始索引
+        int iStart = m_iPageSize * m_iCurPage;
+        //查询结束索引
+        int iend = 0;
+        //如果本页可以填满
+        if (iStart + m_iPageSize < RowCount())
+        {
+            iend = iStart + m_iPageSize - 1;
+        }
+        //如果本页不可以填满
+        else
+        {
+            iend = RowCount() - 1;
+        }
+
+        //填充当前页数据
+        m_mpPageData.clear();
+        for (int i = iStart; i <= iend; ++i)
+        {
+            auto it = m_mpData.at(i);
+            m_mpPageData.push_back(it);
+        }
     }
     return;
 }
@@ -68,7 +92,6 @@ void CArrayModel::SetPageSize(int iPageSize)
 
 //获得每页数据条数
 int CArrayModel::GetPageSize() { return m_iPageSize; }
-
 //行数
 int CArrayModel::rowCount(const QModelIndex& parent) const { return m_iPageSize; }
 
