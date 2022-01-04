@@ -37,7 +37,11 @@ void ViewDetailDialog::textCurtextChange()
     //    qDebug() << "dealRemarks" << dealRemarks;
 }
 //保存备注
-void ViewDetailDialog::on_pushButton_clicked() { emit saveRemarksSignal(dealRemarks, rowIndex); }
+void ViewDetailDialog::on_pushButton_clicked()
+{
+    emit saveRemarksSignal(dealRemarks, rowIndex);
+    this->close();
+}
 
 QDateTime ViewDetailDialog::dateTimeFromStr(const QString& str) { return QDateTime::fromString(str, "yyyy-MM-dd HH:mm:ss"); }
 

@@ -24,6 +24,8 @@ FaultMsgPage::FaultMsgPage(QWidget* parent)
     m_sqlFaultMsgManager = new SqlFaultMsgManager();
     connect(m_queryDialog, &QueryDialog::search, this, &FaultMsgPage::searchSlot);
     connect(m_viewDetailDialog, &ViewDetailDialog::saveRemarksSignal, this, &FaultMsgPage::saveRemarksSlot);
+
+    connect(m_dealFaultDialog, &DealFaultDialog::dealRemarksSignal, this, &FaultMsgPage::dealRemarksSlot);
     m_queryDialog->setWindowModality(Qt::ApplicationModal);
     m_dealFaultDialog->setWindowModality(Qt::ApplicationModal);
     m_viewDetailDialog->setWindowModality(Qt::ApplicationModal);  // motai
@@ -62,6 +64,12 @@ void FaultMsgPage::saveRemarksSlot(const QString& text, int row)
     qDebug() << "text:" << text;
     QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, 8);
     m_pageNavigator->m_pDataModel->setData(indexValue, text, Qt::EditRole);
+}
+
+void FaultMsgPage::dealRemarksSlot(const QString& textEdit, const QString& combox, int row)
+{
+    QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, 5);
+    m_pageNavigator->m_pDataModel->setData(indexValue, combox, Qt::EditRole);
 }
 
 void FaultMsgPage::slotUpdataTable()
@@ -124,7 +132,7 @@ void FaultMsgPage::dealFaultBtnClicked()
     //        QVariant dataValue = m_pageNavigator->m_pDataModel->data(indexValue, Qt::DisplayRole);
     //        Parameter << dataValue.toString();
     //    }
-    //    m_dealFaultDialog->parameterSet(Parameter);
+    m_dealFaultDialog->parameterSet(Parameter, row);
     m_dealFaultDialog->show();
 }
 
@@ -216,6 +224,6 @@ void FaultMsgPage::initView()
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignVCenter);
     ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
-    //    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);  //设置选中模式为选中行
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);  //设置选中模式为选中行
 }
 QString FaultMsgPage::pasraDoubleToStr(double value, int prsc, char f) { return QString::number(value, f, prsc); }

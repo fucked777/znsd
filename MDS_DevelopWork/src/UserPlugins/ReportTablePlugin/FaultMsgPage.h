@@ -31,6 +31,8 @@ private slots:
     void slotUpdataTable();
     void viewDetailBtnClicked();
     void dealFaultBtnClicked();
+    void saveRemarksSlot(const QString& text, int row);
+    void dealRemarksSlot(const QString& textEdit, const QString& combox, int row);
 
 private:
     void processExport(const QString& fileName);
@@ -39,7 +41,6 @@ private:
     void exportStatus();
     void searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                     const QDateTime& start_time, const QDateTime& end_time);
-    void saveRemarksSlot(const QString& text, int row);
 
 private:
     QString pasraDoubleToStr(double value, int prsc = 1, char f = 'f');

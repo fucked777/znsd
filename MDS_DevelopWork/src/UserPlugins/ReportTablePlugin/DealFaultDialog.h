@@ -16,15 +16,23 @@ public:
     explicit DealFaultDialog(QWidget* parent = nullptr);
     ~DealFaultDialog();
     void initMember();
-    void parameterSet(const QStringList& data);
+    void parameterSet(const QStringList& data, int row);
 public slots:
     void comboxCurtextChange(const QString& text);
     void textCurtextChange();
+signals:
+    void dealRemarksSignal(const QString& textEdit, const QString& combox, int row);
+
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::DealFaultDialog* ui;
-    QString dealRemarks;
-    QString comboxText;
+    QString dealRemarks{ "" };
+    QString comboxText{ "暂未处理" };
+    int rowIndex = 0;
 };
 
 #endif  // DEALFAULTDIALOG_H

@@ -18,23 +18,17 @@ void DealFaultDialog::initMember()
     ui->comboBox->addItem("已处理");
     ui->comboBox->addItem("处理失败");
 }
-void DealFaultDialog::parameterSet(const QStringList& data)
+void DealFaultDialog::parameterSet(const QStringList& data, int row) { rowIndex = row; }
+
+void DealFaultDialog::comboxCurtextChange(const QString& text) { comboxText = text; }
+
+void DealFaultDialog::textCurtextChange() { dealRemarks = ui->textEdit->toPlainText(); }
+
+//确定按钮
+void DealFaultDialog::on_pushButton_clicked()
 {
-    QString dealStatus = data.at(5);
-
-    ui->comboBox->setCurrentText(dealStatus);
+    emit dealRemarksSignal(dealRemarks, comboxText, rowIndex);
+    this->close();
 }
-
-void DealFaultDialog::comboxCurtextChange(const QString& text)
-{
-    //得到输入字符串
-    comboxText = text;
-
-    //    int Index = szText.toInt();
-    //    dealRemarks = ui->textEdit->textChanged()
-}
-
-void DealFaultDialog::textCurtextChange()
-{
-    //    ui->textEdit->;
-}
+//取消
+void DealFaultDialog::on_pushButton_2_clicked() { this->close(); }

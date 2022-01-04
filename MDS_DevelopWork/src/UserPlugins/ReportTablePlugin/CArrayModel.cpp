@@ -177,14 +177,32 @@ bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int r
         int dataindex = index.row() + m_iCurPage * m_iPageSize;
 
         //改变总数据集
-        auto it = m_mpData.at(dataindex);
-        it.remarks = strnew;
-        m_mpData.replace(dataindex, it);
+        if (index.column() == 8)  //备注
+        {
+            auto it = m_mpData.at(dataindex);
+            it.remarks = strnew;
+            //        it.dealStatus = strnew;
+            m_mpData.replace(dataindex, it);
 
-        //改变当页数据集
-        auto itcur = m_mpPageData.at(dataindex);
-        itcur.remarks = strnew;
-        m_mpPageData.replace(dataindex, itcur);
+            //改变当页数据集
+            auto itcur = m_mpPageData.at(dataindex);
+            itcur.remarks = strnew;
+            //        itcur.dealStatus = strnew;
+            m_mpPageData.replace(dataindex, itcur);
+        }
+        else if (index.column() == 5)  //处理状态
+        {
+            auto it = m_mpData.at(dataindex);
+            //            it.remarks = strnew;
+            it.dealStatus = strnew;
+            m_mpData.replace(dataindex, it);
+
+            //改变当页数据集
+            auto itcur = m_mpPageData.at(dataindex);
+            //            itcur.remarks = strnew;
+            itcur.dealStatus = strnew;
+            m_mpPageData.replace(dataindex, itcur);
+        }
         return true;
     }
     return false;
