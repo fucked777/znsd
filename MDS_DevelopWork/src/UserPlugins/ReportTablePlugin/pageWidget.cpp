@@ -38,24 +38,44 @@ void pageWidget::keyPressEvent(QKeyEvent* event)
 //首页按钮按下
 void pageWidget::OnFirstButtonClick()
 {
+    QList<FaultMsgData> dataSize = m_pDataModel->GetArrayData();
+    if (dataSize.size() == 0)
+    {
+        return;
+    }
     m_pDataModel->SetCurPage(0);
     UpdateStatus();
 }
 //末页按钮按下
 void pageWidget::OnLastButtonClick()
 {
+    QList<FaultMsgData> dataSize = m_pDataModel->GetArrayData();
+    if (dataSize.size() == 0)
+    {
+        return;
+    }
     m_pDataModel->SetCurPage(m_pDataModel->GetPageCount() - 1);
     UpdateStatus();
 }
 //前一页按钮按下
 void pageWidget::OnPrevButtonClick()
 {
+    QList<FaultMsgData> dataSize = m_pDataModel->GetArrayData();
+    if (dataSize.size() == 0)
+    {
+        return;
+    }
     m_pDataModel->SetCurPage(m_pDataModel->GetCurPage() - 1);
     UpdateStatus();
 }
 //后一页按钮按下
 void pageWidget::OnNextButtonClick()
 {
+    QList<FaultMsgData> dataSize = m_pDataModel->GetArrayData();
+    if (dataSize.size() == 0)
+    {
+        return;
+    }
     m_pDataModel->SetCurPage(m_pDataModel->GetCurPage() + 1);
     UpdateStatus();
 }

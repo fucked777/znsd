@@ -16,9 +16,15 @@ public:
     explicit DealFaultDialog(QWidget* parent = nullptr);
     ~DealFaultDialog();
     void initMember();
+    void parameterSet(const QStringList& data);
+public slots:
+    void comboxCurtextChange(const QString& text);
+    void textCurtextChange();
 
 private:
     Ui::DealFaultDialog* ui;
+    QString dealRemarks;
+    QString comboxText;
 };
 
 #endif  // DEALFAULTDIALOG_H

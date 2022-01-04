@@ -90,7 +90,7 @@
      <item>
       <widget class="QLabel" name="CurPageLabel">
        <property name="text">
-        <string>1</string>
+        <string/>
        </property>
       </widget>
      </item>

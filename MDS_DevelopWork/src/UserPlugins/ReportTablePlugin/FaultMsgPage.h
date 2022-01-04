@@ -24,7 +24,7 @@ public:
 
     void initView();
     void initMember();
-
+    void setArrayDataInterface();
     // signals:
     //    void init();
 private slots:
@@ -39,6 +39,7 @@ private:
     void exportStatus();
     void searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                     const QDateTime& start_time, const QDateTime& end_time);
+    void saveRemarksSlot(const QString& text, int row);
 
 private:
     QString pasraDoubleToStr(double value, int prsc = 1, char f = 'f');

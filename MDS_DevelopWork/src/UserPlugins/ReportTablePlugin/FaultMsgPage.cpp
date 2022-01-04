@@ -22,11 +22,13 @@ FaultMsgPage::FaultMsgPage(QWidget* parent)
     m_viewDetailDialog = new ViewDetailDialog();
     m_sqlFaultMsgManager = new SqlFaultMsgManager();
     connect(m_queryDialog, &QueryDialog::search, this, &FaultMsgPage::searchSlot);
+    connect(m_viewDetailDialog, &ViewDetailDialog::saveRemarksSignal, this, &FaultMsgPage::saveRemarksSlot);
     m_queryDialog->setWindowModality(Qt::ApplicationModal);
     m_dealFaultDialog->setWindowModality(Qt::ApplicationModal);
     m_viewDetailDialog->setWindowModality(Qt::ApplicationModal);  // motai
     initMember();
     initView();
+    setArrayDataInterface();
 }
 
 FaultMsgPage::~FaultMsgPage() { delete ui; }
@@ -54,6 +56,13 @@ void FaultMsgPage::searchSlot(const QStringList& taskName, const QStringList& ta
 {
 }
 
+void FaultMsgPage::saveRemarksSlot(const QString& text, int row)
+{
+    qDebug() << "text:" << text;
+    QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, 8);
+    m_pageNavigator->m_pDataModel->setData(indexValue, text, Qt::EditRole);
+}
+
 void FaultMsgPage::slotUpdataTable()
 {
     ui->tableView->reset();
@@ -64,6 +73,7 @@ void FaultMsgPage::slotUpdataTable()
         detailsBtn->setFlat(true);
         detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
         connect(detailsBtn, &QPushButton::clicked, this, &FaultMsgPage::viewDetailBtnClicked);
+        detailsBtn->setProperty("row", i);
         ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 9), detailsBtn);
     }
     for (int i = 0; i < data.size(); i++)
@@ -72,15 +82,50 @@ void FaultMsgPage::slotUpdataTable()
         dealFaultBtn->setFlat(true);
         dealFaultBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
         connect(dealFaultBtn, &QPushButton::clicked, this, &FaultMsgPage::dealFaultBtnClicked);
-        //    dealFaultBtn->setProperty("row", i);
+        dealFaultBtn->setProperty("row", i);
         ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 10), dealFaultBtn);
     }
-    int cd = 1000;
 }
 
-void FaultMsgPage::viewDetailBtnClicked() { m_viewDetailDialog->show(); }
+void FaultMsgPage::viewDetailBtnClicked()
+{
+    QStringList Parameter;
+    QPushButton* button = dynamic_cast<QPushButton*>(sender());
+    QVariant val = button->property("row");
+    int row = 0;
+    if (val.isValid())
+    {
+        row = val.toInt();
+    }
+    for (int i = 0; i < m_pageNavigator->m_pDataModel->ColumnCount() - 2; i++)
+    {
+        QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, i);
+        QVariant dataValue = m_pageNavigator->m_pDataModel->data(indexValue, Qt::DisplayRole);
+        Parameter << dataValue.toString();
+    }
+    m_viewDetailDialog->parameterSet(Parameter, row);
+    m_viewDetailDialog->show();
+}
 
-void FaultMsgPage::dealFaultBtnClicked() { m_dealFaultDialog->show(); }
+void FaultMsgPage::dealFaultBtnClicked()
+{
+    QStringList Parameter;
+    QPushButton* button = dynamic_cast<QPushButton*>(sender());
+    QVariant val = button->property("row");
+    int row = 0;
+    if (val.isValid())
+    {
+        row = val.toInt();
+    }
+    //    for (int i = 0; i < m_pageNavigator->m_pDataModel->ColumnCount() - 2; i++)
+    //    {
+    //        QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, i);
+    //        QVariant dataValue = m_pageNavigator->m_pDataModel->data(indexValue, Qt::DisplayRole);
+    //        Parameter << dataValue.toString();
+    //    }
+    //    m_dealFaultDialog->parameterSet(Parameter);
+    m_dealFaultDialog->show();
+}
 
 void FaultMsgPage::processExport(const QString& fileName)
 {
@@ -129,6 +174,14 @@ void FaultMsgPage::initMember()
     ui->tableView->setModel(m_pageNavigator->m_pDataModel);
     //更新表格
     connect(m_pageNavigator, &pageWidget::updataTableView, this, &FaultMsgPage::slotUpdataTable);
+
+    connect(ui->allBtn, &QPushButton::clicked, this, &FaultMsgPage::allBtnClicked);
+    connect(ui->queryBtn, &QPushButton::clicked, this, &FaultMsgPage::queryBtnClicked);
+    connect(ui->reportBtn, &QPushButton::clicked, this, &FaultMsgPage::exportStatus);
+}
+
+void FaultMsgPage::setArrayDataInterface()
+{
     FaultMsgData data;
     FaultMsgDataList DATA;
     for (int i = 1; i < 101; i++)
@@ -144,14 +197,11 @@ void FaultMsgPage::initMember()
         data.remarks = "XXX";
         DATA.append(data);
     }
-    m_sqlFaultMsgManager->insert(DATA);
+    m_sqlFaultMsgManager->insert(DATA);  //插入数据库，方便查询
+    //初始化
     m_pageNavigator->m_pDataModel->SetArrayData(DATA);
     m_pageNavigator->m_pDataModel->SetPageSize(20);
     m_pageNavigator->UpdateStatus();
-
-    connect(ui->allBtn, &QPushButton::clicked, this, &FaultMsgPage::allBtnClicked);
-    connect(ui->queryBtn, &QPushButton::clicked, this, &FaultMsgPage::queryBtnClicked);
-    connect(ui->reportBtn, &QPushButton::clicked, this, &FaultMsgPage::exportStatus);
 }
 void FaultMsgPage::initView()
 {

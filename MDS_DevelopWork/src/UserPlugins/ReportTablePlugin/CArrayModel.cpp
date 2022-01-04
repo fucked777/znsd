@@ -160,6 +160,36 @@ Qt::ItemFlags CArrayModel::flags(const QModelIndex& index) const
     return flag;
 }
 
+bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int role)
+{
+    if (index.isValid() && role == Qt::EditRole)
+    {
+        QVariant oldData = data(index, Qt::EditRole);
+        QString strold = oldData.toString();
+        QString strnew = value.toString();
+        //相同则不编辑
+        if (strnew.compare(strold) == 0)
+        {
+            return true;
+        }
+
+        //计算实际数据的下标
+        int dataindex = index.row() + m_iCurPage * m_iPageSize;
+
+        //改变总数据集
+        auto it = m_mpData.at(dataindex);
+        it.remarks = strnew;
+        m_mpData.replace(dataindex, it);
+
+        //改变当页数据集
+        auto itcur = m_mpPageData.at(dataindex);
+        itcur.remarks = strnew;
+        m_mpPageData.replace(dataindex, itcur);
+        return true;
+    }
+    return false;
+}
+
 QVariant CArrayModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     switch (role)
