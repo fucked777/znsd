@@ -29,7 +29,7 @@ QList<FaultMsgData> CArrayModel::GetPageArrayData() const { return m_mpPageData;
 //总行数
 int CArrayModel::RowCount() const { return m_mpData.size(); }
 //总行数
-int CArrayModel::ColumnCount() const { return mHeaders.size() - 1; }
+int CArrayModel::ColumnCount() const { return mHeaders.size(); }
 
 //设置页数据
 void CArrayModel::SetCurPage(int iPage)
