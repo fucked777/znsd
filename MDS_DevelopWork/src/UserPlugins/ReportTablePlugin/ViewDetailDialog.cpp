@@ -18,12 +18,13 @@ ViewDetailDialog::~ViewDetailDialog() { delete ui; }
 void ViewDetailDialog::parameterSet(const QStringList& data, int row)
 {
     rowIndex = row;
+    dealRemarks = data.at(8);
     ui->systemLabel->setText(data.at(4));
     ui->taskNameLabel->setText(data.at(3));
     ui->taskNumLabel->setText(data.at(2));
     ui->faultLabel->setText(data.at(0) + "(" + data.at(5) + ")");
     ui->dealRemarktextEdit->setText(data.at(8));
-    dealRemarks = data.at(8);
+
     ui->faultMsgtextEdit->setText(data.at(6));
 
     QDateTime startTime = dateTimeFromStr(data.at(1));
@@ -37,5 +38,7 @@ void ViewDetailDialog::textCurtextChange()
 }
 //保存备注
 void ViewDetailDialog::on_pushButton_clicked() { emit saveRemarksSignal(dealRemarks, rowIndex); }
+
 QDateTime ViewDetailDialog::dateTimeFromStr(const QString& str) { return QDateTime::fromString(str, "yyyy-MM-dd HH:mm:ss"); }
+
 QString ViewDetailDialog::dateTimeToStr(const QDateTime& t) { return t.toString("yyyy-MM-dd HH:mm:ss"); }

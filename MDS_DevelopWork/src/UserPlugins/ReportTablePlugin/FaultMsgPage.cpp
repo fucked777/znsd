@@ -10,6 +10,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#define DISPLAY_TIME_FORMAT "yyyy-MM-dd HH:mm:ss"
 const int MAX_INSERT_NUM = 1000;
 
 FaultMsgPage::FaultMsgPage(QWidget* parent)
@@ -184,10 +185,11 @@ void FaultMsgPage::setArrayDataInterface()
 {
     FaultMsgData data;
     FaultMsgDataList DATA;
+    QDateTime time = QDateTime::currentDateTime();
     for (int i = 1; i < 101; i++)
     {
         data.faultLevel = QString::number(i);
-        data.dateTime = "2021-10-12 00:13:14";
+        data.dateTime = time.toString(DISPLAY_TIME_FORMAT);
         data.taskNum = "xxx";
         data.faultCode = "NRSS15621";
         data.systemName = "成像仪图像定位与配准";
@@ -197,7 +199,7 @@ void FaultMsgPage::setArrayDataInterface()
         data.remarks = "XXX";
         DATA.append(data);
     }
-    m_sqlFaultMsgManager->insert(DATA);  //插入数据库，方便查询
+    //    m_sqlFaultMsgManager->insert(DATA);  //插入数据库，方便查询
     //初始化
     m_pageNavigator->m_pDataModel->SetArrayData(DATA);
     m_pageNavigator->m_pDataModel->SetPageSize(20);
