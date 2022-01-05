@@ -38,8 +38,7 @@ void pageWidget::keyPressEvent(QKeyEvent* event)
 //首页按钮按下
 void pageWidget::OnFirstButtonClick()
 {
-    QList<FaultMsgData> dataSize = m_pDataModel->GetArrayData();
-    if (dataSize.size() == 0)
+    if (m_pDataModel->GetArrayData().size() <= 0)
     {
         return;
     }
@@ -49,8 +48,7 @@ void pageWidget::OnFirstButtonClick()
 //末页按钮按下
 void pageWidget::OnLastButtonClick()
 {
-    QList<FaultMsgData> dataSize = m_pDataModel->GetArrayData();
-    if (dataSize.size() == 0)
+    if (m_pDataModel->GetArrayData().size() <= 0)
     {
         return;
     }
@@ -60,8 +58,7 @@ void pageWidget::OnLastButtonClick()
 //前一页按钮按下
 void pageWidget::OnPrevButtonClick()
 {
-    QList<FaultMsgData> dataSize = m_pDataModel->GetArrayData();
-    if (dataSize.size() == 0)
+    if (m_pDataModel->GetArrayData().size() <= 0)
     {
         return;
     }
@@ -71,8 +68,7 @@ void pageWidget::OnPrevButtonClick()
 //后一页按钮按下
 void pageWidget::OnNextButtonClick()
 {
-    QList<FaultMsgData> dataSize = m_pDataModel->GetArrayData();
-    if (dataSize.size() == 0)
+    if (m_pDataModel->GetArrayData().size() <= 0)
     {
         return;
     }

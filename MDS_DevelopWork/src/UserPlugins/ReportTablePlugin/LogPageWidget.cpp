@@ -38,24 +38,40 @@ void LogPageWidget::keyPressEvent(QKeyEvent* event)
 //首页按钮按下
 void LogPageWidget::OnFirstButtonClick()
 {
+    if (m_pDataModel->GetArrayData().size() <= 0)
+    {
+        return;
+    }
     m_pDataModel->SetCurPage(0);
     UpdateStatus();
 }
 //末页按钮按下
 void LogPageWidget::OnLastButtonClick()
 {
+    if (m_pDataModel->GetArrayData().size() <= 0)
+    {
+        return;
+    }
     m_pDataModel->SetCurPage(m_pDataModel->GetPageCount() - 1);
     UpdateStatus();
 }
 //前一页按钮按下
 void LogPageWidget::OnPrevButtonClick()
 {
+    if (m_pDataModel->GetArrayData().size() <= 0)
+    {
+        return;
+    }
     m_pDataModel->SetCurPage(m_pDataModel->GetCurPage() - 1);
     UpdateStatus();
 }
 //后一页按钮按下
 void LogPageWidget::OnNextButtonClick()
 {
+    if (m_pDataModel->GetArrayData().size() <= 0)
+    {
+        return;
+    }
     m_pDataModel->SetCurPage(m_pDataModel->GetCurPage() + 1);
     UpdateStatus();
 }

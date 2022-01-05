@@ -22,6 +22,7 @@ public:
 
     void initView();
     void initMember();
+    void setArrayDataInterface();
 
 private:
     void processExport(const QString& fileName);

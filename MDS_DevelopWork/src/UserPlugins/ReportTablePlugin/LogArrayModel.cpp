@@ -102,19 +102,17 @@ QVariant LogArrayModel::data(const QModelIndex& index, int role) const
         {
             return QVariant();
         }
-        else
+
+        if ((row + m_iCurPage * m_iPageSize) < m_mpData.size())  //确保不越界
         {
-            if ((row + m_iCurPage * m_iPageSize) < m_mpData.size())  //确保不越界
+            LogMsgData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
+            switch (col)
             {
-                LogMsgData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
-                switch (col)
-                {
-                case dateTime: return data.dateTime;
-                case systemName: return data.systemName;
-                case taskNum: return data.taskNum;
-                case logMsg: return data.logMsg;
-                case logProperty: return data.logProperty;
-                }
+            case dateTime: return data.dateTime;
+            case systemName: return data.systemName;
+            case taskNum: return data.taskNum;
+            case logMsg: return data.logMsg;
+            case logProperty: return data.logProperty;
             }
         }
     }

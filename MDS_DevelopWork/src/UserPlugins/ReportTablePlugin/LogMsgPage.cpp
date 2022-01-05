@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#define DISPLAY_TIME_FORMAT "yyyy-MM-dd HH:mm:ss"
 const int MAX_INSERT_NUM = 1000;
 
 LogMsgPage::LogMsgPage(QWidget* parent)
@@ -23,6 +24,7 @@ LogMsgPage::LogMsgPage(QWidget* parent)
 
     initMember();
     initView();
+    setArrayDataInterface();
 }
 
 LogMsgPage::~LogMsgPage() { delete ui; }
@@ -95,14 +97,25 @@ void LogMsgPage::initMember()
     ui->tableView->setModel(m_pageNavigator->m_pDataModel);
     //更新表格
     connect(m_pageNavigator, &LogPageWidget::updataTableView, this, &LogMsgPage::slotUpdataTable);
+
+    connect(ui->allBtn, &QPushButton::clicked, this, &LogMsgPage::allBtnClicked);
+    connect(ui->queryBtn, &QPushButton::clicked, this, &LogMsgPage::queryBtnClicked);
+    connect(ui->reportBtn, &QPushButton::clicked, this, &LogMsgPage::exportStatus);
+}
+
+void LogMsgPage::setArrayDataInterface()
+{
     LogMsgData data;
     LogMsgDataList DATA;
+
+    QDateTime time = QDateTime::currentDateTime();
+
     for (int i = 1; i < 101; i++)
     {
-        data.dateTime = "00:13:14";
+        data.dateTime = time.toString(DISPLAY_TIME_FORMAT);
         data.systemName = "探测仪图像定位";
-        data.taskNum = "GTNXXXXXXXXX";
-        data.logMsg = "GTNXXXXX";
+        data.taskNum = "GTNXXXXXX" + QString::number(i);
+        data.logMsg = "GTNXXmsg";
         data.logProperty = "信息";
         DATA.append(data);
     }
@@ -110,9 +123,6 @@ void LogMsgPage::initMember()
     m_pageNavigator->m_pDataModel->SetArrayData(DATA);
     m_pageNavigator->m_pDataModel->SetPageSize(20);
     m_pageNavigator->UpdateStatus();
-    connect(ui->allBtn, &QPushButton::clicked, this, &LogMsgPage::allBtnClicked);
-    connect(ui->queryBtn, &QPushButton::clicked, this, &LogMsgPage::queryBtnClicked);
-    connect(ui->reportBtn, &QPushButton::clicked, this, &LogMsgPage::exportStatus);
 }
 void LogMsgPage::initView()
 {
