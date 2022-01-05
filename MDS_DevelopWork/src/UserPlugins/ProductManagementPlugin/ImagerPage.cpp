@@ -21,6 +21,7 @@ ImagerPage::ImagerPage(QWidget* parent)
     connect(m_queryDialog_CXY, &QueryDialog_CXY::search, this, &ImagerPage::searchSlot);
     initMember();
     initView();
+    setArrayDataInterface();
 }
 
 ImagerPage::~ImagerPage() { delete ui; }
@@ -81,41 +82,42 @@ void ImagerPage::initMember()
     ui->tableView->setModel(m_pageNavigator->m_pDataModel);
     //更新表格
     connect(m_pageNavigator, &pageWidget::updataTableView, this, &ImagerPage::slotUpdataTable);
+    connect(ui->allBtn, &QPushButton::clicked, this, &ImagerPage::allBtnClicked);
+    connect(ui->queryBtn, &QPushButton::clicked, this, &ImagerPage::queryBtnClicked);
+    connect(ui->reportBtn, &QPushButton::clicked, this, &ImagerPage::exportStatus);
+}
+
+void ImagerPage::setArrayDataInterface()
+{
     ImagerData data;
     ImagerDataList DATA;
     for (int i = 1; i < 101; i++)
     {
         data.taskNum = QString::number(i);
-        data.outputTime = "00:13:14";
-        data.fileName = "css";
-        data.LocalFilePath = "c:xiaoxiao";
-        data.outputFilePath = "c:xiaoxiao";
-        data.sendDirection = "NRS->CVS";
-        data.sendType = "FTP";
-        data.accuracy = "XXXXX";
-        data.outputType = "NRST100001";
-        data.fileSize = QString::number(i) + "MB";
+        if (!data.taskNum.isEmpty())
+        {
+            break;
+        }
+        else
+        {
+            data.taskNum = QString::number(i);
+            data.outputTime = "00:13:14";
+            data.fileName = "css";
+            data.LocalFilePath = "c:xiaoxiao";
+            data.outputFilePath = "c:xiaoxiao";
+            data.sendDirection = "NRS->CVS";
+            data.sendType = "FTP";
+            data.accuracy = "XXXXX";
+            data.outputType = "NRST100001";
+            data.fileSize = QString::number(i) + "MB";
+        }
+
         DATA.append(data);
     }
-    m_sqlImagerManager->insert(DATA);
+    //    m_sqlImagerManager->insert(DATA);
     m_pageNavigator->m_pDataModel->SetArrayData(DATA);
     m_pageNavigator->m_pDataModel->SetPageSize(20);
     m_pageNavigator->UpdateStatus();
-
-    //    int index = m_pageNavigator->m_pDataModel->GetPageSize();
-    //    for (int i = 0; i < index; i++)
-    //    {
-    //        QPushButton* detailsBtn = new QPushButton("查看详情", this);
-    //        detailsBtn->setFlat(true);
-    //        detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:12px;border-style:none;text-align: left;");
-    //        //    connect(detailsBtn, &QPushButton::clicked, this, &FaultMsgPage::viewDetailItemClicked);
-    //        //    detailsBtn->setProperty("row", i);
-    //        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 9), detailsBtn);
-    //    }
-
-    connect(ui->allBtn, &QPushButton::clicked, this, &ImagerPage::allBtnClicked);
-    connect(ui->queryBtn, &QPushButton::clicked, this, &ImagerPage::queryBtnClicked);
-    connect(ui->reportBtn, &QPushButton::clicked, this, &ImagerPage::exportStatus);
 }
 
 void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
