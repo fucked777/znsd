@@ -27,7 +27,9 @@ void DealFaultDialog::textCurtextChange() { dealRemarks = ui->textEdit->toPlainT
 //确定按钮
 void DealFaultDialog::on_pushButton_clicked()
 {
-    emit dealRemarksSignal(dealRemarks, comboxText, rowIndex);
+    QStringList text;
+    text << comboxText << dealRemarks;
+    emit dealRemarksSignal(text, rowIndex);
     this->close();
 }
 //取消

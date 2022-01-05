@@ -21,7 +21,7 @@ public slots:
     void comboxCurtextChange(const QString& text);
     void textCurtextChange();
 signals:
-    void dealRemarksSignal(const QString& textEdit, const QString& combox, int row);
+    void dealRemarksSignal(const QStringList& text, int row);
 
 private slots:
     void on_pushButton_clicked();

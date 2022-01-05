@@ -93,7 +93,7 @@ void ImagerPage::setArrayDataInterface()
     ImagerDataList DATA;
     for (int i = 1; i < 101; i++)
     {
-        data.taskNum = QString::number(i);
+        data.taskNum = QString::number(1);
         if (!data.taskNum.isEmpty())
         {
             break;

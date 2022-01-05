@@ -66,10 +66,10 @@ void FaultMsgPage::saveRemarksSlot(const QString& text, int row)
     m_pageNavigator->m_pDataModel->setData(indexValue, text, Qt::EditRole);
 }
 
-void FaultMsgPage::dealRemarksSlot(const QString& textEdit, const QString& combox, int row)
+void FaultMsgPage::dealRemarksSlot(const QStringList& text, int row)
 {
     QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, 5);
-    m_pageNavigator->m_pDataModel->setData(indexValue, combox, Qt::EditRole);
+    m_pageNavigator->m_pDataModel->setData(indexValue, text, Qt::EditRole);
 }
 
 void FaultMsgPage::slotUpdataTable()

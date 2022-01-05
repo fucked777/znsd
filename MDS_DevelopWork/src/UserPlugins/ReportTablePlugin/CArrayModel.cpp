@@ -166,42 +166,43 @@ bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int r
     {
         QVariant oldData = data(index, Qt::EditRole);
         QString strold = oldData.toString();
-        QString strnew = value.toString();
+        QVariant strnew = value;
         //相同则不编辑
-        if (strnew.compare(strold) == 0)
-        {
-            return true;
-        }
+        //        if (strnew.compare(strold) == 0)
+        //        {
+        //            return true;
+        //        }
 
         //计算实际数据的下标
         int dataindex = index.row() + m_iCurPage * m_iPageSize;
+        int pageindex = index.row();
 
         //改变总数据集
         if (index.column() == 8)  //备注
         {
             auto it = m_mpData.at(dataindex);
-            it.remarks = strnew;
+            it.remarks = strnew.toString();
             //        it.dealStatus = strnew;
             m_mpData.replace(dataindex, it);
 
             //改变当页数据集
-            auto itcur = m_mpPageData.at(dataindex);
-            itcur.remarks = strnew;
+            auto itcur = m_mpPageData.at(pageindex);
+            itcur.remarks = strnew.toString();
             //        itcur.dealStatus = strnew;
-            m_mpPageData.replace(dataindex, itcur);
+            m_mpPageData.replace(pageindex, itcur);
         }
         else if (index.column() == 5)  //处理状态
         {
             auto it = m_mpData.at(dataindex);
-            //            it.remarks = strnew;
-            it.dealStatus = strnew;
+            it.dealStatus = strnew.toStringList().at(0);
+            it.remarks = strnew.toStringList().at(1);
             m_mpData.replace(dataindex, it);
 
             //改变当页数据集
-            auto itcur = m_mpPageData.at(dataindex);
-            //            itcur.remarks = strnew;
-            itcur.dealStatus = strnew;
-            m_mpPageData.replace(dataindex, itcur);
+            auto itcur = m_mpPageData.at(pageindex);
+            itcur.dealStatus = strnew.toStringList().at(0);
+            itcur.remarks = strnew.toStringList().at(1);
+            m_mpPageData.replace(pageindex, itcur);
         }
         return true;
     }

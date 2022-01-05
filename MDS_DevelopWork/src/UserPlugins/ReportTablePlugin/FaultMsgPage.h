@@ -32,7 +32,7 @@ private slots:
     void viewDetailBtnClicked();
     void dealFaultBtnClicked();
     void saveRemarksSlot(const QString& text, int row);
-    void dealRemarksSlot(const QString& textEdit, const QString& combox, int row);
+    void dealRemarksSlot(const QStringList& text, int row);
 
 private:
     void processExport(const QString& fileName);
