@@ -30,6 +30,28 @@ void LogArrayModel::SetCurPage(int iPage)
     if (iPage < GetPageCount())
     {
         m_iCurPage = iPage;
+        //查询起始索引
+        int iStart = m_iPageSize * m_iCurPage;
+        //查询结束索引
+        int iend = 0;
+        //如果本页可以填满
+        if (iStart + m_iPageSize < RowCount())
+        {
+            iend = iStart + m_iPageSize - 1;
+        }
+        //如果本页不可以填满
+        else
+        {
+            iend = RowCount() - 1;
+        }
+
+        //填充当前页数据
+        m_mpPageData.clear();
+        for (int i = iStart; i <= iend; ++i)
+        {
+            auto it = m_mpData.at(i);
+            m_mpPageData.push_back(it);
+        }
     }
     return;
 }
@@ -64,7 +86,7 @@ void LogArrayModel::SetPageSize(int iPageSize)
 int LogArrayModel::GetPageSize() { return m_iPageSize; }
 
 //行数
-int LogArrayModel::rowCount(const QModelIndex& parent) const { return m_iPageSize; }
+int LogArrayModel::rowCount(const QModelIndex& parent) const { return m_mpPageData.size(); }
 
 //列数
 int LogArrayModel::columnCount(const QModelIndex& parent) const { return parent.isValid() ? 0 : mHeaders.size(); }

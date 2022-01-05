@@ -37,6 +37,28 @@ void LoadFileArrayModel::SetCurPage(int iPage)
     if (iPage < GetPageCount())
     {
         m_iCurPage = iPage;
+        //查询起始索引
+        int iStart = m_iPageSize * m_iCurPage;
+        //查询结束索引
+        int iend = 0;
+        //如果本页可以填满
+        if (iStart + m_iPageSize < RowCount())
+        {
+            iend = iStart + m_iPageSize - 1;
+        }
+        //如果本页不可以填满
+        else
+        {
+            iend = RowCount() - 1;
+        }
+
+        //填充当前页数据
+        m_mpPageData.clear();
+        for (int i = iStart; i <= iend; ++i)
+        {
+            auto it = m_mpData.at(i);
+            m_mpPageData.push_back(it);
+        }
     }
     return;
 }
@@ -71,7 +93,7 @@ void LoadFileArrayModel::SetPageSize(int iPageSize)
 int LoadFileArrayModel::GetPageSize() { return m_iPageSize; }
 
 //行数
-int LoadFileArrayModel::rowCount(const QModelIndex& parent) const { return m_iPageSize; }
+int LoadFileArrayModel::rowCount(const QModelIndex& parent) const { return m_mpPageData.size(); }
 
 //列数
 int LoadFileArrayModel::columnCount(const QModelIndex& parent) const { return parent.isValid() ? 0 : mHeaders.size(); }

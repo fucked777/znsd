@@ -61,10 +61,11 @@ public:
     void refrushModel();
 
 private:
-    QList<LogMsgData> m_mpData;  //总数据
-    int m_iPageSize;             //每页数据条数
-    int m_iCurPage;              //当前页
-    QStringList mHeaders;        //表头
-    QThread status_thread_;      //线程，后续可能使用
+    QList<LogMsgData> m_mpData;      //总数据
+    QList<LogMsgData> m_mpPageData;  //每页数据
+    int m_iPageSize;                 //每页数据条数
+    int m_iCurPage;                  //当前页
+    QStringList mHeaders;            //表头
+    QThread status_thread_;          //线程，后续可能使用
 };
 #endif  // LogArrayModel_H
