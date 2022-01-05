@@ -94,24 +94,16 @@ void ImagerPage::setArrayDataInterface()
     for (int i = 1; i < 101; i++)
     {
         data.taskNum = QString::number(1);
-        if (!data.taskNum.isEmpty())
-        {
-            break;
-        }
-        else
-        {
-            data.taskNum = QString::number(i);
-            data.outputTime = "00:13:14";
-            data.fileName = "css";
-            data.LocalFilePath = "c:xiaoxiao";
-            data.outputFilePath = "c:xiaoxiao";
-            data.sendDirection = "NRS->CVS";
-            data.sendType = "FTP";
-            data.accuracy = "XXXXX";
-            data.outputType = "NRST100001";
-            data.fileSize = QString::number(i) + "MB";
-        }
-
+        data.taskNum = QString::number(i);
+        data.outputTime = "00:13:14";
+        data.fileName = "css";
+        data.LocalFilePath = "c:xiaoxiao";
+        data.outputFilePath = "c:xiaoxiao";
+        data.sendDirection = "NRS->CVS";
+        data.sendType = "FTP";
+        data.accuracy = "XXXXX";
+        data.outputType = "NRST100001";
+        data.fileSize = QString::number(i) + "MB";
         DATA.append(data);
     }
     //    m_sqlImagerManager->insert(DATA);

@@ -66,15 +66,16 @@ public:
     int columnCount(const QModelIndex& parent) const;
     QVariant data(const QModelIndex& index, int role) const;
     Qt::ItemFlags flags(const QModelIndex& index) const;
-    //    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
+    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     void refrushModel();
 
 private:
-    QList<ImagerData> m_mpData;  //总数据
-    int m_iPageSize;             //每页数据条数
-    int m_iCurPage;              //当前页
-    QStringList mHeaders;        //表头
-    QThread status_thread_;      //线程，后续可能使用
+    QList<ImagerData> m_mpData;      //总数据
+    QList<ImagerData> m_mpPageData;  //每页数据
+    int m_iPageSize;                 //每页数据条数
+    int m_iCurPage;                  //当前页
+    QStringList mHeaders;            //表头
+    QThread status_thread_;          //线程，后续可能使用
 };
 #endif  // CARRAYMODEL_H
