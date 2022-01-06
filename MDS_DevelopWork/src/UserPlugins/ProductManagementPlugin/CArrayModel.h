@@ -76,6 +76,7 @@ public:
     bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex());
 
 private:
+    //    QMap<int, QList<ImagerData>> m_mpData;
     QList<ImagerData> m_mpData;      //总数据
     QList<ImagerData> m_mpPageData;  //每页数据
     int m_iPageSize;                 //每页数据条数

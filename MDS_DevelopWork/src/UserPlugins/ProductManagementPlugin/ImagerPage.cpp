@@ -89,13 +89,30 @@ void ImagerPage::initMember()
     connect(ui->reportBtn, &QPushButton::clicked, this, &ImagerPage::exportStatus);
 }
 
+void ImagerPage::slotinitData(const QByteArray& dataArray)
+{
+    QByteArray tempArray = dataArray;
+
+    ImagerDataList ack;
+    m_pageNavigator->m_pDataModel->SetArrayData(ack);
+    m_pageNavigator->m_pDataModel->SetPageSize(20);
+    m_pageNavigator->UpdateStatus();
+}
+
 void ImagerPage::setArrayDataInterface()
 {
     ImagerData data;
-    ImagerDataList DATA;
+
+    //    for (int i = 0; i < taskNum; i++)
+    //    {
+
+    //    }
+    QList<ImagerData> DATA1;
+    QList<ImagerData> DATA2;
+    QList<ImagerData> DATA3;
     for (int i = 0; i < 5; i++)
     {
-        //        data.taskNum = "序号:" + QString::number(i);
+        data.taskNum = "序号:" + QString::number(i);
         data.outputTime = "00:13:14";
         data.fileName = "css";
         data.LocalFilePath = "c:xiaoxiao";
@@ -105,11 +122,13 @@ void ImagerPage::setArrayDataInterface()
         data.accuracy = "XXXXX";
         data.outputType = "NRST100001";
         data.fileSize = QString::number(i) + "MB";
-        DATA.append(data);
+        DATA1.append(data);
+        DATA2.append(data);
+        DATA3.append(data);
     }
+
     //    m_sqlImagerManager->insert(DATA);
-    //    ui->tableView->setRowHidden(2, true);
-    m_pageNavigator->m_pDataModel->SetArrayData(DATA);
+    m_pageNavigator->m_pDataModel->SetArrayData(DATA1);
     m_pageNavigator->m_pDataModel->SetPageSize(20);
     m_pageNavigator->UpdateStatus();
 }
@@ -143,15 +162,34 @@ void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& task
 void ImagerPage::slotUpdataTable()
 {
     ui->tableView->reset();
+
+    QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(1, 5);
+    m_pageNavigator->m_pDataModel->setData(indexValue, "text", Qt::EditRole);
+
     QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
     //    data.at()
+    //    QModelIndex a;
+    //    QList<QStandardItem*> itemList;
+    //    itemList << new QStandardItem << new QStandardItem << new QStandardItem << new QStandardItem << new QStandardItem << new QStandardItem
+    //             << new QStandardItem << new QStandardItem << new QStandardItem << new QStandardItem;
+    //    m_pageNavigator->m_pDataModel->insertRow(0, QModelIndex a);
     for (int i = 0; i < data.size(); i++)
     {
-        QPushButton* detailsBtn = new QPushButton(this);
-        detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
-        connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
-        detailsBtn->setProperty("row", i);
-        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
+        if (i == 0)
+        {
+            QPushButton* detailsBtn = new QPushButton(this);
+            detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
+            connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
+            //            detailsBtn->setProperty("row", i);
+            ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(0, 0), detailsBtn);
+            continue;
+        }
+        else
+        {
+            QPushButton* detailsBtn = new QPushButton(QString::number(i), this);
+            detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
+            ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
+        }
     }
 }
 void ImagerPage::initView()

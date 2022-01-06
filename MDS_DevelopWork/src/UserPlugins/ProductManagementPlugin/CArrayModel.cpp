@@ -138,7 +138,7 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
             ImagerData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
             switch (col)
             {
-                //            case taskNum: return data.taskNum;
+            case taskNum: return data.taskNum;
             case outputTime: return data.outputTime;
             case fileName: return data.fileName;
             case LocalFilePath: return data.LocalFilePath;

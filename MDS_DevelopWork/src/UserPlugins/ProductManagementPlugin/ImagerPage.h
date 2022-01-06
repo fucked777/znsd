@@ -37,6 +37,8 @@ private Q_SLOTS:
     void expand(const QModelIndex& index);
     void collapse(const QModelIndex& index);
     void deal_expand_collapse();
+public slots:
+    void slotinitData(const QByteArray&);
 
 public:
     void slotUpdataTable();
@@ -49,6 +51,7 @@ private:
     QueryDialog_CXY* m_queryDialog_CXY;
     pageWidget* m_pageNavigator;
     SqlImagerManager* m_sqlImagerManager;
+    int taskNum = 0;  //任务编号个数，以此来创建Qlist个数
     bool status = true;
 };
 
