@@ -49,6 +49,7 @@ private:
     QueryDialog_CXY* m_queryDialog_CXY;
     pageWidget* m_pageNavigator;
     SqlImagerManager* m_sqlImagerManager;
+    bool status = true;
 };
 
 #endif  // ImagerPage_H

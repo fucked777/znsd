@@ -93,25 +93,9 @@ void ImagerPage::setArrayDataInterface()
 {
     ImagerData data;
     ImagerDataList DATA;
-    for (int i = 1; i < 11; i++)
+    for (int i = 0; i < 5; i++)
     {
-        if (i == 1)
-        {
-            data.taskNum = QString::number(i);
-            data.outputTime = "";
-            data.fileName = "";
-            data.LocalFilePath = "";
-            data.outputFilePath = "";
-            data.sendDirection = "";
-            data.sendType = "";
-            data.accuracy = "";
-            data.outputType = "";
-            data.fileSize = "";
-            DATA.append(data);
-            continue;
-        }
-
-        data.taskNum = "序号:" + QString::number(i);
+        //        data.taskNum = "序号:" + QString::number(i);
         data.outputTime = "00:13:14";
         data.fileName = "css";
         data.LocalFilePath = "c:xiaoxiao";
@@ -137,7 +121,17 @@ void ImagerPage::expand(const QModelIndex& index) { m_pageNavigator->m_pDataMode
 
 void ImagerPage::collapse(const QModelIndex& index) { m_pageNavigator->m_pDataModel->setData(index, false, Qt::DecorationRole); }
 
-void ImagerPage::deal_expand_collapse() {}
+void ImagerPage::deal_expand_collapse()
+{
+    //隐藏
+
+    QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
+    for (int i = 1; i < 5; i++)
+    {
+        ui->tableView->setRowHidden(i, status);
+    }
+    status = !status;
+}
 
 void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                             const QDateTime& start_time, const QDateTime& end_time)
@@ -150,11 +144,12 @@ void ImagerPage::slotUpdataTable()
 {
     ui->tableView->reset();
     QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
-    for (int i = 0; i < 1; i++)
+    //    data.at()
+    for (int i = 0; i < data.size(); i++)
     {
-        QToolButton* detailsBtn = new QToolButton(this);
+        QPushButton* detailsBtn = new QPushButton(this);
         detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
-        connect(detailsBtn, &QToolButton::clicked, this, &ImagerPage::deal_expand_collapse);
+        connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
         detailsBtn->setProperty("row", i);
         ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
     }

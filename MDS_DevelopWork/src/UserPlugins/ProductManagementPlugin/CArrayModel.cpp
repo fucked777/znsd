@@ -6,17 +6,17 @@
 CArrayModel::CArrayModel(QObject* parent)
     : QAbstractTableModel(parent)
 {
-    mHeaders /*<< "序号"*/
-        << "任务编号"
-        << "输出时间"
-        << "文件名称"
-        << "本地文件路径"
-        << "输出文件路径"
-        << "传输方向"
-        << "传输方式"
-        << "精度"
-        << "输出类型"
-        << "文件大小";
+    mHeaders << "任务编号"
+             //             << "序号"
+             << "输出时间"
+             << "文件名称"
+             << "本地文件路径"
+             << "输出文件路径"
+             << "传输方向"
+             << "传输方式"
+             << "精度"
+             << "输出类型"
+             << "文件大小";
 }
 
 void CArrayModel::SetArrayData(const QList<ImagerData>& Datas) { m_mpData = Datas; }
@@ -138,7 +138,7 @@ QVariant CArrayModel::data(const QModelIndex& index, int role) const
             ImagerData data = m_mpData.at(row + m_iCurPage * m_iPageSize);
             switch (col)
             {
-            case taskNum: return data.taskNum;
+                //            case taskNum: return data.taskNum;
             case outputTime: return data.outputTime;
             case fileName: return data.fileName;
             case LocalFilePath: return data.LocalFilePath;
