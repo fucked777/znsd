@@ -45,6 +45,10 @@ public:
 
     //获得总数据
     QList<ImagerData> GetArrayData() const;
+
+    //获得每页数据
+    QList<ImagerData> GetPageArrayData() const;
+
     void setImagerData(const QList<ImagerData>& Datas);
     //设置页数据
     void SetCurPage(int iPage);
@@ -69,6 +73,7 @@ public:
     bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     void refrushModel();
+    bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex());
 
 private:
     QList<ImagerData> m_mpData;      //总数据

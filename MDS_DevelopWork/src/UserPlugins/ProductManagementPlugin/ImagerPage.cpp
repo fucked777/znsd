@@ -8,6 +8,8 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QToolButton>
+#include <QTreeWidgetItem>
 const int MAX_INSERT_NUM = 1000;
 
 ImagerPage::ImagerPage(QWidget* parent)
@@ -91,10 +93,25 @@ void ImagerPage::setArrayDataInterface()
 {
     ImagerData data;
     ImagerDataList DATA;
-    for (int i = 1; i < 101; i++)
+    for (int i = 1; i < 11; i++)
     {
-        data.taskNum = QString::number(1);
-        data.taskNum = QString::number(i);
+        if (i == 1)
+        {
+            data.taskNum = QString::number(i);
+            data.outputTime = "";
+            data.fileName = "";
+            data.LocalFilePath = "";
+            data.outputFilePath = "";
+            data.sendDirection = "";
+            data.sendType = "";
+            data.accuracy = "";
+            data.outputType = "";
+            data.fileSize = "";
+            DATA.append(data);
+            continue;
+        }
+
+        data.taskNum = "序号:" + QString::number(i);
         data.outputTime = "00:13:14";
         data.fileName = "css";
         data.LocalFilePath = "c:xiaoxiao";
@@ -107,10 +124,20 @@ void ImagerPage::setArrayDataInterface()
         DATA.append(data);
     }
     //    m_sqlImagerManager->insert(DATA);
+    //    ui->tableView->setRowHidden(2, true);
     m_pageNavigator->m_pDataModel->SetArrayData(DATA);
     m_pageNavigator->m_pDataModel->SetPageSize(20);
     m_pageNavigator->UpdateStatus();
 }
+
+// connect(this,SIGNAL(expanded(const QModelIndex &)),this,SLOT(expand(const QModelIndex &)));
+// connect(this,SIGNAL(collapsed(const QModelIndex &)),this,SLOT(collapse(const QModelIndex &)));
+
+void ImagerPage::expand(const QModelIndex& index) { m_pageNavigator->m_pDataModel->setData(index, true, Qt::DecorationRole); }
+
+void ImagerPage::collapse(const QModelIndex& index) { m_pageNavigator->m_pDataModel->setData(index, false, Qt::DecorationRole); }
+
+void ImagerPage::deal_expand_collapse() {}
 
 void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                             const QDateTime& start_time, const QDateTime& end_time)
@@ -119,7 +146,19 @@ void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& task
     //    m_pageNavigator->m_pDataModel->reset(taskName, taskNum, fileName, outputType, start_time, end_time, 1, pageSize);
 }
 
-void ImagerPage::slotUpdataTable() { ui->tableView->reset(); }
+void ImagerPage::slotUpdataTable()
+{
+    ui->tableView->reset();
+    QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
+    for (int i = 0; i < 1; i++)
+    {
+        QToolButton* detailsBtn = new QToolButton(this);
+        detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
+        connect(detailsBtn, &QToolButton::clicked, this, &ImagerPage::deal_expand_collapse);
+        detailsBtn->setProperty("row", i);
+        ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
+    }
+}
 void ImagerPage::initView()
 {
     ui->tableView->setShowGrid(false);
@@ -131,7 +170,7 @@ void ImagerPage::initView()
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignVCenter);
     ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);  //设置选中模式为选中行
+    //    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);  //设置选中模式为选中行
 }
 
 QString ImagerPage::pasraDoubleToStr(double value, int prsc, char f) { return QString::number(value, f, prsc); }

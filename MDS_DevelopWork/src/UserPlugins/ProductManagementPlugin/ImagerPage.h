@@ -34,6 +34,10 @@ private Q_SLOTS:
     void searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
                     const QDateTime& start_time, const QDateTime& end_time);
 
+    void expand(const QModelIndex& index);
+    void collapse(const QModelIndex& index);
+    void deal_expand_collapse();
+
 public:
     void slotUpdataTable();
 

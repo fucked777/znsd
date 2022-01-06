@@ -23,6 +23,8 @@ void CArrayModel::SetArrayData(const QList<ImagerData>& Datas) { m_mpData = Data
 
 QList<ImagerData> CArrayModel::GetArrayData() const { return m_mpData; }
 
+QList<ImagerData> CArrayModel::GetPageArrayData() const { return m_mpPageData; }
+
 //总行数
 int CArrayModel::RowCount() const { return m_mpData.size(); }
 //总行数
@@ -101,6 +103,8 @@ void CArrayModel::refrushModel()
     beginResetModel();
     endResetModel();
 }
+
+bool CArrayModel::insertRows(int row, int count, const QModelIndex& parent) { return true; }
 void CArrayModel::setImagerData(const QList<ImagerData>& imagerDatas)
 {
     beginResetModel();
@@ -162,50 +166,19 @@ Qt::ItemFlags CArrayModel::flags(const QModelIndex& index) const
 
 bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
-    if (index.isValid() && role == Qt::EditRole)
+    if (index.isValid() && role == Qt::DecorationRole)
     {
-        QVariant oldData = data(index, Qt::EditRole);
-        QString strold = oldData.toString();
-        QVariant strnew = value;
-        //相同则不编辑
-        //        if (strnew.compare(strold) == 0)
-        //        {
-        //            return true;
-        //        }
+        bool pStatus = value.toBool();
 
-        //计算实际数据的下标
-        int dataindex = index.row() + m_iCurPage * m_iPageSize;
-        int pageindex = index.row();
+        // 设置当前图标
+        //        TreeItem* item = static_cast<TreeItem*>(index.internalPointer());
+        //        item->setIcon(pStatus);
 
-        //改变总数据集
-        //        if (index.column() == 8)  //备注
-        //        {
-        //            auto it = m_mpData.at(dataindex);
-        //            it.remarks = strnew.toString();
-        //            //        it.dealStatus = strnew;
-        //            m_mpData.replace(dataindex, it);
-
-        //            //改变当页数据集
-        //            auto itcur = m_mpPageData.at(pageindex);
-        //            itcur.remarks = strnew.toString();
-        //            //        itcur.dealStatus = strnew;
-        //            m_mpPageData.replace(pageindex, itcur);
-        //        }
-        //        else if (index.column() == 5)  //处理状态
-        //        {
-        //            auto it = m_mpData.at(dataindex);
-        //            it.dealStatus = strnew.toStringList().at(0);
-        //            it.remarks = strnew.toStringList().at(1);
-        //            m_mpData.replace(dataindex, it);
-
-        //            //改变当页数据集
-        //            auto itcur = m_mpPageData.at(pageindex);
-        //            itcur.dealStatus = strnew.toStringList().at(0);
-        //            itcur.remarks = strnew.toStringList().at(1);
-        //            m_mpPageData.replace(pageindex, itcur);
-        //        }
+        // 发射dataChanged(index,index),确保视图刷新图标
+        emit dataChanged(index, index);
         return true;
     }
+
     return false;
 }
 
