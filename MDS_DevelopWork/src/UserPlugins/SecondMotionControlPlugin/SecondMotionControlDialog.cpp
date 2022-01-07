@@ -40,8 +40,6 @@ void SecondMotionControlDialog::initUI()
     {
         QTreeWidgetItem* item11 = new QTreeWidgetItem(topItem1);
         item11->setText(0, systemValue.at(i));
-        QTreeWidget* a = mTreeWidgetMap[item11];
-        ui->contentStackWidget->addWidget(a);
     }
 
     QTreeWidgetItem* topItem2 = new QTreeWidgetItem(ui->treeWidget);
