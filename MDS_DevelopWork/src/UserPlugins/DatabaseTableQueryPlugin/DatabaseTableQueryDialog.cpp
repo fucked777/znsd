@@ -20,8 +20,7 @@ DatabaseTableQueryDialog::~DatabaseTableQueryDialog() { delete ui; }
 
 void DatabaseTableQueryDialog::initUI()
 {
-    QStringList STR;
-    STR << "STUDENT"
+    str << "STUDENT"
         << "TEACHER"
         << "CLASS"
         << "TABLE"
@@ -35,33 +34,17 @@ void DatabaseTableQueryDialog::initUI()
     ui->treeWidget->setHeaderHidden(true);
     //设置展开
     ui->treeWidget->expandAll();
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < str.size(); i++)
     {
         QTreeWidgetItem* item11 = new QTreeWidgetItem(topItem1);
-        item11->setText(0, STR.at(i));
-        //        QTreeWidgetItem* item12 = new QTreeWidgetItem(topItem1);
-        //        item12->setText(0, "老师数据");
-        //        QTreeWidgetItem* item13 = new QTreeWidgetItem(topItem1);
-        //        item13->setText(0, "职工数据");
+        item11->setText(0, str.at(i));
     }
-    //    ui->modeTreeWidget->expandAll();
-    //    for (int i = 0; i < 5; i++)
-    //    {
-    //        QTreeWidgetItem* workModeWidgetItem = new QTreeWidgetItem;
-    //        workModeWidgetItem->setText(i, STR.at(i));
-    //        workModeWidgetItem->setForeground(i, QBrush(QColor("#FFFFFF")));
-    //        //        workModeWidgetItem->setHidden(false);
-    //        ui->treeWidget->addTopLevelItem(workModeWidgetItem);
-    //    }
     // 初始化信号槽连接
     initSlot();
 }
 void DatabaseTableQueryDialog::initSlot()
 {
     connect(ui->treeWidget, &QTreeWidget::itemClicked, this, &DatabaseTableQueryDialog::slotMotionControlModeTreeWidgetClicked);
-    connect(ui->treeWidget, &QTreeWidget::customContextMenuRequested, this,
-            &DatabaseTableQueryDialog::slotMotionControlModeTreeWidgetCustomContextMenuRequested);
-
     connect(ui->okBtn, &QPushButton::clicked, this, &DatabaseTableQueryDialog::slotOkBtnClicked);
     connect(ui->cancelBtn, &QPushButton::clicked, this, &DatabaseTableQueryDialog::close);
 }
@@ -95,7 +78,15 @@ void DatabaseTableQueryDialog::closeEvent(QCloseEvent* event)
     }
 }
 
-void DatabaseTableQueryDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidgetItem* item, int column) {}
+void DatabaseTableQueryDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidgetItem* item, int column)
+{
+    Q_UNUSED(column);
+    QString tableName = item->data(column, Qt::DisplayRole).toString();
+    if (tableName == "表名")
+        return;
+    //    qDebug() << tableName;
+    ui->sqlTextEdit->setText("selset * from   " + tableName);
+}
 
 void DatabaseTableQueryDialog::slotOkBtnClicked()
 {
@@ -103,4 +94,9 @@ void DatabaseTableQueryDialog::slotOkBtnClicked()
     qDebug() << "data send";
 }
 
-void DatabaseTableQueryDialog::slotMotionControlModeTreeWidgetCustomContextMenuRequested(const QPoint& pos) {}
+void DatabaseTableQueryDialog::on_doSqlBtn_clicked()
+{
+    //获取sql语句，发送出去。进行查找
+    QString sql = ui->sqlTextEdit->toPlainText();
+    emit sqlSelsctSignal(sql);
+}

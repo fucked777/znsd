@@ -43,8 +43,10 @@ private slots:
     void slotMotionControlModeTreeWidgetClicked(QTreeWidgetItem* item, int column);
     // 确定按钮点击
     void slotOkBtnClicked();
-    // 左边树结构右键点击
-    void slotMotionControlModeTreeWidgetCustomContextMenuRequested(const QPoint& pos);
+
+    void on_doSqlBtn_clicked();
+signals:
+    void sqlSelsctSignal(const QString& sql);
 
 private:
     Ui::DatabaseTableQueryDialog* ui;
@@ -52,6 +54,7 @@ private:
     QList<MotionControlModeInfo> mModeInfoList;           // 生成界面的配置
     QMap<QTreeWidgetItem*, QTreeWidget*> mTreeWidgetMap;  // 树节点对应旁边的参数设置界面
     QString mTipsMessage;
+    QStringList str;
 };
 
 #endif  // DatabaseTableQueryDialog_H

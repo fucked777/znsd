@@ -16,40 +16,40 @@
   <property name="styleSheet">
    <string notr="true">background-color: #232e4a;</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,5">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,5">
-     <item>
-      <widget class="QTreeWidget" name="treeWidget">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QTreeWidget{
+    <widget class="QTreeWidget" name="treeWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTreeWidget{
     background-color: #5B677A;
  
     /* set the font properties*/
     font-size:17px;
     color: white;
 }</string>
-       </property>
-       <property name="columnCount">
-        <number>1</number>
-       </property>
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </column>
-      </widget>
-     </item>
+     </property>
+     <property name="columnCount">
+      <number>1</number>
+     </property>
+     <column>
+      <property name="text">
+       <string notr="true">1</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout" stretch="5,0,5">
        <item>
-        <widget class="QTextEdit" name="textEdit">
+        <widget class="QTextEdit" name="sqlTextEdit">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -74,7 +74,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="doSqlBtn">
            <property name="text">
             <string>执行sql</string>
            </property>
@@ -95,36 +95,36 @@
        </item>
       </layout>
      </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="okBtn">
-       <property name="text">
-        <string>保存</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelBtn">
-       <property name="text">
-        <string>关闭</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="okBtn">
+         <property name="text">
+          <string>保存</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cancelBtn">
+         <property name="text">
+          <string>关闭</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>

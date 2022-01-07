@@ -26,14 +26,14 @@ QT_BEGIN_NAMESPACE
 class Ui_DatabaseTableQueryDialog
 {
 public:
-    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_2;
     QTreeWidget *treeWidget;
+    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
-    QTextEdit *textEdit;
+    QTextEdit *sqlTextEdit;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton;
+    QPushButton *doSqlBtn;
     QWidget *widget;
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout_3;
@@ -47,9 +47,7 @@ public:
             DatabaseTableQueryDialog->setObjectName(QString::fromUtf8("DatabaseTableQueryDialog"));
         DatabaseTableQueryDialog->resize(1025, 755);
         DatabaseTableQueryDialog->setStyleSheet(QString::fromUtf8("background-color: #232e4a;"));
-        verticalLayout_2 = new QVBoxLayout(DatabaseTableQueryDialog);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2 = new QHBoxLayout(DatabaseTableQueryDialog);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         treeWidget = new QTreeWidget(DatabaseTableQueryDialog);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
@@ -72,17 +70,19 @@ public:
 
         horizontalLayout_2->addWidget(treeWidget);
 
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        textEdit = new QTextEdit(DatabaseTableQueryDialog);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        sqlTextEdit = new QTextEdit(DatabaseTableQueryDialog);
+        sqlTextEdit->setObjectName(QString::fromUtf8("sqlTextEdit"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
-        textEdit->setSizePolicy(sizePolicy1);
+        sizePolicy1.setHeightForWidth(sqlTextEdit->sizePolicy().hasHeightForWidth());
+        sqlTextEdit->setSizePolicy(sizePolicy1);
 
-        verticalLayout->addWidget(textEdit);
+        verticalLayout->addWidget(sqlTextEdit);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -90,10 +90,10 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        pushButton = new QPushButton(DatabaseTableQueryDialog);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        doSqlBtn = new QPushButton(DatabaseTableQueryDialog);
+        doSqlBtn->setObjectName(QString::fromUtf8("doSqlBtn"));
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(doSqlBtn);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -113,12 +113,7 @@ public:
         verticalLayout->setStretch(0, 5);
         verticalLayout->setStretch(2, 5);
 
-        horizontalLayout_2->addLayout(verticalLayout);
-
-        horizontalLayout_2->setStretch(0, 1);
-        horizontalLayout_2->setStretch(1, 5);
-
-        verticalLayout_2->addLayout(horizontalLayout_2);
+        verticalLayout_2->addLayout(verticalLayout);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
@@ -140,6 +135,11 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_3);
 
 
+        horizontalLayout_2->addLayout(verticalLayout_2);
+
+        horizontalLayout_2->setStretch(0, 1);
+        horizontalLayout_2->setStretch(1, 5);
+
         retranslateUi(DatabaseTableQueryDialog);
 
         QMetaObject::connectSlotsByName(DatabaseTableQueryDialog);
@@ -148,7 +148,7 @@ public:
     void retranslateUi(QWidget *DatabaseTableQueryDialog)
     {
         DatabaseTableQueryDialog->setWindowTitle(QCoreApplication::translate("DatabaseTableQueryDialog", "Form", nullptr));
-        pushButton->setText(QCoreApplication::translate("DatabaseTableQueryDialog", "\346\211\247\350\241\214sql", nullptr));
+        doSqlBtn->setText(QCoreApplication::translate("DatabaseTableQueryDialog", "\346\211\247\350\241\214sql", nullptr));
         okBtn->setText(QCoreApplication::translate("DatabaseTableQueryDialog", "\344\277\235\345\255\230", nullptr));
         cancelBtn->setText(QCoreApplication::translate("DatabaseTableQueryDialog", "\345\205\263\351\227\255", nullptr));
     } // retranslateUi

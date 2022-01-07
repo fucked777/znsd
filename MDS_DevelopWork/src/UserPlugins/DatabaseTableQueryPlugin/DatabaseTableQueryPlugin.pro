@@ -28,7 +28,9 @@ LIB_DIR         = $${DEV_HOME}/libs
 INCLUDEPATH += $${INCLUDE_DIR}/HMPCoreFrame 
 INCLUDEPATH += $${INCLUDE_DIR}/HMPPluginFrame 
 INCLUDEPATH += $${INCLUDE_DIR}/ 
-
+win32-msvc{
+    QMAKE_CXXFLAGS += /utf-8
+}
 win32{ 
 CONFIG(debug,debug|release){ 
     DESTDIR = $${DEST_DIR_D}/plugins 
