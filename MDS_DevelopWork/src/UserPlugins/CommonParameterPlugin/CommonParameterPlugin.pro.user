@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.11.0, 2021-12-22T10:31:44. -->
+<!-- Written by QtCreator 4.11.0, 2022-01-07T10:37:17. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -287,7 +287,7 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">D:\znsdWork\qt\MDS_DevelopWork\MDS_DevelopWork\01DeskTopRunHome\dbin5.14.1\MainFrameWorkd.exe</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">D:\f4Project\znsd\znsd\MDS_DevelopWork\01DeskTopRunHome\dbin5.14.1\MainFrameWorkd.exe</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
     <value type="QString" key="RunConfiguration.Arguments"></value>

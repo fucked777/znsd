@@ -9,6 +9,7 @@ CommonParameterPage::CommonParameterPage(QWidget* parent)
     ui->setupUi(this);
     m_commonParameterTableView = new CommonParameterTableView();
     m_commonParameterDetailTable = new CommonParameterDetailTable();
+    connect(m_commonParameterTableView, &CommonParameterTableView::dataSendSignal, this, &CommonParameterPage::dataSendSlot);
     initMember();
 }
 
@@ -21,3 +22,9 @@ void CommonParameterPage::initMember()
 }
 
 void CommonParameterPage::on_pushButton_clicked() { this->close(); }
+
+void CommonParameterPage::dataSendSlot(const QStringList& data)
+{
+    ui->curFileLabel->setText(data.at(1));
+    ui->startTimeLabel->setText(data.at(3));
+}

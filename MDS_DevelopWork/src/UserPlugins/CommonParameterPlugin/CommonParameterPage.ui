@@ -90,6 +90,9 @@ color:white;
       <item>
        <widget class="QWidget" name="widget" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>6</number>
+         </property>
          <item>
           <widget class="QLabel" name="label_2">
            <property name="sizePolicy">
@@ -104,7 +107,7 @@ color:white;
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="curFileLabel">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -112,7 +115,7 @@ color:white;
             </sizepolicy>
            </property>
            <property name="text">
-            <string>xxx.xml</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -130,7 +133,7 @@ color:white;
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_5">
+          <widget class="QLabel" name="startTimeLabel">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -138,7 +141,7 @@ color:white;
             </sizepolicy>
            </property>
            <property name="text">
-            <string>2021-12-06 18:16:14</string>
+            <string/>
            </property>
           </widget>
          </item>

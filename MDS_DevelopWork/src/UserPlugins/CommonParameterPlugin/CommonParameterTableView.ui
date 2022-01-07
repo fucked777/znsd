@@ -42,23 +42,9 @@
      </property>
      <property name="styleSheet">
       <string notr="true">QTableView {
-background-color: #232e4a;
 border-style:none;
 color:white;
-alternate-background-color:#1b2130;
-font-family:&quot;宋体&quot;;
-font-size:18px;
-font-style:bold;
-}
-
-QHeaderView::section {
-border-style: none;
-background-color: #232e4a;
-height:51px;
-color:white;
-font-family:&quot;宋体&quot;;
-font-size:18px;
-font-style:bold;
+font: bold 12pt;
 }
 </string>
      </property>

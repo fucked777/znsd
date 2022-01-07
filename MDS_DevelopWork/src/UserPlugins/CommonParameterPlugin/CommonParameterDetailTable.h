@@ -6,8 +6,6 @@
 #include <QTimer>
 #include <QWidget>
 class QStandardItemModel;
-class HeaderView;
-class NotEditableDelegate;
 typedef struct CommonParameterDetail
 {
     QString parameterName;
@@ -28,32 +26,14 @@ public:
     explicit CommonParameterDetailTable(QWidget* parent = nullptr, int blueColumn = -1, QStringList headNames = QStringList());
     ~CommonParameterDetailTable();
 
-    //    void appendRowDataLSSM(RowDataKZQ value);
+    void appendRowData(CommonParameterDetail value);
+    void updateRowData(QList<CommonParameterDetail>& values);
+    void insertRowData(const CommonParameterDetail& values, int rowIndex);
 
-    void updateRowData(QVector<CommonParameterDetail>& values);
-    //    void insertRowData(const NSGlobal::RowDataKZQ& values, int rowIndex);
-    //    void addRowData(const NSGlobal::RowDataKZQ& values, int rowIndex);
-    void delRowDataLSSM();
-    //    QVector<NSGlobal::LSSMFreqTableRowData> getDataInfo(NSGlobal::RowDataKZQ);
-    //    QVector<RowDataKZQ> getCheckedRowDataLSSMs();
-
-    //    RowDataKZQ getRowDataLSSM(const int rowNum);
-
-    void setParaNames(const QStringList& value);
-    int getRowCount();
-    int getBlueColumn() const;
-
-signals:
-    void sigDelItemClicked(const int rowIndex);
-
-public:
-    bool addStatus = false;
-    bool editStatus = false;
-    bool delStatus = false;
-
-private slots:
-    void selectAllItems(Qt::CheckState state);
-    void checkCurrRowSlot(int rowIndex, bool checked);
+private:
+    void initMember();
+    void destroyMember();
+    void initView();
 
 protected:
     void mouseDoubleClickEvent(QMouseEvent* event);
@@ -66,25 +46,7 @@ private:
 
     QStandardItemModel* tableModel;
     QStringList headNames;
-    //    QVector<QList<QStandardItem*>> rowDatas;
-    QList<int> removeRowIndexs;
-    NotEditableDelegate* notEditableDelegate;
-    HeaderView* headerView;
     int blueColumn;
-    QStandardItem* itemLastSelected = nullptr;
-    QTimer* startMeasureTimer;
-    bool firstUpdate = true;
-    QVector<double> columnWidths;
-    double m_scale = 0.0;
-    double totleColumnWidth = 0.0;
-
-private:
-    void initMember();
-    void destroyMember();
-    void initView();
-    void resizeEvent(QResizeEvent* event);
-private slots:
-    bool eventFilter(QObject*, QEvent*) override;
 };
 
 #endif  // CommonParameterDetailTable_H
