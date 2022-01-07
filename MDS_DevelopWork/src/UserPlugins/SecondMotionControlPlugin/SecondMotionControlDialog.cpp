@@ -2,10 +2,10 @@
 #include "ui_SecondMotionControlDialog.h"
 #include <QAction>
 #include <QCloseEvent>
+#include <QDebug>
 #include <QGroupBox>
 #include <QMenu>
 #include <QMessageBox>
-
 SecondMotionControlDialog::SecondMotionControlDialog(QWidget* parent)
     : QDialog(parent)
     , ui(new Ui::SecondMotionControlDialog)
@@ -24,6 +24,7 @@ void SecondMotionControlDialog::initUI()
 {
     QTreeWidgetItem* topItem1 = new QTreeWidgetItem(ui->treeWidget);
     topItem1->setText(0, "系统参数");
+    //    topItem1->setIcon(0, QIcon());
     ui->treeWidget->addTopLevelItem(topItem1);
 
     QStringList systemValue;
@@ -90,15 +91,21 @@ void SecondMotionControlDialog::setWidgetMode(const SecondMotionControlDialog::W
 
 void SecondMotionControlDialog::closeEvent(QCloseEvent* event)
 {
-    //    if (!QMessageBox::information(this, "提示", "是否关闭当前界面？", QString("确定"),
-    //                                  QString("取消")))  //点击确定结果是0,取消是1,所以用1
-    //    {
-    //        slotOkBtnClicked();  //点击确定就触发一次保存运动控制的按钮后关闭界面  取消的话就直接关闭界面
-    //    }
-    //    else
-    //    {
-    event->ignore();
-    //    }
+    if (!QMessageBox::information(this, "提示", "是否关闭当前界面？", QString("确定"),
+                                  QString("取消")))  //点击确定结果是0,取消是1,所以用1
+    {
+        slotOkBtnClicked();  //点击确定就触发一次保存运动控制的按钮后关闭界面  取消的话就直接关闭界面
+    }
+    else
+    {
+        event->ignore();
+    }
+}
+
+void SecondMotionControlDialog::slotOkBtnClicked()
+{
+    //数据保存
+    qDebug() << "";
 }
 
 void SecondMotionControlDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidgetItem* item, int column)
@@ -109,7 +116,5 @@ void SecondMotionControlDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidg
         ui->contentStackWidget->setCurrentWidget(mTreeWidgetMap.value(item));
     }
 }
-
-void SecondMotionControlDialog::slotOkBtnClicked() {}
 
 void SecondMotionControlDialog::slotMotionControlModeTreeWidgetCustomContextMenuRequested(const QPoint& pos) {}
