@@ -80,12 +80,10 @@ void DatabaseTableQueryDialog::closeEvent(QCloseEvent* event)
 
 void DatabaseTableQueryDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidgetItem* item, int column)
 {
-    Q_UNUSED(column);
-    QString tableName = item->data(column, Qt::DisplayRole).toString();
-    if (tableName == "表名")
-        return;
-    //    qDebug() << tableName;
-    ui->sqlTextEdit->setText("selset * from   " + tableName);
+    //    QString tableName = item->data(column, Qt::DisplayRole).toString();
+    //    if (tableName == "表名")
+    //        return;
+    ui->sqlTextEdit->setText("selset * from   " + item->text(column));
 }
 
 void DatabaseTableQueryDialog::slotOkBtnClicked()
