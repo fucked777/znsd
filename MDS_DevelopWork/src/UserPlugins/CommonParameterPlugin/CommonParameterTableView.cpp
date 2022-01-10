@@ -36,7 +36,7 @@ void CommonParameterTableView::updateRowData(QList<CommonParameter>& values)
 
         QPushButton* handleBtn = new QPushButton("查看详情", this);
         handleBtn->setFlat(true);
-        handleBtn->setStyleSheet("color:white;font-size:18px;border-style:none;text-align: left;");
+        handleBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
         connect(handleBtn, &QPushButton::clicked, this, &CommonParameterTableView::ViewDetailsBtnClicked);
         handleBtn->setProperty("row", i);
         ui->TableView->setIndexWidget(tableModel->index(i, tableModel->columnCount() - 1), handleBtn);

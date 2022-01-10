@@ -6,12 +6,12 @@
 #include <QTimer>
 #include <QWidget>
 class QStandardItemModel;
-typedef struct CommonParameterDetail
+struct CommonParameterDetail
 {
     QString parameterName;
     QString chineseName;
     QVariant value;
-} CommonParameterDetail;
+};
 
 namespace Ui
 {

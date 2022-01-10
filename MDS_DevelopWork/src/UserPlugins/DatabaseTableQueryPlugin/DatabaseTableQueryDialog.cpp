@@ -80,9 +80,9 @@ void DatabaseTableQueryDialog::closeEvent(QCloseEvent* event)
 
 void DatabaseTableQueryDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidgetItem* item, int column)
 {
-    //    QString tableName = item->data(column, Qt::DisplayRole).toString();
-    //    if (tableName == "表名")
-    //        return;
+    QString tableName = item->data(column, Qt::DisplayRole).toString();
+    if (tableName == "表名")
+        return;
     ui->sqlTextEdit->setText("selset * from   " + item->text(column));
 }
 
@@ -96,5 +96,9 @@ void DatabaseTableQueryDialog::on_doSqlBtn_clicked()
 {
     //获取sql语句，发送出去。进行查找
     QString sql = ui->sqlTextEdit->toPlainText();
-    emit sqlSelsctSignal(sql);
+    if (!sql.isEmpty())
+    {
+        emit sqlSelsctSignal(sql);
+    }
+    return;
 }

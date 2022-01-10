@@ -34,6 +34,7 @@ void CommonParameterDetailTable::updateRowData(QList<CommonParameterDetail>& val
 
 void CommonParameterDetailTable::appendRowData(CommonParameterDetail value)
 {
+    tableModel->clear();
     QList<QStandardItem*> itemList;
     itemList << new QStandardItem(value.parameterName) << new QStandardItem(value.chineseName) << new QStandardItem(value.value.toString());
     tableModel->appendRow(itemList);

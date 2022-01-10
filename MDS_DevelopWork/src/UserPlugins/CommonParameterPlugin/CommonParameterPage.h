@@ -20,7 +20,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void dataSendSlot(const QStringList& data);
+    void dataSendSlot(const QStringList& str);
 
 private:
     Ui::CommonParameterPage* ui;

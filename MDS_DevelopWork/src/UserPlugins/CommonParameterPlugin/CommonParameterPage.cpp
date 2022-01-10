@@ -23,8 +23,13 @@ void CommonParameterPage::initMember()
 
 void CommonParameterPage::on_pushButton_clicked() { this->close(); }
 
-void CommonParameterPage::dataSendSlot(const QStringList& data)
+void CommonParameterPage::dataSendSlot(const QStringList& str)
 {
-    ui->curFileLabel->setText(data.at(1));
-    ui->startTimeLabel->setText(data.at(3));
+    ui->curFileLabel->setText(str.at(1));
+    ui->startTimeLabel->setText(str.at(3));
+    CommonParameterDetail data;
+    data.parameterName = str.at(0);
+    data.chineseName = str.at(1);
+    data.value = str.at(2);
+    m_commonParameterDetailTable->appendRowData(data);
 }
