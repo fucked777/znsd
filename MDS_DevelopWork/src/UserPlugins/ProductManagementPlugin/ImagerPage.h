@@ -35,8 +35,6 @@ private Q_SLOTS:
                     const QDateTime& start_time, const QDateTime& end_time);
 
     void deal_expand_collapse();
-public slots:
-    void slotinitData(const QByteArray&);
 
 public:
     void slotUpdataTable();

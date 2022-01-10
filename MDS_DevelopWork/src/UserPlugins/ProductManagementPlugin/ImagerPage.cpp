@@ -89,16 +89,6 @@ void ImagerPage::initMember()
     connect(ui->reportBtn, &QPushButton::clicked, this, &ImagerPage::exportStatus);
 }
 
-void ImagerPage::slotinitData(const QByteArray& dataArray)
-{
-    QByteArray tempArray = dataArray;
-
-    ImagerDataList ack;
-    m_pageNavigator->m_pDataModel->SetArrayData(ack);
-    m_pageNavigator->m_pDataModel->SetPageSize(20);
-    m_pageNavigator->UpdateStatus();
-}
-
 void ImagerPage::setArrayDataInterface(/*const QByteArray& array*/)
 {
     ImagerData data;
