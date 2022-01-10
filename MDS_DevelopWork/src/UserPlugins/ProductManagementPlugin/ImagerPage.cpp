@@ -99,58 +99,62 @@ void ImagerPage::slotinitData(const QByteArray& dataArray)
     m_pageNavigator->UpdateStatus();
 }
 
-void ImagerPage::setArrayDataInterface()
+void ImagerPage::setArrayDataInterface(/*const QByteArray& array*/)
 {
     ImagerData data;
-
-    //    for (int i = 0; i < taskNum; i++)
-    //    {
-
-    //    }
     QList<ImagerData> DATA1;
-    //    QList<ImagerData> DATA2;
-    //    QList<ImagerData> DATA3;
-    for (int i = 1; i < 101; i++)
+    for (int i = 0; i < 20; i++)
     {
-        data.taskNum = "序号:" + QString::number(i);
-        data.outputTime = "00:13:14";
-        data.fileName = "css";
-        data.LocalFilePath = "c:xiaoxiao";
-        data.outputFilePath = "c:xiaoxiao";
-        data.sendDirection = "NRS->CVS";
-        data.sendType = "FTP";
-        data.accuracy = "XXXXX";
-        data.outputType = "NRST100001";
-        data.fileSize = QString::number(i) + "MB";
-        DATA1.append(data);
-        //        DATA2.append(data);
-        //        DATA3.append(data);
+        if (1 /*!data.taskNum.isEmpty()*/)
+        {
+            data.taskNum = "AFNXXXXXXXXXX0" + QString::number(i);
+            data.outputTime = "";
+            data.fileName = "";
+            data.LocalFilePath = "";
+            data.outputFilePath = "";
+            data.sendDirection = "";
+            data.sendType = "";
+            data.accuracy = "";
+            data.outputType = "";
+            data.fileSize = "";
+            DATA1.append(data);
+        }
+        for (int j = 0; j < 5; j++)
+        {
+            data.taskNum = "序号:" + QString::number(j);
+            data.outputTime = "00:13:14";
+            data.fileName = "css";
+            data.LocalFilePath = "c:xiaoxiao";
+            data.outputFilePath = "c:xiaoxiao";
+            data.sendDirection = "NRS->CVS";
+            data.sendType = "FTP";
+            data.accuracy = "XXXXX";
+            data.outputType = "NRST100001";
+            data.fileSize = "MB";
+            DATA1.append(data);
+        }
     }
-
-    //    QMap<int, QList<ImagerData>&> dataMap;
-    //    m_sqlImagerManager->insert(DATA);
     m_pageNavigator->m_pDataModel->SetArrayData(DATA1);
+    //    m_pageNavigator->m_pDataModel->setImagerData(DATA1);
     m_pageNavigator->m_pDataModel->SetPageSize(20);
     m_pageNavigator->UpdateStatus();
 }
 
-// connect(this,SIGNAL(expanded(const QModelIndex &)),this,SLOT(expand(const QModelIndex &)));
-// connect(this,SIGNAL(collapsed(const QModelIndex &)),this,SLOT(collapse(const QModelIndex &)));
-
-void ImagerPage::expand(const QModelIndex& index) { m_pageNavigator->m_pDataModel->setData(index, true, Qt::DecorationRole); }
-
-void ImagerPage::collapse(const QModelIndex& index) { m_pageNavigator->m_pDataModel->setData(index, false, Qt::DecorationRole); }
-
 void ImagerPage::deal_expand_collapse()
 {
     //隐藏
-
-    QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
-    for (int i = 1; i < 5; i++)
+    QPushButton* button = dynamic_cast<QPushButton*>(sender());
+    QVariant val = button->property("row");
+    int row = 0;
+    if (val.isValid())
     {
-        ui->tableView->setRowHidden(i, status);
+        row = val.toInt();
     }
-    status = !status;
+    for (int i = row + 1; i < row + 6; i++)
+    {
+        ui->tableView->setRowHidden(i, status[row]);
+    }
+    status[row] = !status[row];
 }
 
 void ImagerPage::searchSlot(const QStringList& taskName, const QStringList& taskNum, const QStringList& fileName, const QStringList& outputType,
@@ -164,34 +168,22 @@ void ImagerPage::slotUpdataTable()
 {
     ui->tableView->reset();
 
-    //    QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(1, 5);
-    //    m_pageNavigator->m_pDataModel->setData(indexValue, "text", Qt::EditRole);
-
-    //    QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
-    //    //    data.at()
-    //    //    QModelIndex a;
-    //    //    QList<QStandardItem*> itemList;
-    //    //    itemList << new QStandardItem << new QStandardItem << new QStandardItem << new QStandardItem << new QStandardItem << new QStandardItem
-    //    //             << new QStandardItem << new QStandardItem << new QStandardItem << new QStandardItem;
-    //    //    m_pageNavigator->m_pDataModel->insertRow(0, QModelIndex a);
-    //    for (int i = 0; i < data.size(); i++)
-    //    {
-    //        if (i == 0)
-    //        {
-    //            QPushButton* detailsBtn = new QPushButton(this);
-    //            detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
-    //            connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
-    //            //            detailsBtn->setProperty("row", i);
-    //            ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(0, 0), detailsBtn);
-    //            continue;
-    //        }
-    //        else
-    //        {
-    //            QPushButton* detailsBtn = new QPushButton(QString::number(i), this);
-    //            detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
-    //            ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
-    //        }
-    //    }
+    QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
+    for (int i = 0; i < data.size(); i++)
+    {
+        QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(i, 0);
+        QVariant x = m_pageNavigator->m_pDataModel->data(indexValue, Qt::DisplayRole);
+        QString str = x.toString();
+        if (str.contains("AFN"))
+        {
+            QPushButton* detailsBtn = new QPushButton("AFNXXXXXXXXXX0" + QString::number(i), this);
+            detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
+            connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
+            detailsBtn->setProperty("row", i);
+            status.insert(i, true);
+            ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
+        }
+    }
 }
 void ImagerPage::initView()
 {

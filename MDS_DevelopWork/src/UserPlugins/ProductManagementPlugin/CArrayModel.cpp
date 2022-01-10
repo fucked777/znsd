@@ -108,6 +108,7 @@ bool CArrayModel::insertRows(int row, int count, const QModelIndex& parent) { re
 void CArrayModel::setImagerData(const QList<ImagerData>& imagerDatas)
 {
     beginResetModel();
+    m_mpPageData << imagerDatas;
     endResetModel();
 }
 QVariant CArrayModel::data(const QModelIndex& index, int role) const
