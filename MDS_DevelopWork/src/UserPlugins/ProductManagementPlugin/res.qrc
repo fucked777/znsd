@@ -2,7 +2,7 @@
     <qresource prefix="/ProductManagementPlugin/META-INF">
         <file>MANIFEST.MF</file>
     </qresource>
-    <qresource prefix="/znsd">
+    <qresource prefix="/imager">
         <file>image/arrow_bottom.png</file>
         <file>image/arrow_forward.png</file>
     </qresource>

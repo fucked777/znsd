@@ -169,21 +169,19 @@ void ImagerPage::slotUpdataTable()
             QToolButton* detailsBtn = new QToolButton(this);
             detailsBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
             detailsBtn->setText("AFNXXXXXXXXXX01");
-            detailsBtn->setIcon(QIcon(":/znsd/image/arrow_bottom.png"));
+            detailsBtn->setIcon(QIcon(":/imager/image/arrow_bottom.png"));
             detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
             detailsBtn->setProperty("row", i);
 
             connect(detailsBtn, &QToolButton::clicked, this, [=]() {
                 if (status[i])
-                    detailsBtn->setIcon(QIcon(":/znsd/image/arrow_forward.png"));
+                    detailsBtn->setIcon(QIcon(":/imager/image/arrow_forward.png"));
                 else
                 {
-                    detailsBtn->setIcon(QIcon(":/znsd/image/arrow_bottom.png"));
+                    detailsBtn->setIcon(QIcon(":/imager/image/arrow_bottom.png"));
                 }
                 deal_expand_collapse();
             });
-            //            connect(detailsBtn, &QToolButton::clicked, this, &ImagerPage::deal_expand_collapse);
-
             status[i] = true;
             ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
         }
