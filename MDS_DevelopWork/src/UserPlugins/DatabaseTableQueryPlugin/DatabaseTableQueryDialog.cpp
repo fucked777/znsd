@@ -83,7 +83,7 @@ void DatabaseTableQueryDialog::slotMotionControlModeTreeWidgetClicked(QTreeWidge
     QString tableName = item->data(column, Qt::DisplayRole).toString();
     if (tableName == "表名")
         return;
-    ui->sqlTextEdit->setText("selset * from   " + item->text(column));
+    ui->sqlTextEdit->setText("select * from " + item->text(column));
 }
 
 void DatabaseTableQueryDialog::slotOkBtnClicked()

@@ -48,6 +48,7 @@ private:
     pageWidget* m_pageNavigator;
     SqlImagerManager* m_sqlImagerManager;
     QMap<int, bool> status;
+
     //    bool status = true;
 };
 

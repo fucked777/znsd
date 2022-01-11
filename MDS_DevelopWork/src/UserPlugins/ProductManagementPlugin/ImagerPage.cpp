@@ -125,16 +125,14 @@ void ImagerPage::setArrayDataInterface(/*const QByteArray& array*/)
             data.fileSize = "MB";
         }
         DATA1.append(data);
-        m_pageNavigator->m_pDataModel->SetArrayData(DATA1);
-        //    m_pageNavigator->m_pDataModel->setImagerData(DATA1);
-        m_pageNavigator->m_pDataModel->SetPageSize(20);
+        m_pageNavigator->m_pDataModel->setImagerData(DATA1);
         m_pageNavigator->UpdateStatus();
     }
 }
 void ImagerPage::deal_expand_collapse()
 {
     //隐藏
-    QPushButton* button = dynamic_cast<QPushButton*>(sender());
+    QToolButton* button = dynamic_cast<QToolButton*>(sender());
     QVariant val = button->property("row");
     int row = 0;
     if (val.isValid())
@@ -143,6 +141,7 @@ void ImagerPage::deal_expand_collapse()
     }
     for (int i = row + 1; i < row + 5; i++)
     {
+        //        ui->tableView->setRowHidden()
         ui->tableView->setRowHidden(i, status[row]);
     }
     status[row] = !status[row];
@@ -159,40 +158,34 @@ void ImagerPage::slotUpdataTable()
 {
     ui->tableView->reset();
 
-    //    void FaultMsgPage::saveRemarksSlot(const QString& text, int row)
-    //    {
-    //        qDebug() << "text:" << text;
-    //        QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, 8);
-    //        m_pageNavigator->m_pDataModel->setData(indexValue, text, Qt::EditRole);
-    //    }
-
     QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
     for (int i = 0; i < data.size(); i++)
     {
-        //        for (int j = 0; j < 11; j++)
-        //        {
-        //            if (data.at(i).taskNum.contains("AFN"))
-        //            {
-        //                QPushButton* detailsBtn = new QPushButton("AFNXXXXXXXXXX0" + QString::number(i), this);
-        //                detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
-        //                connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
-        //                detailsBtn->setProperty("row", i);
-        //                status[i] = true;
-        //                ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
-        //                //            }
-        //            }
         QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(i, 0);
         QVariant x = m_pageNavigator->m_pDataModel->data(indexValue, Qt::DisplayRole);
         QString str = x.toString();
         if (str.contains("AFN"))
         {
-            QPushButton* detailsBtn = new QPushButton("AFNXXXXXXXXXX0" + QString::number(i), this);
+            QToolButton* detailsBtn = new QToolButton(this);
+            detailsBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+            detailsBtn->setText("AFNXXXXXXXXXX01");
+            detailsBtn->setIcon(QIcon(":/znsd/image/arrow_bottom.png"));
             detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
-            connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
             detailsBtn->setProperty("row", i);
+
+            connect(detailsBtn, &QToolButton::clicked, this, [=]() {
+                if (status[i])
+                    detailsBtn->setIcon(QIcon(":/znsd/image/arrow_forward.png"));
+                else
+                {
+                    detailsBtn->setIcon(QIcon(":/znsd/image/arrow_bottom.png"));
+                }
+                deal_expand_collapse();
+            });
+            //            connect(detailsBtn, &QToolButton::clicked, this, &ImagerPage::deal_expand_collapse);
+
             status[i] = true;
             ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
-            //            }
         }
     }
 }

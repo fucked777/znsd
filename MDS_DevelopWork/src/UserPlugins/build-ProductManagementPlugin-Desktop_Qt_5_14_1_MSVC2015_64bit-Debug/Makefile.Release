@@ -232,7 +232,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_res.cpp
 release\qrc_res.cpp: ..\ProductManagementPlugin\res.qrc \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\bin\rcc.exe \
-		..\ProductManagementPlugin\MANIFEST.MF
+		..\ProductManagementPlugin\MANIFEST.MF \
+		..\ProductManagementPlugin\image\arrow_forward.png \
+		..\ProductManagementPlugin\image\arrow_bottom.png
 	C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\bin\rcc.exe -name res ..\ProductManagementPlugin\res.qrc -o release\qrc_res.cpp
 
 compiler_moc_predefs_make_all: release\moc_predefs.h
@@ -1123,8 +1125,6 @@ release\moc_pageWidget.cpp: ..\ProductManagementPlugin\pageWidget.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QThread \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\qthread.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QWidget \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QLabel \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qlabel.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QPushButton \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qabstractbutton.h \
@@ -2127,8 +2127,6 @@ release\ImagerPage.obj: ..\ProductManagementPlugin\ImagerPage.cpp ..\ProductMana
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtSql\QSqlQuery \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtSql\qsqlquery.h \
 		..\ProductManagementPlugin\pageWidget.h \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QLabel \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qlabel.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QPushButton \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		ui_ImagerPage.h \
@@ -2157,7 +2155,13 @@ release\ImagerPage.obj: ..\ProductManagementPlugin\ImagerPage.cpp ..\ProductMana
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\qdir.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\qfileinfo.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QMessageBox \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qmessagebox.h
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qmessagebox.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QToolButton \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qtoolbutton.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QTreeWidgetItem \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qtreewidget.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qtreeview.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qtreewidgetitemiterator.h
 
 release\QueryDialog_CXY.obj: ..\ProductManagementPlugin\QueryDialog_CXY.cpp ..\ProductManagementPlugin\QueryDialog_CXY.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QWidget \
@@ -2311,6 +2315,7 @@ release\QueryDialog_CXY.obj: ..\ProductManagementPlugin\QueryDialog_CXY.cpp ..\P
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QSpacerItem \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QDebug \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QMessageBox \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qdialog.h \
@@ -2597,7 +2602,10 @@ release\CArrayModel.obj: ..\ProductManagementPlugin\CArrayModel.cpp ..\ProductMa
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtGui\qtextcursor.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtGui\qtextformat.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtGui\qpen.h \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtGui\qtextoption.h
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtGui\qtextoption.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QPushButton \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qabstractbutton.h
 
 release\pageWidget.obj: ..\ProductManagementPlugin\pageWidget.cpp ..\ProductManagementPlugin\pageWidget.h \
 		..\ProductManagementPlugin\CArrayModel.h \
@@ -2727,8 +2735,6 @@ release\pageWidget.obj: ..\ProductManagementPlugin\pageWidget.cpp ..\ProductMana
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\QThread \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtCore\qthread.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QWidget \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QLabel \
-		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qlabel.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QPushButton \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qabstractbutton.h \
@@ -2748,6 +2754,8 @@ release\pageWidget.obj: ..\ProductManagementPlugin\pageWidget.cpp ..\ProductMana
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qlayout.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qlayoutitem.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QLabel \
+		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qlabel.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\QLineEdit \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtWidgets\qlineedit.h \
 		C:\Qt\Qt5.14.1\5.14.1\msvc2015_64\include\QtGui\qtextcursor.h \

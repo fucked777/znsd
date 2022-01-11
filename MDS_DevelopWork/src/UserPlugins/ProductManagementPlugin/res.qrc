@@ -1,2 +1,9 @@
-<RCC> 
-    <qresource prefix="/ProductManagementPlugin/META-INF">        <file>MANIFEST.MF</file>    </qresource></RCC>
+<RCC>
+    <qresource prefix="/ProductManagementPlugin/META-INF">
+        <file>MANIFEST.MF</file>
+    </qresource>
+    <qresource prefix="/znsd">
+        <file>image/arrow_bottom.png</file>
+        <file>image/arrow_forward.png</file>
+    </qresource>
+</RCC>

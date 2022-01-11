@@ -1,5 +1,6 @@
 ﻿#include "QueryDialog_CXY.h"
 #include "ui_QueryDialog_CXY.h"
+#include <QDebug>
 #include <QMessageBox>
 #include <QVector>
 QueryDialog_CXY::QueryDialog_CXY(QWidget* parent)
@@ -75,6 +76,8 @@ void QueryDialog_CXY::on_pushButton_clicked()
         QMessageBox::warning(this, "提示", "查询开始时间不能晚于结束时间", QString("确定"));
         return;
     }
+    qDebug() << "startTime" << startTime;
+    qDebug() << "endTime" << endTime;
 
     QStringList taskName_list;
     if (!ui->comboBox->currentData().toString().isEmpty())

@@ -9,6 +9,8 @@
 #include
 include(../../BaseTotalPri/BaseTotal.pri) 
 TEMPLATE = lib 
+
+CONFIG += c++11
 win32-msvc{
     QMAKE_CXXFLAGS += /utf-8
 }
