@@ -10,7 +10,6 @@
 #include <QMessageBox>
 #include <QToolButton>
 #include <QTreeWidgetItem>
-const int MAX_INSERT_NUM = 1000;
 
 ImagerPage::ImagerPage(QWidget* parent)
     : QDialog(parent)
@@ -63,6 +62,10 @@ void ImagerPage::processExport(const QString& fileName)
 
     for (auto status : status_lists)
     {
+        if (status.taskNum.contains("AFN"))
+        {
+            continue;
+        }
         stream << QString("任务编号：").toUtf8() << status.taskNum << QString("     ").toUtf8() << QString("输出时间：").toUtf8()
                << status.outputTime.toUtf8() << QString("     ").toUtf8() << QString("文件名称：").toUtf8() << status.fileName.toUtf8()
                << QString("     ").toUtf8() << QString("本地文件路径：").toUtf8() << status.LocalFilePath.toUtf8() << QString("     ").toUtf8()
@@ -93,11 +96,11 @@ void ImagerPage::setArrayDataInterface(/*const QByteArray& array*/)
 {
     ImagerData data;
     QList<ImagerData> DATA1;
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 100; i++)
     {
-        if (1 /*!data.taskNum.isEmpty()*/)
+        if (i == 0 || i % 5 == 0)
         {
-            data.taskNum = "AFNXXXXXXXXXX0" + QString::number(i);
+            data.taskNum = "AFNXXXXXXXXXX00" + QString::number(i);
             data.outputTime = "";
             data.fileName = "";
             data.LocalFilePath = "";
@@ -107,11 +110,10 @@ void ImagerPage::setArrayDataInterface(/*const QByteArray& array*/)
             data.accuracy = "";
             data.outputType = "";
             data.fileSize = "";
-            DATA1.append(data);
         }
-        for (int j = 0; j < 5; j++)
+        else
         {
-            data.taskNum = "序号:" + QString::number(j);
+            data.taskNum = "序号:" + QString::number(i);
             data.outputTime = "00:13:14";
             data.fileName = "css";
             data.LocalFilePath = "c:xiaoxiao";
@@ -121,15 +123,14 @@ void ImagerPage::setArrayDataInterface(/*const QByteArray& array*/)
             data.accuracy = "XXXXX";
             data.outputType = "NRST100001";
             data.fileSize = "MB";
-            DATA1.append(data);
         }
+        DATA1.append(data);
+        m_pageNavigator->m_pDataModel->SetArrayData(DATA1);
+        //    m_pageNavigator->m_pDataModel->setImagerData(DATA1);
+        m_pageNavigator->m_pDataModel->SetPageSize(20);
+        m_pageNavigator->UpdateStatus();
     }
-    m_pageNavigator->m_pDataModel->SetArrayData(DATA1);
-    //    m_pageNavigator->m_pDataModel->setImagerData(DATA1);
-    m_pageNavigator->m_pDataModel->SetPageSize(20);
-    m_pageNavigator->UpdateStatus();
 }
-
 void ImagerPage::deal_expand_collapse()
 {
     //隐藏
@@ -140,7 +141,7 @@ void ImagerPage::deal_expand_collapse()
     {
         row = val.toInt();
     }
-    for (int i = row + 1; i < row + 6; i++)
+    for (int i = row + 1; i < row + 5; i++)
     {
         ui->tableView->setRowHidden(i, status[row]);
     }
@@ -158,9 +159,28 @@ void ImagerPage::slotUpdataTable()
 {
     ui->tableView->reset();
 
+    //    void FaultMsgPage::saveRemarksSlot(const QString& text, int row)
+    //    {
+    //        qDebug() << "text:" << text;
+    //        QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, 8);
+    //        m_pageNavigator->m_pDataModel->setData(indexValue, text, Qt::EditRole);
+    //    }
+
     QList<ImagerData> data = m_pageNavigator->m_pDataModel->GetPageArrayData();
     for (int i = 0; i < data.size(); i++)
     {
+        //        for (int j = 0; j < 11; j++)
+        //        {
+        //            if (data.at(i).taskNum.contains("AFN"))
+        //            {
+        //                QPushButton* detailsBtn = new QPushButton("AFNXXXXXXXXXX0" + QString::number(i), this);
+        //                detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
+        //                connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
+        //                detailsBtn->setProperty("row", i);
+        //                status[i] = true;
+        //                ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
+        //                //            }
+        //            }
         QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(i, 0);
         QVariant x = m_pageNavigator->m_pDataModel->data(indexValue, Qt::DisplayRole);
         QString str = x.toString();
@@ -170,8 +190,9 @@ void ImagerPage::slotUpdataTable()
             detailsBtn->setStyleSheet("color:rgb(0,170,255);font-size:14px;border-style:none;text-align: left;");
             connect(detailsBtn, &QPushButton::clicked, this, &ImagerPage::deal_expand_collapse);
             detailsBtn->setProperty("row", i);
-            status.insert(i, true);
+            status[i] = true;
             ui->tableView->setIndexWidget(m_pageNavigator->m_pDataModel->index(i, 0), detailsBtn);
+            //            }
         }
     }
 }

@@ -2,12 +2,12 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QLineEdit>
+#include <QPushButton>
 #define DATETIME_DISPLAY_FORMAT2 "yyyy年MM月dd日 HH:mm:ss"
 CArrayModel::CArrayModel(QObject* parent)
     : QAbstractTableModel(parent)
 {
     mHeaders << "任务编号"
-             //             << "序号"
              << "输出时间"
              << "文件名称"
              << "本地文件路径"
@@ -19,7 +19,11 @@ CArrayModel::CArrayModel(QObject* parent)
              << "文件大小";
 }
 
-void CArrayModel::SetArrayData(const QList<ImagerData>& Datas) { m_mpData = Datas; }
+void CArrayModel::SetArrayData(const QList<ImagerData>& Datas)
+{
+    m_mpData = Datas;
+    int cd = 1000;
+}
 
 QList<ImagerData> CArrayModel::GetArrayData() const { return m_mpData; }
 
@@ -167,19 +171,50 @@ Qt::ItemFlags CArrayModel::flags(const QModelIndex& index) const
 
 bool CArrayModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
-    if (index.isValid() && role == Qt::DecorationRole)
+    if (index.isValid() && role == Qt::EditRole)
     {
-        bool pStatus = value.toBool();
+        QVariant oldData = data(index, Qt::EditRole);
+        QString strold = oldData.toString();
+        QVariant strnew = value;
+        //相同则不编辑
+        //        if (strnew.compare(strold) == 0)
+        //        {
+        //            return true;
+        //        }
 
-        // 设置当前图标
-        //        TreeItem* item = static_cast<TreeItem*>(index.internalPointer());
-        //        item->setIcon(pStatus);
+        //计算实际数据的下标
+        int dataindex = index.row() + m_iCurPage * m_iPageSize;
+        int pageindex = index.row();
 
-        // 发射dataChanged(index,index),确保视图刷新图标
-        emit dataChanged(index, index);
+        //改变总数据集
+        //        if (index.column() == 8)  //备注
+        //        {
+        //            auto it = m_mpData.at(dataindex);
+        //            it.remarks = strnew.toString();
+        //            //        it.dealStatus = strnew;
+        //            m_mpData.replace(dataindex, it);
+
+        //            //改变当页数据集
+        //            auto itcur = m_mpPageData.at(pageindex);
+        //            itcur.remarks = strnew.toString();
+        //            //        itcur.dealStatus = strnew;
+        //            m_mpPageData.replace(pageindex, itcur);
+        //        }
+        //        else if (index.column() == 5)  //处理状态
+        //        {
+        //            auto it = m_mpData.at(dataindex);
+        //            it.dealStatus = strnew.toStringList().at(0);
+        //            it.remarks = strnew.toStringList().at(1);
+        //            m_mpData.replace(dataindex, it);
+
+        //            //改变当页数据集
+        //            auto itcur = m_mpPageData.at(pageindex);
+        //            itcur.dealStatus = strnew.toStringList().at(0);
+        //            itcur.remarks = strnew.toStringList().at(1);
+        //            m_mpPageData.replace(pageindex, itcur);
+        //        }
         return true;
     }
-
     return false;
 }
 

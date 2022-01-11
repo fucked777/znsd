@@ -47,7 +47,6 @@ private:
     QueryDialog_CXY* m_queryDialog_CXY;
     pageWidget* m_pageNavigator;
     SqlImagerManager* m_sqlImagerManager;
-    int taskNum = 0;  //任务编号个数，以此来创建Qlist个数
     QMap<int, bool> status;
     //    bool status = true;
 };
