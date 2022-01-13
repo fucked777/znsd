@@ -6,6 +6,7 @@
 #include "ireporttablepluginservice.h"
 #include <QObject>
 class ReportTablePage;
+class ReportTablePlugin;
 class ReportTablePluginService : public QObject, public iReportTablePluginService
 {
     Q_OBJECT
@@ -16,12 +17,13 @@ public:
 
 public:
     /*----------------------------------------------Servic Function -----------------------------------------*/
+    ReportTablePage* m_reportTablePage;
 
+    ReportTablePlugin* reportTablePlugin;
     /*----------------------------------------------Servic Function -----------------------------------------*/
 
 private:
     HMPPluginContext* m_pContext;
-    ReportTablePage* m_reportTablePage;
 };
 
 #endif  // REPORTTABLEPLUGINSERVICE_H

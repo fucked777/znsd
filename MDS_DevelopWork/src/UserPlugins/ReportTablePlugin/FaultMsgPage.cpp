@@ -9,8 +9,11 @@
 #include <QDebug>
 #include <QFile>
 #include <QFileDialog>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QMessageBox>
 #define DISPLAY_TIME_FORMAT "yyyy-MM-dd HH:mm:ss"
+#define SERVER              "reportTableServer"
 const int MAX_INSERT_NUM = 1000;
 
 FaultMsgPage::FaultMsgPage(QWidget* parent)
@@ -184,7 +187,47 @@ void FaultMsgPage::initMember()
     //更新表格
     connect(m_pageNavigator, &pageWidget::updataTableView, this, &FaultMsgPage::slotUpdataTable);
 
-    connect(ui->allBtn, &QPushButton::clicked, this, &FaultMsgPage::allBtnClicked);
+    //    connect(ui->allBtn, &QPushButton::clicked, this, &FaultMsgPage::allBtnClicked);
+
+    connect(ui->allBtn, &QAbstractButton::clicked, [=]() {
+        QByteArray result /* = _server->cmdControl()->getMessage(SERVER, "get_table")*/;
+        ui->tableView->reset();
+        QJsonDocument doc = QJsonDocument::fromJson(result);
+        if (doc.isEmpty())
+        {
+            return;
+        }
+        FaultMsgDataList DATA;
+        QJsonArray obj = doc.array();
+        for (int i = 0; i < obj.size(); ++i)
+        {
+            FaultMsgData data;
+            QJsonArray colum = obj.at(i).toArray();
+            for (int j = 0; j < colum.size(); ++j)
+            {
+                QString text = (QString("%1").arg(colum.at(j).toString()));
+                switch (j)
+                {
+                case 0: data.faultLevel = text; continue;
+                case 1: data.dateTime = text; continue;
+                case 2: data.taskNum = text; continue;
+                case 3: data.faultCode = text; continue;
+                case 4: data.systemName = text; continue;
+                case 5: data.dealStatus = text; continue;
+                case 6: data.faultInfor = text; continue;
+                case 7: data.internalFault = text; continue;
+                case 8: data.remarks = text; continue;
+                }
+                //                QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(i, j);
+                //                m_pageNavigator->m_pDataModel->setData(indexValue, text, Qt::EditRole);
+            }
+            DATA.append(data);
+        }
+        m_pageNavigator->m_pDataModel->SetArrayData(DATA);
+        m_pageNavigator->m_pDataModel->SetPageSize(20);
+        m_pageNavigator->UpdateStatus();
+    });
+
     connect(ui->queryBtn, &QPushButton::clicked, this, &FaultMsgPage::queryBtnClicked);
     connect(ui->reportBtn, &QPushButton::clicked, this, &FaultMsgPage::exportStatus);
 }

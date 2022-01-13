@@ -11,6 +11,7 @@ class FaultMsgPage;
 class LogMsgPage;
 class LoadFilePage;
 class QButtonGroup;
+class iDataTransformPluginService;
 class ReportTablePage : public QWidget
 {
     Q_OBJECT
@@ -20,6 +21,11 @@ public:
     ~ReportTablePage();
     void initMember();
     void showSwitchPage(const int& index);
+    void setServer(iDataTransformPluginService* server);
+    // signals:
+    //    void testLabel(QString);
+
+    //    void testLabel(QPixmap);
 
 private:
     Ui::ReportTablePage* ui;
@@ -27,6 +33,8 @@ private:
     LogMsgPage* m_logMsgPage;
     LoadFilePage* m_loadFilePage;
     QButtonGroup* m_buttonGroup;
+
+    iDataTransformPluginService* _server;
 };
 
 #endif  // REPORTTABLEPAGE_H

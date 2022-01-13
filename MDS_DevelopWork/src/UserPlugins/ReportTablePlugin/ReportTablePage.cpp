@@ -1,4 +1,6 @@
 #include "ReportTablePage.h"
+#include "DataTransformPlugin/Plugin.h"
+#include "DataTransformPlugin/idatatransformpluginservice.h"
 #include "FaultMsgPage.h"
 #include "LoadFilePage.h"
 #include "LogMsgPage.h"
@@ -23,3 +25,9 @@ ReportTablePage::ReportTablePage(QWidget* parent)
     ui->tabWidget->setStyleSheet(tabBarStyle);
 }
 ReportTablePage::~ReportTablePage() { delete ui; }
+
+void ReportTablePage::setServer(iDataTransformPluginService* server)
+{
+    //
+    _server = server;
+}

@@ -64,12 +64,14 @@ CONFIG(release,debug|release){
 
 HEADERS += \
     ReportTablePage.h \
+    ReportTablePlugin.h \
     ireporttablepluginservice.h  \
     reporttablepluginservice.h  \ 
     reporttablepluginactivator.h 
 
 SOURCES += \
-    ReportTablePage.cpp \   
+    ReportTablePage.cpp \
+    ReportTablePlugin.cpp \
     reporttablepluginservice.cpp \ 
     reporttablepluginactivator.cpp 
 
