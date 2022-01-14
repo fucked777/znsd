@@ -12,6 +12,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QMessageBox>
+#include <QToolTip>
 #define DISPLAY_TIME_FORMAT "yyyy-MM-dd HH:mm:ss"
 #define SERVER              "reportTableServer"
 const int MAX_INSERT_NUM = 1000;
@@ -73,6 +74,25 @@ void FaultMsgPage::dealRemarksSlot(const QStringList& text, int row)
 {
     QModelIndex indexValue = m_pageNavigator->m_pDataModel->index(row, 5);
     m_pageNavigator->m_pDataModel->setData(indexValue, text, Qt::EditRole);
+}
+
+void FaultMsgPage::ShowTooltip(QModelIndex index)
+{
+    if (!index.isValid())
+        return;
+    QModelIndex _index = m_pageNavigator->m_pDataModel->index(index.row(), index.column());
+    QVariant dataValue = m_pageNavigator->m_pDataModel->data(_index, Qt::DisplayRole);
+    QString text = dataValue.toString();
+    if (text.isEmpty())
+        return;
+    QToolTip::showText(QCursor::pos(), text);
+    return;
+}
+
+void FaultMsgPage::reciveServerAndData(iDataTransformPluginService* server, QByteArray array)
+{
+    _server = server;
+    m_array = array;
 }
 
 void FaultMsgPage::slotUpdataTable()
@@ -190,7 +210,7 @@ void FaultMsgPage::initMember()
     //    connect(ui->allBtn, &QPushButton::clicked, this, &FaultMsgPage::allBtnClicked);
 
     connect(ui->allBtn, &QAbstractButton::clicked, [=]() {
-        QByteArray result /* = _server->cmdControl()->getMessage(SERVER, "get_table")*/;
+        QByteArray result /*= _server->cmdControl()->getMessage(SERVER, "get_table")*/;
         ui->tableView->reset();
         QJsonDocument doc = QJsonDocument::fromJson(result);
         if (doc.isEmpty())
@@ -258,6 +278,7 @@ void FaultMsgPage::setArrayDataInterface()
 }
 void FaultMsgPage::initView()
 {
+    connect(ui->tableView, SIGNAL(entered(QModelIndex)), this, SLOT(ShowTooltip(QModelIndex)));
     ui->tableView->setShowGrid(false);
     //    ui->tableView->horizontalHeader()->setVisible(false);  // 水平不可见
     ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);

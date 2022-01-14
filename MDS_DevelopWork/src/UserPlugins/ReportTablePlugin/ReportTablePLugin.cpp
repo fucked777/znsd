@@ -77,19 +77,19 @@ bool reportTableSender::sendData(const QVariantMap& obj)
     auto iter = obj.constBegin();
     while (iter != obj.constEnd())
     {
-        QString key = iter.key();
-        if (key == "testText")
-        {
-            QString value = iter.value().toString();
-            //            emit push_label(value);
-        }
-        if (key == "pix")
-        {
-            QByteArray bytes = iter.value().toByteArray();
-            QPixmap pix;
-            pix.loadFromData(bytes);
-            //            emit push_label(pix);
-        }
+        //        QString key = iter.key();
+        //        if (key == "testText")
+        //        {
+        //            QString value = iter.value().toString();
+        //            //            emit push_label(value);
+        //        }
+        //        if (key == "pix")
+        //        {
+        QByteArray bytes = iter.value().toByteArray();
+        //            QPixmap pix;
+        //            pix.loadFromData(bytes);
+        emit sendByteArray(bytes);
+        //        }
         ++iter;
     }
     return true;

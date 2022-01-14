@@ -23,6 +23,7 @@ public:
         , m_pContext(NULL)
     {
     }
+    virtual ~ReportTablePluginActivator();
 
 public:
     /**

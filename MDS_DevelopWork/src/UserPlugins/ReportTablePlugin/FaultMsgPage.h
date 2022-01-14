@@ -1,6 +1,7 @@
 #ifndef FaultMsgPage_H
 #define FaultMsgPage_H
-
+#include "DataTransformPlugin/Plugin.h"
+#include "DataTransformPlugin/idatatransformpluginservice.h"
 #include <QCheckBox>
 #include <QDialog>
 #include <QStandardItemModel>
@@ -14,6 +15,7 @@ class DealFaultDialog;
 class ViewDetailDialog;
 class pageWidget;
 class SqlFaultMsgManager;
+class iDataTransformPluginService;
 class FaultMsgPage : public QDialog
 {
     Q_OBJECT
@@ -33,6 +35,9 @@ private slots:
     void dealFaultBtnClicked();
     void saveRemarksSlot(const QString& text, int row);
     void dealRemarksSlot(const QStringList& text, int row);
+    void ShowTooltip(QModelIndex index);
+public slots:
+    void reciveServerAndData(iDataTransformPluginService* server, QByteArray array);
 
 private:
     void processExport(const QString& fileName);
@@ -52,6 +57,9 @@ private:
     pageWidget* m_pageNavigator;
     ViewDetailDialog* m_viewDetailDialog;
     SqlFaultMsgManager* m_sqlFaultMsgManager;
+
+    iDataTransformPluginService* _server;
+    QByteArray m_array;
 };
 
 #endif  // FaultMsgPage_H

@@ -22,10 +22,11 @@ public:
     void initMember();
     void showSwitchPage(const int& index);
     void setServer(iDataTransformPluginService* server);
-    // signals:
-    //    void testLabel(QString);
 
-    //    void testLabel(QPixmap);
+signals:
+    void sendServerAndData(iDataTransformPluginService* server, QByteArray array);
+public slots:
+    void reciveByteArray(QByteArray s);
 
 private:
     Ui::ReportTablePage* ui;
@@ -35,6 +36,7 @@ private:
     QButtonGroup* m_buttonGroup;
 
     iDataTransformPluginService* _server;
+    QByteArray array;
 };
 
 #endif  // REPORTTABLEPAGE_H

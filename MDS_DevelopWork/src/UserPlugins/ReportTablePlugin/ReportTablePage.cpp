@@ -18,6 +18,7 @@ ReportTablePage::ReportTablePage(QWidget* parent)
     ui->tabWidget->addTab(m_logMsgPage, "日志信息");
     ui->tabWidget->addTab(m_loadFilePage, "载荷文件输入输出统计");
     QFile file(qApp->applicationDirPath() + "/../data/style/MainManager.qss");
+    connect(this, &ReportTablePage::sendServerAndData, m_faultMsgPage, &FaultMsgPage::reciveServerAndData);
     file.open(QIODevice::ReadOnly);
     QString tabBarStyle = "QTabBar::tab {background:transparent;min-width:100px;color: white;border: 2px solid;border-top-left-radius: "
                           "10px;border-top-right-radius: 10px;padding:5px;}";
@@ -26,8 +27,15 @@ ReportTablePage::ReportTablePage(QWidget* parent)
 }
 ReportTablePage::~ReportTablePage() { delete ui; }
 
+void ReportTablePage::initMember() {}
+
 void ReportTablePage::setServer(iDataTransformPluginService* server)
 {
     //
     _server = server;
+}
+
+void ReportTablePage::reciveByteArray(QByteArray byteArrray)
+{  //
+    array = byteArrray;
 }

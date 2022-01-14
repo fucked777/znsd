@@ -22,13 +22,8 @@ ReportTablePluginService::ReportTablePluginService(HMPPluginContext* pContext)
         {
             m_reportTablePage->setServer(s);
             reportTablePlugin = new ReportTablePlugin;
-            //
-            // TestSender* sender = qobject_cast<TestSender*>(testPlugin->sender()->object());
             reportTableSender* sender = dynamic_cast<reportTableSender*>(reportTablePlugin->sender());
-            //            connect(sender, QOverload<QString>::of(&reportTableSender::push_label), m_reportTablePage,
-            //            QOverload<QString>::of(&Test::testLabel)); connect(sender, QOverload<QPixmap>::of(&reportTableSender::push_label),
-            //            m_reportTablePage, QOverload<QPixmap>::of(&Test::testLabel));
-
+            QObject::connect(sender, &reportTableSender::sendByteArray, m_reportTablePage, &ReportTablePage::reciveByteArray);
             s->pluginManager()->addPlugin(reportTablePlugin);
         }
     }

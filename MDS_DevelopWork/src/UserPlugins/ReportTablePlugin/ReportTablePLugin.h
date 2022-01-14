@@ -55,7 +55,7 @@ public:
     virtual bool sendData(const QVariantMap& obj);
 
     virtual void stop();
-    // signals:
-    //    void push_label(QString);
+signals:
+    void sendByteArray(const QByteArray);
     //    void push_label(QPixmap);
 };
