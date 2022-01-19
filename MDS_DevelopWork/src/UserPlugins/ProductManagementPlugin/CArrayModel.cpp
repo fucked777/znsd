@@ -24,7 +24,12 @@ void CArrayModel::SetArrayData(const QList<ImagerData>& Datas)
     m_mpData = Datas;
     int cd = 1000;
 }
-
+void CArrayModel::clear()
+{
+    beginResetModel();
+    m_mpPageData.clear();
+    endResetModel();
+}
 QList<ImagerData> CArrayModel::GetArrayData() const { return m_mpData; }
 
 QList<ImagerData> CArrayModel::GetPageArrayData() const { return m_mpPageData; }

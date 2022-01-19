@@ -7,10 +7,10 @@
 #include <QDebug>
 #include <QFile>
 #include <QFileDialog>
+#include <QMenu>
 #include <QMessageBox>
 #include <QToolButton>
 #include <QTreeWidgetItem>
-
 ImagerPage::ImagerPage(QWidget* parent)
     : QDialog(parent)
     , ui(new Ui::ImagerPage)
@@ -86,6 +86,18 @@ void ImagerPage::initMember()
     ui->widget->layout()->addWidget(m_pageNavigator);
     ui->tableView->setModel(m_pageNavigator->m_pDataModel);
     //更新表格
+
+    //    m_menu = new QMenu(this);
+    //    m_menu->addAction(QString("清除数据"));
+    //    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
+    //    connect(ui->tableView, &QTableView::customContextMenuRequested, this, [=]() {
+    //        QPoint pt = ui->tableView->mapFromGlobal(QCursor::pos());
+    //        int height = ui->tableView->horizontalHeader()->height();
+    //        QPoint pt2(0, height);
+    //        pt -= pt2;
+    //        m_menu->exec(QCursor::pos());
+    //        m_pageNavigator->m_pDataModel->clear();
+    //    });
     connect(m_pageNavigator, &pageWidget::updataTableView, this, &ImagerPage::slotUpdataTable);
     connect(ui->allBtn, &QPushButton::clicked, this, &ImagerPage::allBtnClicked);
     connect(ui->queryBtn, &QPushButton::clicked, this, &ImagerPage::queryBtnClicked);

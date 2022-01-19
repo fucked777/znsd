@@ -49,6 +49,8 @@ private:
     SqlImagerManager* m_sqlImagerManager;
     QMap<int, bool> status;
 
+    //    QMenu* m_menu = nullptr;
+
     //    bool status = true;
 };
 
