@@ -5,11 +5,6 @@ error.txt
 /**/Framework.pro.user.*
 /**/res.zip
 
-# 忽略编译中间文件
-**build-**Debug
-**build-**Release
-**build-**
-
 
 # 忽略vs的工程
 **vs
