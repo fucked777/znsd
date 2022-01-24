@@ -1,0 +1,15 @@
+error.txt
+
+# 忽略编译中间文件
+**build-**Debug
+**build-**Release
+**build-**
+
+
+# 忽略vs的工程
+**vs
+**VS
+
+# 忽略bak
+*.bak
+**bak**
