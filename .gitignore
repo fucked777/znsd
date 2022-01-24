@@ -13,3 +13,6 @@ error.txt
 # 忽略bak
 *.bak
 **bak**
+
+
+**/dbin5.14.1/plugins/
