@@ -6,9 +6,7 @@ error.txt
 /**/res.zip
 
 
-# 忽略vs的工程
-**vs
-**VS
+
 
 # 忽略bak
 *.bak
