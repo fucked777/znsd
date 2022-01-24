@@ -14,5 +14,4 @@ error.txt
 *.bak
 **bak**
 
-
-**/dbin5.14.1/plugins/
+/**/plugins
