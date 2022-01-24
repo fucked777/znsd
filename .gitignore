@@ -1,8 +1,8 @@
-error.txt
+
 
 # 忽略编译中间文件
 **build-**Debug
-**build-**Release
+# **build-**Release
 **build-**
 
 
@@ -14,4 +14,8 @@ error.txt
 *.bak
 **bak**
 
-/**/plugins
+*.dll
+*.exp
+*.ilk
+*.lib
+*.pdb
