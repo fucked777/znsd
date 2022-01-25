@@ -16,7 +16,7 @@ error.txt
 
 #此目录的头文件编译后会自动填充所以不提交
 
-plugins/  :
+plugins/
 *.dll
 *.exp
 *.lik
