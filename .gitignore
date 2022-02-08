@@ -23,3 +23,8 @@ plugins/
 *.lib
 *.pdb
 *.user
+*.pro.user
+*.db
+
+MDS_DevelopWork/01DeskTopRunHome/dbin5.14.1/configuration/plugins.db
+MDS_DevelopWork/src/UserPlugins/ReportTablePlugin/ReportTablePlugin.pro.user
