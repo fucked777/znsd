@@ -68,12 +68,7 @@ void CArrayModel::SetCurPage(int iPage)
 int CArrayModel::GetCurPage() { return m_iCurPage; }
 
 //获得总页数
-int CArrayModel::GetPageCount()
-{
-    int pageNum;
-    pageNum = (RowCount() % m_iPageSize == 0) ? (RowCount() / m_iPageSize) : (RowCount() / m_iPageSize + 1);
-    return pageNum;
-}
+int CArrayModel::GetPageCount() { return (RowCount() % m_iPageSize == 0) ? (RowCount() / m_iPageSize) : (RowCount() / m_iPageSize + 1); }
 
 //设置每页数据条数
 void CArrayModel::SetPageSize(int iPageSize)
